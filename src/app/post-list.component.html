@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <li *ngFor="let post of posts" class="list-group-item border-0 rounded-0">
+    <div>
+      <small class="text-muted">{{post.created_by}} &middot; {{post.created_on | date:short}}</small>
+    </div>
+    {{post.text}}
+  </li>
+</ul>

@@ -57,3 +57,16 @@ typings/
 # dotenv environment variables file
 .env
 
+# sass
+.sass-cache/
+*.css
+*.css.map
+/app
+/css
+
+# js (exclude compiled)
+*.js
+*.js.map
+
+# vscode
+.vscode/
