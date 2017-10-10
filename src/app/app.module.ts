@@ -15,6 +15,8 @@ import { PostListComponent }       from './post-list.component';
 import { QuestionService }         from './question.service';
 import { QuestionSearchComponent } from './question-search.component';
 import { QuestionListComponent }   from './question-list.component';
+import { SetService}               from './set.service';
+import { SetListComponent }        from './set-list.component';
 
 @NgModule({
   imports: [ 
@@ -30,10 +32,12 @@ import { QuestionListComponent }   from './question-list.component';
     PostListComponent,
     QuestionSearchComponent,
     QuestionListComponent,
+    SetListComponent,
   ],
   providers: [
     PostService,
     QuestionService,
+    SetService,
   ],
   bootstrap: [ AppComponent ]
 })

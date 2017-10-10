@@ -1,0 +1,20 @@
+<ul class="list-group">
+  <li *ngFor="let set of sets"
+      class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
+    <div class="d-flex w-100 justify-content-end">
+      <span class="text-primary text-capitalize title-ellipsis w-100 font-weight-bold">{{set.title}}</span>
+      <span class="text-muted text-right mx-3">{{set.count}}</span>
+      <div class="dropdown">
+        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="oi oi-ellipses text-primary" title="Search" aria-hidden="true"></span>
+        </a>
+        <div class="dropdown-menu">
+          <span class="dropdown-item">
+            <span class="oi oi-pencil" title="Search" aria-hidden="true"></span>
+            Edit
+          </span>
+        </div> <!-- ./dropdown-menu -->
+      </div> <!-- ./dropdown -->
+    </div> <!-- ./d-flex -->
+  </li> <!-- ./list-group-item -->
+</ul>
