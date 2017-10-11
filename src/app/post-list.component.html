@@ -1,9 +1,9 @@
 <div class="list-group">
-  <a *ngFor="let post of posts"
+  <a *ngFor="let post of posts" [routerLink]="['/posts', post.id]"
      class="list-group-item list-group-item-action border-0 rounded-0"
      href="#">
     <h5 class="d-inline text-primary">{{post.title}}</h5>
     <p class="mb-0">{{post.text}}</p>
-    <small class="text-muted">{{post.created_on | date:short}}</small>
+    <small class="text-muted">{{post.created_on | date:'short'}}</small>
   </a>
 </div>

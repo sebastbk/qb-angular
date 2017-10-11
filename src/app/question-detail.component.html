@@ -1,0 +1,35 @@
+<div class="card mt-3 border-0 rounded-0">
+  <h2 class="card-header bg-primary text-white">Question</h2>
+  <div class="card-body">
+    <ul>
+      <li><label>id</label>{{question?.id}}</li>
+      <li><label>created by</label>{{question?.created_by}}</li>
+      <li><label>created on</label>{{question?.created_on | date:'short'}}</li>
+      <li><label>category</label>{{question?.category}}</li>
+      <li><label>difficulty</label>{{question?.difficulty}}</li>
+      <li><label>text</label>{{question?.text}}</li>
+      <li>
+        <h3>Answers</h3>
+        <ul>
+          <li *ngFor="let answer of question?.answers">
+            <ul>
+              <li><label>id</label>{{answer.id}}</li>
+              <li><label>answer</label>{{answer.answer}}</li>
+              <li><label>alt1</label>{{answer.alt1}}</li>
+              <li><label>alt2</label>{{answer.alt2}}</li>
+              <li><label>data type</label>{{answer.data_type}}</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h3>Rating</h3>
+        <ul>
+          <li><label>average</label>{{question?.rating?.average}}</li>
+          <li><label>count</label>{{question?.rating?.count}}</li>
+        </ul>
+      </li>
+    </ul>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </div>
+</div>

@@ -12,9 +12,11 @@ import { NavComponent }            from './nav.component';
 import { HomeComponent }           from './home.component';
 import { PostService }             from './post.service';
 import { PostListComponent }       from './post-list.component';
+import { PostDetailComponent }     from './post-detail.component';
 import { QuestionService }         from './question.service';
 import { QuestionSearchComponent } from './question-search.component';
 import { QuestionListComponent }   from './question-list.component';
+import { QuestionDetailComponent } from './question-detail.component';
 import { SetService}               from './set.service';
 import { SetListComponent }        from './set-list.component';
 
@@ -30,8 +32,10 @@ import { SetListComponent }        from './set-list.component';
     NavComponent,
     HomeComponent,
     PostListComponent,
+    PostDetailComponent,
     QuestionSearchComponent,
     QuestionListComponent,
+    QuestionDetailComponent,
     SetListComponent,
   ],
   providers: [
