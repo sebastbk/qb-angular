@@ -18,7 +18,12 @@ import { QuestionSearchComponent } from './question-search.component';
 import { QuestionListComponent }   from './question-list.component';
 import { QuestionDetailComponent } from './question-detail.component';
 import { SetService}               from './set.service';
+import { SetQuestionService }      from './set-question.service';
 import { SetListComponent }        from './set-list.component';
+import { SetDetailComponent }      from './set-detail.component';
+
+import { AgePipe }       from './age.pipe';
+import { PluralizePipe } from './pluralize.pipe';
 
 @NgModule({
   imports: [ 
@@ -37,11 +42,15 @@ import { SetListComponent }        from './set-list.component';
     QuestionListComponent,
     QuestionDetailComponent,
     SetListComponent,
+    SetDetailComponent,
+    AgePipe,
+    PluralizePipe,
   ],
   providers: [
     PostService,
     QuestionService,
     SetService,
+    SetQuestionService,
   ],
   bootstrap: [ AppComponent ]
 })

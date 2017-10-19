@@ -1,20 +1,16 @@
 <ul class="list-group">
   <li *ngFor="let set of sets"
       class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
-    <div class="d-flex w-100 justify-content-end">
-      <span class="text-primary text-capitalize title-ellipsis mr-auto font-weight-bold">{{set.title}}</span>
-      <span class="text-muted text-right mx-3">{{set.count}}</span>
-      <div class="dropdown">
-        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="oi oi-ellipses text-primary" title="Search" aria-hidden="true"></span>
-        </a>
-        <div class="dropdown-menu">
-          <span class="dropdown-item">
-            <span class="oi oi-pencil" title="Search" aria-hidden="true"></span>
-            Edit
-          </span>
-        </div> <!-- ./dropdown-menu -->
-      </div> <!-- ./dropdown -->
+    <div class="d-flex w-100 justify-content-between">
+      <small>
+        <a class="text-muted" [routerLink]="['/sets', set.id]">
+          {{set.created_by}} &middot;
+          <span class="text-primary">{{set.count}} {{"question" | pluralize:set.count}}</span> &middot;
+          {{set.created_on | age}}</a>
+        <a class="oi oi-heart text-primary px-1" aria-hidden="true"></a>
+      </small>
+      <a class="px-1"><span class="oi oi-ellipses text-primary" aria-hidden="true"></span></a>
     </div> <!-- ./d-flex -->
+    <span class="text-capitalize title-ellipsis">{{set.title}}</span>
   </li> <!-- ./list-group-item -->
 </ul>

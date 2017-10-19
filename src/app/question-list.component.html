@@ -1,32 +1,15 @@
 <ul class="list-group">
   <li *ngFor="let question of questions"
-      class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
+       class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1 text-primary">{{question.category}}</h5>
-      <div class="dropdown display-i">
-        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="oi oi-ellipses text-primary" title="Search" aria-hidden="true"></span>
-        </a>
-        <div class="dropdown-menu">
-          <span class="dropdown-item">
-            <span class="oi oi-pencil" title="Search" aria-hidden="true"></span>
-            Edit
-          </span>
-          <span class="dropdown-item">
-            <span class="oi oi-plus" title="Search" aria-hidden="true"></span>
-            Add to Question Set
-          </span>
-        </div> <!-- ./dropdown-menu -->
-      </div> <!-- ./dropdown -->
-    </div>
-    <p class="mb-1">
-      {{question.text}}
-    </p>
-    <div class="collapse" id="">
-      <h6 class="text-primary">Answer</h6>
-      <ol class="list-unstyled ml-3 mb-1">
-        <li *ngFor="let answer of answers" class="font-weight-bold">{{answer.answer}}</li>
-      </ol>
-    </div>
+      <small>
+        <a class="text-muted" [routerLink]="['/questions', question.id]">
+          {{question.created_by}} &middot;
+          {{question.created_on | age}}</a>
+        <a class="oi oi-heart text-primary px-1" aria-hidden="true"></a>
+        </small>
+      <a class="px-1"><span class="oi oi-ellipses text-primary" aria-hidden="true"></span></a>
+    </div> <!-- ./d-flex -->
+    <p class="mb-0">{{question.text}} <span class="text-primary">{{question.answer}}</span></p>
   </li> <!-- ./list-group-item -->
 </ul>
