@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   getPosts() {
     this.postService.getPosts()
-      .then(posts => this.recentPosts = posts.slice(0, 5));
+      .then(posts => this.recentPosts = posts.slice(0, 3));
   }
 
   getQuestions() {

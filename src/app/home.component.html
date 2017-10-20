@@ -1,27 +1,22 @@
 <div class="pt-3 p-md-3">
   <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-3">
       <div class="card card-shadow border-0 rounded-0 mb-3">
         <h2 class="card-header bg-primary text-white">News</h2>
         <div class="card-body p-0">
           <post-list [posts]="recentPosts"></post-list>
-          <a href="#" class="btn btn-primary btn-block border-0 rounded-0">More</a>
         </div>
-      </div>
-    </div> <!-- ./col -->
-    <div class="col-12 col-md-4">
-      <div class="card card-shadow border-0 rounded-0 mb-3">
         <h2 class="card-header bg-primary text-white">Popular Questions</h2>
         <div class="card-body p-0">
           <question-list [questions]="topFiveQuestions"></question-list>
         </div>
-      </div>
-      <div class="card card-shadow border-0 rounded-0 mb-3">
         <h2 class="card-header bg-primary text-white">Popular Sets</h2>
         <div class="card-body p-0">
           <set-list [sets]="topTenSets"></set-list>
         </div>
       </div>
+    </div> <!-- ./col -->
+    <div class="col-12 col-md-9">
     </div> <!-- ./col -->
   </div>
 </div>
