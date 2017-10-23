@@ -2,6 +2,8 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }     from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -10,20 +12,21 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { AppComponent }            from './app.component';
 import { NavComponent }            from './nav.component';
 import { HomeComponent }           from './home.component';
-import { PostService }             from './post.service';
-import { PostListComponent }       from './post-list.component';
-import { PostDetailComponent }     from './post-detail.component';
-import { QuestionService }         from './question.service';
-import { QuestionSearchComponent } from './question-search.component';
-import { QuestionListComponent }   from './question-list.component';
-import { QuestionDetailComponent } from './question-detail.component';
-import { SetService}               from './set.service';
-import { SetQuestionService }      from './set-question.service';
-import { SetListComponent }        from './set-list.component';
-import { SetDetailComponent }      from './set-detail.component';
+import { NewsComponent }           from './news.component';
+import { PostService }             from './posts/post.service';
+import { PostListComponent }       from './posts/post-list.component';
+import { PostDetailComponent }     from './posts/post-detail.component';
+import { QuestionService }         from './questions/question.service';
+import { QuestionSearchComponent } from './questions/question-search.component';
+import { QuestionListComponent }   from './questions/question-list.component';
+import { QuestionDetailComponent } from './questions/question-detail.component';
+import { SetService}               from './sets/set.service';
+import { SetQuestionService }      from './sets/set-question.service';
+import { SetListComponent }        from './sets/set-list.component';
+import { SetDetailComponent }      from './sets/set-detail.component';
 
-import { AgePipe }       from './age.pipe';
-import { PluralizePipe } from './pluralize.pipe';
+import { AgePipe }       from './pipes/age.pipe';
+import { PluralizePipe } from './pipes/pluralize.pipe';
 
 @NgModule({
   imports: [ 
@@ -31,11 +34,13 @@ import { PluralizePipe } from './pluralize.pipe';
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
+    NgbModule.forRoot(),
   ],
   declarations: [ 
     AppComponent,
     NavComponent,
     HomeComponent,
+    NewsComponent,
     PostListComponent,
     PostDetailComponent,
     QuestionSearchComponent,

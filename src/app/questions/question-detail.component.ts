@@ -5,7 +5,7 @@ import { Location }                 from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { QuestionService } from './question.service'
-import { Question } from './question';
+import { Question }        from './question';
 
 @Component({
   selector: 'question-detail',

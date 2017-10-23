@@ -7,7 +7,7 @@ import 'rxjs/add/operator/switchMap';
 import { Set }                from './set';
 import { SetService }         from './set.service'
 import { SetQuestionService } from './set-question.service';
-import { Question }           from './question';
+import { Question }           from '../questions/question';
 
 @Component({
   selector: 'set-detail',

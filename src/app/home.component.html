@@ -1,30 +1,8 @@
-<div class="row h-100 pt-3 p-md-5">
-  <div class="col-12 col-md-3">
-    <div class="card h-100 card-shadow border-0 rounded-0">
-      <h2 class="card-header bg-primary text-white">News</h2>
-      <div class="card-body p-0" style="overflow-y: scroll;">
-        <post-list [posts]="recentPosts"></post-list>
-        <div *ngIf="topFiveQuestions">
-          <h3 class="card-header bg-primary text-white">Questions</h3>
-          <question-list [questions]="topFiveQuestions"></question-list>
-        </div>
-        <div *ngIf="topTenSets">
-          <h3 class="card-header bg-primary text-white">Sets</h3>
-          <set-list [sets]="topTenSets"></set-list>
-        </div>
-      </div>
+<div class="d-flex justify-content-around align-items-center h-100 p-0">
+  <div class="card" style="width: 768px; height: 600px;">
+    <h2 class="card-header bg-primary text-white">News</h2>
+    <div class="card-body" style="overflow-y: auto;">
+      <news></news>
     </div>
-  </div> <!-- ./col -->
-  <div class="col-12 col-md-7">
-    <div class="card h-100 card-shadow border-0 rounded-0">
-      <h2 class="card-header bg-primary text-white">Quiz</h2>
-      <div class="card-body" style="overflow-y: scroll;"></div>
-    </div>
-  </div> <!-- ./col -->
-  <div class="col-12 col-md-2">
-    <div class="card h-100 card-shadow border-0 rounded-0">
-      <h2 class="card-header bg-primary text-white">Social</h2>
-      <div class="card-body" style="overflow-y: scroll;"></div>
-    </div>
-  </div> <!-- ./col -->
-</div> <!-- ./row -->
+  </div>
+</div> <!-- ./d-flex -->

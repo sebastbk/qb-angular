@@ -5,8 +5,8 @@ import { Observable }    from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { Question } from './question';
-import { QuestionService } from './question.service';
+import { Question }        from '../questions/question';
+import { QuestionService } from '../questions/question.service';
 
 @Injectable()
 export class SetQuestionService {

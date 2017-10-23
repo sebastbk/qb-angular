@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent }           from './home.component';
-import { QuestionSearchComponent } from './question-search.component';
-import { QuestionDetailComponent } from './question-detail.component';
-import { PostDetailComponent }     from './post-detail.component';
-import { SetDetailComponent }      from './set-detail.component';
+import { QuestionSearchComponent } from './questions/question-search.component';
+import { QuestionDetailComponent } from './questions/question-detail.component';
+import { PostDetailComponent }     from './posts/post-detail.component';
+import { SetDetailComponent }      from './sets/set-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

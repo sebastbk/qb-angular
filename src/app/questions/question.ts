@@ -1,5 +1,3 @@
-import { Rating } from './rating';
-
 export class Question {
   id: number;
   created_by: string;
