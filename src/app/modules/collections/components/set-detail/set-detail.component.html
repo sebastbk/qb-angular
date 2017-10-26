@@ -1,0 +1,24 @@
+<div class="card">
+  <h2 class="card-header bg-primary text-white">Set</h2>
+  <div class="card-body">
+    <ul>
+      <li><label>id</label>{{set?.id}}</li>
+      <li><label>created by</label>{{set?.created_by}}</li>
+      <li><label>created on</label>{{set?.created_on | date:'short'}}</li>
+      <li><label>modified on</label>{{set?.modified_on | date:'short'}}</li>
+      <li><label>title</label>{{set?.title}}</li>
+      <li><label>count</label>{{set?.count}}</li>
+      <li>
+          <ul class="list-inline">
+            <label>tags</label>
+            <li *ngFor="let tag of set?.tags"
+                class="list-inline-item badge badge-primary">
+              {{tag}}
+            </li>
+          </ul>
+        </li>
+    </ul>
+    <h4 class="text-primary">Questions</h4>
+    <qb-question-list [questions]="questions"></qb-question-list>
+  </div>
+</div>
