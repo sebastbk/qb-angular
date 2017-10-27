@@ -21,6 +21,7 @@ import { CollectionsComponent } from './collections.component';
 import { CollectionsNavComponent } from './components/collections-nav/collections-nav.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { QuestionSearchComponent } from './components/question-search/question-search.component';
+import { SetSearchComponent } from './components/set-search/set-search.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { QuestionSearchComponent } from './components/question-search/question-s
     CollectionsComponent,
     CardsComponent,
     QuestionSearchComponent,
+    SetSearchComponent,
   ],
   providers: [
     QuestionService,

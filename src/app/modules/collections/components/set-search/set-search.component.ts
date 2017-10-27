@@ -4,11 +4,11 @@ import { Tag } from '../../models/tag';
 import { TagService } from '../../services/tag.service';
 
 @Component({
-  selector: 'qb-question-search',
-  templateUrl: './question-search.component.html',
-  styleUrls: ['./question-search.component.scss']
+  selector: 'qb-set-search',
+  templateUrl: './set-search.component.html',
+  styleUrls: ['./set-search.component.scss']
 })
-export class QuestionSearchComponent implements OnInit {
+export class SetSearchComponent implements OnInit {
   tags: Tag[];
 
   constructor(private tagService: TagService) { }

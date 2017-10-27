@@ -5,13 +5,13 @@
       <input type="text" class="form-control" placeholder="search" />
     </div>
     <hr />
-    <h2 class="text-primary text-uppercase mb-3">Popular Tags</h2>
+    <h2 class="text-primary text-uppercase">Popular Tags</h2>
     <div class="row">
       <div *ngFor="let tag of tags" class="col-lg-3 mb-3 text-center">
         <div class="card">
           <div class="card-body">
             <div class="text-primary font-weight-bold">{{tag.name}}</div>
-            <div class="text-muted">{{tag.question_count}} {{'question' | pluralize:tag.question_count}}</div>
+            <div class="text-muted">{{tag.set_count}} {{'set' | pluralize:tag.set_count}}</div>
           </div>
         </div>
       </div>

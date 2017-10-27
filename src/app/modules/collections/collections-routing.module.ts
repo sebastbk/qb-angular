@@ -7,6 +7,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionSearchComponent } from './components/question-search/question-search.component';
 import { QuestionDetailComponent } from './components/question-detail/question-detail.component';
 import { SetsComponent } from './components/sets/sets.component';
+import { SetSearchComponent } from './components/set-search/set-search.component';
 import { SetDetailComponent } from './components/set-detail/set-detail.component';
 import { TagsComponent } from './components/tags/tags.component';
 
@@ -22,6 +23,7 @@ const routes: Routes = [
       },
       { path: 'sets', component: SetsComponent,
         children: [
+          { path: '', component: SetSearchComponent },
           { path: ':id', component: SetDetailComponent }
         ]
       },
