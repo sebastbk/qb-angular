@@ -20,6 +20,7 @@ import { TagService } from './services/tag.service';
 import { CollectionsComponent } from './collections.component';
 import { CollectionsNavComponent } from './components/collections-nav/collections-nav.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { QuestionSearchComponent } from './components/question-search/question-search.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { CardsComponent } from './components/cards/cards.component';
     CollectionsNavComponent,
     CollectionsComponent,
     CardsComponent,
+    QuestionSearchComponent,
   ],
   providers: [
     QuestionService,
