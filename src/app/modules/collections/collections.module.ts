@@ -18,6 +18,8 @@ import { QuestionService } from './services/question.service';
 import { SetService } from './services/set.service';
 import { TagService } from './services/tag.service';
 import { CollectionsComponent } from './collections.component';
+import { CollectionsNavComponent } from './components/collections-nav/collections-nav.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { CollectionsComponent } from './collections.component';
     QuestionsComponent,
     TagListComponent,
     TagsComponent,
+    CollectionsNavComponent,
     CollectionsComponent,
+    CardsComponent,
   ],
   providers: [
     QuestionService,

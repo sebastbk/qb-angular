@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { Router }           from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
+import 'rxjs/add/operator/switchMap';
+
+import { QuestionService } from '../../services/question.service'
 import { Question } from '../../models/question';
 
 @Component({
@@ -8,6 +11,17 @@ import { Question } from '../../models/question';
   templateUrl: './question-detail.component.html',
   styleUrls: ['./question-detail.component.scss']
 })
-export class QuestionDetailComponent {
-  @Input() question: Question;
+export class QuestionDetailComponent implements OnInit {
+  question: Question;
+
+  constructor(
+    private questionService: QuestionService,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit(): void {
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.questionService.getQuestion(+params.get('id')))
+      .subscribe(question => this.question = question)
+  }
 }

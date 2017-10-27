@@ -4,7 +4,7 @@
       class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
     <div class="d-flex w-100 justify-content-between">
       <small class="text-muted">
-        <a class="text-primary" [routerLink]="['/questions', question.id]">#{{question.id}}</a> &middot;
+        <a class="text-primary" [routerLink]="[question.id]">#{{question.id}}</a> &middot;
         <a class="text-primary" [routerLink]="['/users', question.created_by]">{{question.created_by}}</a> &middot;
         <span>{{question.created_on | age}}</span>
         </small>

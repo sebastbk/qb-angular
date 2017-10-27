@@ -1,4 +1,6 @@
 <div class="d-flex align-items-stretch h-100">
-  <qb-question-list #questionList [questions]="questions" class="bg-white" style="width:400px;overflow-y:auto;"></qb-question-list>
-  <qb-question-detail [question]="questionList.selectedQuestion" class="col"></qb-question-detail>
+  <qb-question-list #questionList [questions]="questions" class="bg-white h-100" style="width:400px;overflow-y:auto;"></qb-question-list>
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
 </div>

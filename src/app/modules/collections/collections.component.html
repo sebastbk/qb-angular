@@ -1,26 +1,6 @@
-<div class="d-flex h-100 justify-content-center align-items-center">
-  <div class="card mx-3 text-center" style="width: 16rem;height: 24rem;"
-       [routerLink]="'questions'">
-    <img class="card-img-top bg-primary" src="assets/images/question_card.svg">
-    <div class="card-body">
-      <h4 class="card-title text-primary text-uppercase">Questions</h4>
-      <p>Search for questions</p>
-    </div>
-  </div>
-  <div class="card mx-3 text-center" style="width: 16rem;height: 24rem;"
-       [routerLink]="'sets'">
-    <img class="card-img-top bg-primary" src="assets/images/set_card.svg">
-    <div class="card-body">
-      <h4 class="card-title text-primary text-uppercase">Sets</h4>
-      <p>Search for sets of questions</p>
-    </div>
-  </div>
-  <div class="card mx-3 text-center" style="width: 16rem;height: 24rem;"
-       [routerLink]="'tags'">
-    <img class="card-img-top bg-primary" src="assets/images/tag_card.svg">
-    <div class="card-body">
-      <h4 class="card-title text-primary text-uppercase">Tags</h4>
-      <p>View popular tags</p>
-    </div>
+<div class="d-flex flex-column h-100">
+  <qb-collections-nav></qb-collections-nav>
+  <div class="col p-0">
+    <router-outlet></router-outlet>
   </div>
 </div>
