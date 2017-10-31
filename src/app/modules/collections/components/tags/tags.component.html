@@ -1,3 +1,11 @@
-<p>
-  tags works!
-</p>
+<div class="container mt-5" style="overflow-y: auto;">
+  <h1 class="text-primary text-uppercase font-weight-bold">Search</h1>
+  <div class="form-group">
+    <input type="text" class="form-control">
+    <div class="text-right text-uppercase text-muted">
+      Search Filters
+      <span class="oi oi-magnifying-glass"></span>
+    </div>
+  </div>
+  <qb-tag-list [tags]="tags"></qb-tag-list>
+</div>

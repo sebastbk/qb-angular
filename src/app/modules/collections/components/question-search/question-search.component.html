@@ -3,9 +3,12 @@
     <h1 class="text-primary text-uppercase font-weight-bold">Search</h1>
     <div class="form-group">
       <input type="text" class="form-control" placeholder="search" />
+      <div class="text-right text-uppercase text-muted">
+        Search Filters
+        <span class="oi oi-magnifying-glass"></span>
+      </div>
     </div>
-    <hr />
-    <h2 class="text-primary text-uppercase mb-3">Popular Tags</h2>
+    <h1 class="text-primary text-uppercase font-weight-bold">Popular Tags</h1>
     <div class="row">
       <div *ngFor="let tag of tags" class="col-lg-3 mb-3 text-center">
         <div class="card">
