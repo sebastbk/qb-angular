@@ -1,0 +1,42 @@
+export const posts = [
+  {
+    id: 4,
+    created_by: 'Keifer',
+    created_on: new Date(2017, 9, 13),
+    modified_on: new Date(2017, 9, 13),
+    title: 'New Layout!',
+    text: 'placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor',
+  },
+  {
+    id: 3,
+    created_by: 'Keifer',
+    created_on: new Date(2017, 9, 11),
+    modified_on: new Date(2017, 9, 11),
+    title: 'News?',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+  {
+    id: 2,
+    created_by: 'Keifer',
+    created_on: new Date(2017, 9, 9),
+    modified_on: new Date(2017, 9, 9),
+    title: 'Future Updates - Please Look Forward',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim suspendisse in est ante. Massa massa ultricies mi quis hendrerit dolor magna. Rhoncus est pellentesque elit ullamcorper.',
+  },
+  {
+    id: 1,
+    created_by: 'Keifer',
+    created_on: new Date(2017, 9, 8),
+    modified_on: new Date(2017, 9, 8),
+    title: 'Getting Started',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo odio aenean sed adipiscing. Condimentum mattis pellentesque id nibh tortor id aliquet lectus proin. Ridiculus mus mauris vitae ultricies.',
+  },
+  {
+    id: 0,
+    created_by: 'Keifer',
+    created_on: new Date(2017, 9, 8),
+    modified_on: new Date(2017, 9, 8),
+    title: 'First Post!',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh praesent tristique magna sit amet purus gravida quis.',
+  },
+];
