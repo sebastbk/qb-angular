@@ -2,6 +2,7 @@
   <h1 class="text-primary text-uppercase">Search</h1>
   <div class="form-group mb-0">
     <input class="form-control mb-2 rounded-0" #searchBox formControlName="q"
+            (keyup.enter)="searchBox.blur()"
             (keyup)="searchTags(searchBox.value, searchBox.selectionEnd)"
             (click)="searchTags(searchBox.value, searchBox.selectionEnd)" />
     <ul class="list-group" style="position:absolute;z-index:50">

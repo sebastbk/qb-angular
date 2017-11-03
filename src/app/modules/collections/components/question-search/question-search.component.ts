@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -31,14 +31,13 @@ export class QuestionSearchComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private tagSearchService: TagSearchService
-  ) { 
-    this.createForm();
-  }
-  
-  createForm() {
+  ) { }
+
+  createForm(queryParams: any) {
     this.searchForm = this.fb.group({
-      q: ''
+      q: queryParams.q
     })
   }
 
@@ -64,6 +63,8 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createForm(this.route.snapshot.queryParams);
+
     this.tags = this.searchTerms
       .distinctUntilChanged()
       .switchMap(term => term ?

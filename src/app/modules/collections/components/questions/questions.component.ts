@@ -26,12 +26,11 @@ export class QuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams
-      .subscribe(params => {
+      .subscribe(params => 
         this.questionSearchService.search(params as QuestionParams)
           .toPromise()
           .then(questions => this.questions = questions)
-          .catch(this.handleError);
-      })
+          .catch(this.handleError))
   }
 
 }
