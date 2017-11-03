@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './mocks/in-memory-data-service'
 
@@ -20,6 +22,7 @@ import { CollectionsModule } from './modules/collections/collections.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule.forRoot(),
     SharedModule,
     NewsModule,
     CollectionsModule,

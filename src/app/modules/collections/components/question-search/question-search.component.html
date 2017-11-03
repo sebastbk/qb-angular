@@ -1,23 +1,28 @@
-<div class="h-100 pt-5 d-flex justify-content-center" style="overflow-y: auto;">
-  <div class="container">
-    <h1 class="text-primary text-uppercase font-weight-bold">Search</h1>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="search" />
-      <div class="text-right text-uppercase text-muted">
+<div class="container h-100" style="overflow-y:auto;">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
+    <h1 class="text-primary text-uppercase mt-5">Search</h1>
+    <div class="form-group mb-0">
+      <input class="form-control mb-2" #searchBox formControlName="query"
+             (keyup)="searchTags(searchBox.value, searchBox.selectionEnd)"
+             (click)="searchTags(searchBox.value, searchBox.selectionEnd)"
+             (blur)="clearTags()" />
+      <ul class="list-group border" style="position:absolute">
+        <li *ngFor="let tag of tags | async"
+            (click)="updateQuery(searchBox.value, searchBox.selectionEnd, tag.name)"
+            class="list-group-item list-group-item-action d-flex justify-content-between border-0 py-0">
+          <div>{{tag.name}}</div>
+          <div class="ml-5">{{tag.question_count}}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="text-right">
+      <span class="text-uppercase text-muted" (click)="toggleFilters()">
         Search Filters
         <span class="oi oi-magnifying-glass"></span>
-      </div>
+      </span>
     </div>
-    <h1 class="text-primary text-uppercase font-weight-bold">Popular Tags</h1>
-    <div class="row">
-      <div *ngFor="let tag of tags" class="col-lg-3 mb-3 text-center">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-primary font-weight-bold">{{tag.name}}</div>
-            <div class="text-muted">{{tag.question_count}} {{'question' | pluralize:tag.question_count}}</div>
-          </div>
-        </div>
-      </div>
+    <div [hidden]="!showFilters">
+      TODO: filters
     </div>
-  </div>
+  </form>
 </div>
