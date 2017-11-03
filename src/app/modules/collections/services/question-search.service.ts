@@ -5,14 +5,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Question } from '../models/question';
+import { QuestionParams } from '../models/question-params';
 
 @Injectable()
 export class QuestionSearchService {
   constructor(private http: Http) { }
   
-  search(term: string): Observable<Question[]> {
+  search(params: QuestionParams): Observable<Question[]> {
+    let tags = params.q ? params.q.split(/\s/).join(')|(') : '';
     return this.http
-      .get(`api/questions/?tags=${term}`)
+      .get('api/questions', {search: {tags: `(${tags})`}})
       .map(response => response.json().data as Question[])
   }
 }

@@ -17,13 +17,11 @@ const routes: Routes = [
       { path: '', component: CardsComponent },
       { path: 'questions', component: QuestionsComponent,
         children: [
-          { path: '', component: QuestionSearchComponent },
           { path: ':id', component: QuestionDetailComponent }
         ]
       },
       { path: 'sets', component: SetsComponent,
         children: [
-          { path: '', component: SetSearchComponent },
           { path: ':id', component: SetDetailComponent }
         ]
       },

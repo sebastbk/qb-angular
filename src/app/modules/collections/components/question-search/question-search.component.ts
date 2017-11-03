@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -29,6 +30,7 @@ export class QuestionSearchComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private tagSearchService: TagSearchService
   ) { 
     this.createForm();
@@ -36,17 +38,19 @@ export class QuestionSearchComponent implements OnInit {
   
   createForm() {
     this.searchForm = this.fb.group({
-      query: ''
+      q: ''
     })
   }
 
   onSubmit() {
-    // TODO: Navigate
+    this.router.navigate(
+      ['/collections/questions'],
+      { queryParams: this.searchForm.value })
   }
 
   updateQuery(query: string, cursor: number, word: string) {
     let value = query.replaceWordAt(cursor, word);
-    this.searchForm.get('query').setValue(value);
+    this.searchForm.get('q').setValue(value);
   }
 
   searchTags(query: string, cursor=0) {

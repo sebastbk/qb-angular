@@ -1,0 +1,3 @@
+input:not(:focus) + ul:not(:hover) {
+  display: none;
+}
