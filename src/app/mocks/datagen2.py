@@ -209,7 +209,7 @@ class SetManager(ModelManager):
             TagSetManager.add(tag, set_)
 
     def title(self):
-        return self.fake.words(max_nb_chars=30)
+        return self.fake.text(max_nb_chars=30)
 
     def new_set(self):
         dt = self.datetime()
