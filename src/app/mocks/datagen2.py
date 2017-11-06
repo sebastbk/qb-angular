@@ -192,7 +192,7 @@ class QuestionManager(ModelManager):
         questions = [q.as_dict() for q in cls.questions.values()]
         with open('questions.ts', 'w') as f:
             template = "export const questions = JSON.parse(`{}`)".format
-            f.write(template(json.dumps(questions, indent=2, default=datetime_handler)))
+            f.writelines(template(json.dumps(questions, indent=2, default=datetime_handler)).split(r'\n'))
 
 
 class SetManager(ModelManager):
@@ -231,7 +231,7 @@ class SetManager(ModelManager):
         sets = [s.as_dict() for s in cls.sets.values()]
         with open('sets.ts', 'w') as f:
             template = "export const sets = JSON.parse(`{}`)".format
-            f.write(template(json.dumps(sets, indent=2, default=datetime_handler)))
+            f.writelines(template(json.dumps(sets, indent=2, default=datetime_handler)).split(r'\n'))
 
 
 class TagQuestionManager:
