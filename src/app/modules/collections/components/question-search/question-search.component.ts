@@ -53,7 +53,6 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   searchTags(query: string, cursor=0) {
-    this.clearTags();
     let term = query.getWordAt(cursor);
     this.searchTerms.next(term);
   }
