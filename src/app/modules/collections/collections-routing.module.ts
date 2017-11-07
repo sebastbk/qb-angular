@@ -4,8 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CollectionsComponent } from './collections.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { QuestionsComponent } from './components/questions/questions.component';
-import { QuestionSearchComponent } from './components/question-search/question-search.component';
-import { QuestionDetailComponent } from './components/question-detail/question-detail.component';
+import { QuestionComponent } from './components/question/question.component';
 import { SetsComponent } from './components/sets/sets.component';
 import { SetSearchComponent } from './components/set-search/set-search.component';
 import { SetDetailComponent } from './components/set-detail/set-detail.component';
@@ -17,7 +16,7 @@ const routes: Routes = [
       { path: '', component: CardsComponent },
       { path: 'questions', component: QuestionsComponent,
         children: [
-          { path: ':id', component: QuestionDetailComponent }
+          { path: ':id', component: QuestionComponent }
         ]
       },
       { path: 'sets', component: SetsComponent,

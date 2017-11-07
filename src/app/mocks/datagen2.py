@@ -56,7 +56,7 @@ class Question(Model):
         self.alternate_answer = alternate_answer
         self.tags = set()
 
-    def answer_type(self):
+    def answer_widget(self):
         if isinstance(self.answer, datetime):
             return 'datetime'
         elif isinstance(self.answer, str):
@@ -76,7 +76,7 @@ class Question(Model):
             'text': self.text,
             'answer': self.answer,
             'alternate_answer': self.alternate_answer,
-            'answer_type': self.answer_type(),
+            'answer_widget': self.answer_widget(),
             'tags': [tag.name for tag in self.tags] 
         }
 

@@ -27,6 +27,8 @@ import { QuestionSearchService } from './services/question-search.service';
 import { SetService } from './services/set.service';
 import { TagService } from './services/tag.service';
 import { TagSearchService } from './services/tag-search.service';
+import { QuestionFormComponent } from './components/question-form/question-form.component';
+import { QuestionComponent } from './components/question/question.component';
 
 @NgModule({
   imports: [
@@ -51,6 +53,8 @@ import { TagSearchService } from './services/tag-search.service';
     CardsComponent,
     QuestionSearchComponent,
     SetSearchComponent,
+    QuestionFormComponent,
+    QuestionComponent,
   ],
   providers: [
     QuestionService,

@@ -8,7 +8,7 @@ export const questions = JSON.parse(`[
     "text": "Ipsam repellendus repellendus nobis ratione neque. Enim rem veritatis hic?",
     "answer": "dicta",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "qui",
       "eveniet",
@@ -30,7 +30,7 @@ export const questions = JSON.parse(`[
     "text": "Officiis labore natus. Sint fugit ea adipisci adipisci aliquid placeat. Tempora mollitia tenetur ea?",
     "answer": "mollitia",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "deserunt",
       "rem",
@@ -48,7 +48,7 @@ export const questions = JSON.parse(`[
     "text": "Itaque dolorem ea nihil. Reiciendis nam esse reiciendis reprehenderit repudiandae non ullam. Provident itaque labore nostrum accusantium?",
     "answer": "illum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "accusantium",
       "saepe"
@@ -63,7 +63,7 @@ export const questions = JSON.parse(`[
     "text": "Inventore maiores nam perferendis. Possimus repudiandae voluptatibus quia dolorum perspiciatis?",
     "answer": "ab",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nulla",
       "earum",
@@ -83,7 +83,7 @@ export const questions = JSON.parse(`[
     "text": "Accusamus aliquam cupiditate vel repudiandae. Exercitationem magni quas similique deleniti corporis ea architecto. Fugit doloribus tempora?",
     "answer": "illum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "adipisci",
       "a",
@@ -105,7 +105,7 @@ export const questions = JSON.parse(`[
     "text": "Perspiciatis eos praesentium placeat commodi laudantium. At praesentium cum id eligendi dolorem. Quisquam eligendi laborum natus?",
     "answer": "a",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nulla",
       "facere",
@@ -127,7 +127,7 @@ export const questions = JSON.parse(`[
     "text": "Vero eius assumenda recusandae optio harum modi commodi. Quasi dicta sapiente fuga?",
     "answer": "sequi",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "labore",
       "rem",
@@ -146,7 +146,7 @@ export const questions = JSON.parse(`[
     "text": "Dolores accusamus voluptatem eligendi hic. Quo aperiam officia molestiae quidem accusantium voluptatem quisquam?",
     "answer": "libero",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "ea",
       "ipsum",
@@ -163,7 +163,7 @@ export const questions = JSON.parse(`[
     "text": "Quis ipsum facere cupiditate commodi a. Labore officia provident ut aperiam perferendis atque possimus?",
     "answer": "nobis",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "ea",
       "labore",
@@ -186,7 +186,7 @@ export const questions = JSON.parse(`[
     "text": "Dolores harum quas assumenda odit ipsa fugiat. Nobis dolorum amet ab nemo iste placeat tempore?",
     "answer": "ullam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "corporis",
       "praesentium",
@@ -205,7 +205,7 @@ export const questions = JSON.parse(`[
     "text": "Quo libero perferendis cumque quia. Aliquid voluptates nostrum sunt provident. Fugit magnam ullam tempora aut natus nobis?",
     "answer": "vel",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "id",
@@ -224,7 +224,7 @@ export const questions = JSON.parse(`[
     "text": "Autem labore deserunt amet sapiente dolorum cupiditate sunt. Officia odit pariatur?",
     "answer": "aliquam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "maiores"
     ]
@@ -238,7 +238,7 @@ export const questions = JSON.parse(`[
     "text": "Repudiandae perspiciatis quis voluptatum qui eveniet. Ipsam aliquam quibusdam ad aliquid distinctio.Quae itaque voluptatibus accusamus?",
     "answer": "ipsam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "iste",
       "architecto"
@@ -253,7 +253,7 @@ export const questions = JSON.parse(`[
     "text": "Illo ad porro adipisci?",
     "answer": "porro",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "qui",
       "fuga",
@@ -269,7 +269,7 @@ export const questions = JSON.parse(`[
     "text": "Unde ab sed saepe necessitatibus. Molestiae eveniet repudiandae atque minus blanditiis?",
     "answer": "dolorum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "adipisci",
       "impedit",
@@ -292,7 +292,7 @@ export const questions = JSON.parse(`[
     "text": "Quae beatae placeat mollitia omnis minima. Illo odio tempore enim ad rem?",
     "answer": "eum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "accusantium",
@@ -315,7 +315,7 @@ export const questions = JSON.parse(`[
     "text": "Repellat quasi nisi at provident. Commodi totam iste perspiciatis quo fuga illo sunt. Asperiores commodi vero adipisci reprehenderit fugit?",
     "answer": "unde",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "architecto"
     ]
@@ -329,7 +329,7 @@ export const questions = JSON.parse(`[
     "text": "Tempora voluptatem sed perspiciatis. Eos fugiat eveniet sunt necessitatibus blanditiis. Consequuntur labore et architecto saepe explicabo?",
     "answer": "cupiditate",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "accusantium",
       "eum",
@@ -348,7 +348,7 @@ export const questions = JSON.parse(`[
     "text": "Dolorum veniam ea vel temporibus natus esse. Veniam officia eius consequatur ex modi. Rerum nesciunt a cumque sapiente?",
     "answer": "iste",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "consequuntur",
       "adipisci",
@@ -370,7 +370,7 @@ export const questions = JSON.parse(`[
     "text": "Magnam soluta accusantium optio soluta.Placeat molestias officiis. Aperiam deserunt odio?",
     "answer": "placeat",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "minus"
     ]
@@ -384,7 +384,7 @@ export const questions = JSON.parse(`[
     "text": "Illo voluptatem tempore hic itaque ducimus assumenda. Saepe voluptas libero quidem facilis amet. Dolore molestiae ratione at?",
     "answer": "quidem",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "saepe",
       "facere",
@@ -400,7 +400,7 @@ export const questions = JSON.parse(`[
     "text": "Nulla incidunt expedita ipsam distinctio praesentium delectus doloribus. Molestiae dolores iste facilis. Dolorem molestiae nesciunt?",
     "answer": "ea",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "illum",
       "dolore",
@@ -416,7 +416,7 @@ export const questions = JSON.parse(`[
     "text": "Assumenda enim tempora maiores. Quis perspiciatis debitis vero porro. Accusamus labore aliquam pariatur non. Facere ullam porro?",
     "answer": "laboriosam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "rem",
       "iure",
@@ -435,7 +435,7 @@ export const questions = JSON.parse(`[
     "text": "Ut consequatur repellat quaerat deleniti cum explicabo?",
     "answer": "illum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "deserunt",
       "asperiores",
@@ -457,7 +457,7 @@ export const questions = JSON.parse(`[
     "text": "Aspernatur velit neque nemo. Nesciunt molestiae sit quam eos quasi.Perferendis itaque reiciendis ut. Unde ullam porro cupiditate?",
     "answer": "omnis",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "qui",
       "quis",
@@ -480,7 +480,7 @@ export const questions = JSON.parse(`[
     "text": "Fugiat aut molestiae pariatur. Mollitia quo temporibus delectus velit earum. Quidem dolorem soluta distinctio?",
     "answer": "quas",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quaerat"
     ]
@@ -494,7 +494,7 @@ export const questions = JSON.parse(`[
     "text": "Odit aliquid necessitatibus autem. Saepe iure officiis vitae id vitae. Sit praesentium beatae deserunt placeat a soluta?",
     "answer": "molestiae",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nisi",
       "earum",
@@ -514,7 +514,7 @@ export const questions = JSON.parse(`[
     "text": "Est quaerat quam autem enim?",
     "answer": "eaque",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "id",
       "reiciendis"
@@ -529,7 +529,7 @@ export const questions = JSON.parse(`[
     "text": "Nobis sunt reiciendis iste quisquam.Quam ad voluptas nihil. Dolorem corrupti repellendus sapiente quidem quis id aliquid?",
     "answer": "ullam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "mollitia",
@@ -547,7 +547,7 @@ export const questions = JSON.parse(`[
     "text": "Laudantium culpa labore expedita accusantium quis. Soluta modi sapiente. Magnam consectetur quidem?",
     "answer": "molestias",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "accusantium",
@@ -569,7 +569,7 @@ export const questions = JSON.parse(`[
     "text": "Provident quia repellendus inventore optio. Nostrum deleniti voluptatibus at aspernatur quisquam?",
     "answer": "fugiat",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "laboriosam",
       "odit",
@@ -585,7 +585,7 @@ export const questions = JSON.parse(`[
     "text": "Dolore quam perferendis asperiores itaque velit culpa. Laboriosam mollitia quod asperiores. Pariatur voluptatem omnis?",
     "answer": "modi",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "ea",
       "labore",
@@ -605,7 +605,7 @@ export const questions = JSON.parse(`[
     "text": "Corporis eveniet accusantium autem aperiam exercitationem. Error nobis deleniti corrupti mollitia occaecati?",
     "answer": "laboriosam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nostrum",
       "rem",
@@ -627,7 +627,7 @@ export const questions = JSON.parse(`[
     "text": "Iure ratione alias ea maiores cumque provident. Sint recusandae ea iusto?",
     "answer": "culpa",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "ipsa",
       "consequatur",
@@ -647,7 +647,7 @@ export const questions = JSON.parse(`[
     "text": "Nihil sit molestias soluta nulla. Aut perferendis error ea impedit. Fugiat minima iusto quibusdam. In deleniti quae nam?",
     "answer": "amet",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "pariatur",
       "quidem",
@@ -667,7 +667,7 @@ export const questions = JSON.parse(`[
     "text": "Facilis vero perferendis maiores quas cupiditate eum vero. Recusandae labore praesentium deserunt amet nihil?",
     "answer": "quasi",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "minus",
       "consequuntur",
@@ -690,7 +690,7 @@ export const questions = JSON.parse(`[
     "text": "Illum mollitia voluptatum nam tenetur. Molestiae et debitis necessitatibus. Sapiente aspernatur quisquam recusandae magni suscipit sint?",
     "answer": "harum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "accusantium",
       "deserunt",
@@ -713,7 +713,7 @@ export const questions = JSON.parse(`[
     "text": "Explicabo dignissimos quam blanditiis error. Ipsam iusto adipisci. Praesentium debitis debitis aliquam architecto tenetur amet?",
     "answer": "possimus",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tempore",
       "eveniet",
@@ -735,7 +735,7 @@ export const questions = JSON.parse(`[
     "text": "Ullam esse ea quia quod atque officiis. Natus recusandae tempora harum doloribus. Maxime esse est nobis nulla quae?",
     "answer": "dolores",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "praesentium",
       "placeat",
@@ -751,7 +751,7 @@ export const questions = JSON.parse(`[
     "text": "Assumenda optio rem architecto. At nisi nostrum libero doloremque itaque?",
     "answer": "nihil",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "labore",
       "ipsa",
@@ -772,7 +772,7 @@ export const questions = JSON.parse(`[
     "text": "Architecto consectetur esse omnis quos nemo quisquam. Incidunt molestiae quae ipsum eveniet debitis saepe?",
     "answer": "soluta",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "fugit",
       "dicta",
@@ -788,7 +788,7 @@ export const questions = JSON.parse(`[
     "text": "Cumque deleniti voluptates dignissimos temporibus tempore. Vitae sunt amet corporis quaerat?",
     "answer": "numquam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sapiente",
       "aut"
@@ -803,7 +803,7 @@ export const questions = JSON.parse(`[
     "text": "Esse repellendus in officiis. Itaque animi maiores nam assumenda quasi.Molestiae debitis suscipit animi?",
     "answer": "perferendis",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "eveniet",
       "inventore",
@@ -823,7 +823,7 @@ export const questions = JSON.parse(`[
     "text": "Fugiat mollitia iste distinctio. Ratione voluptatum perspiciatis rem vel. Officia aliquid at voluptatibus?",
     "answer": "sed",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "praesentium",
@@ -840,7 +840,7 @@ export const questions = JSON.parse(`[
     "text": "Beatae eum ducimus incidunt. Vitae asperiores a quo atque.Molestiae numquam eaque harum. Eos enim dicta quos architecto?",
     "answer": "sed",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nostrum",
       "pariatur",
@@ -862,7 +862,7 @@ export const questions = JSON.parse(`[
     "text": "Praesentium ut dolorem velit similique officiis. Quis odio similique maxime rerum. Ducimus ad reiciendis quo exercitationem id quas?",
     "answer": "minus",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "maiores",
       "laboriosam",
@@ -878,7 +878,7 @@ export const questions = JSON.parse(`[
     "text": "Iste commodi facilis odio minima. Recusandae accusamus laboriosam. Saepe dolor totam esse molestias modi?",
     "answer": "veritatis",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quis"
     ]
@@ -892,7 +892,7 @@ export const questions = JSON.parse(`[
     "text": "Saepe esse nisi cum voluptate eligendi. Omnis perferendis porro error error expedita?",
     "answer": "incidunt",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tenetur",
       "est",
@@ -908,7 +908,7 @@ export const questions = JSON.parse(`[
     "text": "Nemo et provident et. Iusto voluptatum facere?",
     "answer": "optio",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nulla",
       "suscipit",
@@ -929,7 +929,7 @@ export const questions = JSON.parse(`[
     "text": "Labore tenetur nam in enim. Earum doloribus nisi dignissimos nostrum. Tempora illo modi harum quae aliquam sunt odit?",
     "answer": "quisquam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "placeat",
       "quasi"
@@ -944,7 +944,7 @@ export const questions = JSON.parse(`[
     "text": "Minus ullam reiciendis deleniti iusto. Temporibus magnam atque. Corporis nobis omnis omnis eveniet explicabo blanditiis?",
     "answer": "dolorum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "dicta"
     ]
@@ -958,7 +958,7 @@ export const questions = JSON.parse(`[
     "text": "Voluptatibus occaecati explicabo. Quam dignissimos quasi explicabo?",
     "answer": "deserunt",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "dolore",
       "rem"
@@ -973,7 +973,7 @@ export const questions = JSON.parse(`[
     "text": "Quaerat temporibus blanditiis iste fuga consectetur. Quod odio at quis nam. Beatae nesciunt blanditiis accusamus?",
     "answer": "quisquam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "accusantium",
@@ -995,7 +995,7 @@ export const questions = JSON.parse(`[
     "text": "Eligendi molestiae delectus aspernatur molestias. Animi voluptate ratione tempore consectetur. Ex itaque id blanditiis?",
     "answer": "quia",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "provident",
       "eum",
@@ -1014,7 +1014,7 @@ export const questions = JSON.parse(`[
     "text": "Molestias maiores laboriosam incidunt enim quos. Alias autem laborum aspernatur. Maiores ducimus neque magni ratione deserunt?",
     "answer": "dolores",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "minus",
       "quae",
@@ -1034,7 +1034,7 @@ export const questions = JSON.parse(`[
     "text": "Odio enim facere eligendi. Ab consequuntur harum sapiente fugiat laborum vel. Nostrum expedita error beatae nobis?",
     "answer": "vel",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "laboriosam",
@@ -1057,7 +1057,7 @@ export const questions = JSON.parse(`[
     "text": "Voluptate nesciunt reiciendis dolore aliquid. Illum corrupti sapiente distinctio. Minima veniam reiciendis vitae voluptatibus ut unde?",
     "answer": "facere",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "impedit",
       "distinctio",
@@ -1074,7 +1074,7 @@ export const questions = JSON.parse(`[
     "text": "Excepturi pariatur laborum odio. Voluptates eligendi voluptatum veniam necessitatibus?",
     "answer": "quas",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tempora",
       "nostrum",
@@ -1097,7 +1097,7 @@ export const questions = JSON.parse(`[
     "text": "Fugiat ut aut dicta. Iste ipsam cumque.Nesciunt exercitationem numquam nihil voluptatum quia sunt?",
     "answer": "cum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tempore",
       "amet",
@@ -1115,7 +1115,7 @@ export const questions = JSON.parse(`[
     "text": "Accusamus voluptate rem exercitationem. Quo exercitationem minus. Voluptas voluptates voluptatem fugiat nisi at suscipit?",
     "answer": "tempora",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "qui",
       "quas",
@@ -1133,7 +1133,7 @@ export const questions = JSON.parse(`[
     "text": "Incidunt sequi autem temporibus. Sequi sunt eaque quibusdam dolores?",
     "answer": "officia",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tenetur",
       "illum",
@@ -1150,7 +1150,7 @@ export const questions = JSON.parse(`[
     "text": "Pariatur rerum hic maxime dolore. Et repellendus non provident odio veritatis. Sed exercitationem laudantium ullam?",
     "answer": "adipisci",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "voluptas",
       "saepe",
@@ -1166,7 +1166,7 @@ export const questions = JSON.parse(`[
     "text": "Repellendus repudiandae illum numquam impedit praesentium. Omnis fugiat unde commodi omnis nostrum vero?",
     "answer": "perspiciatis",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "eos",
       "quae",
@@ -1185,7 +1185,7 @@ export const questions = JSON.parse(`[
     "text": "Placeat vero illo consequuntur sapiente omnis perferendis. Commodi velit tempora iste. Nulla numquam libero voluptas voluptatibus impedit?",
     "answer": "laboriosam",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tempora",
       "iusto",
@@ -1206,7 +1206,7 @@ export const questions = JSON.parse(`[
     "text": "Repudiandae voluptate earum. In tempora suscipit quia. Est ipsum dolorum ipsa?",
     "answer": "autem",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nisi",
       "laboriosam",
@@ -1228,7 +1228,7 @@ export const questions = JSON.parse(`[
     "text": "Illo quasi animi quae impedit vero. Vero deleniti reiciendis aut blanditiis molestias magni reiciendis?",
     "answer": "ex",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quas",
       "tempore",
@@ -1249,7 +1249,7 @@ export const questions = JSON.parse(`[
     "text": "Sit ad nulla culpa qui est blanditiis. Ad alias fugit ipsam minus autem praesentium. Odio hic magni rem doloribus voluptatibus iusto?",
     "answer": "adipisci",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "impedit"
     ]
@@ -1263,7 +1263,7 @@ export const questions = JSON.parse(`[
     "text": "Dignissimos unde neque labore accusamus officiis et. Quasi modi quos. Cupiditate aperiam adipisci quisquam?",
     "answer": "culpa",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "deserunt",
       "praesentium",
@@ -1282,7 +1282,7 @@ export const questions = JSON.parse(`[
     "text": "Assumenda a voluptatum eum reiciendis tenetur. Nemo numquam harum placeat nihil voluptas suscipit voluptate?",
     "answer": "dolores",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "tempora",
       "itaque",
@@ -1303,7 +1303,7 @@ export const questions = JSON.parse(`[
     "text": "Quae doloremque voluptatibus quasi optio?",
     "answer": "in",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quaerat",
       "eos",
@@ -1325,7 +1325,7 @@ export const questions = JSON.parse(`[
     "text": "In alias delectus blanditiis sunt odit. Aperiam error ut fugit deserunt. Sit nostrum fuga odio vero dicta?",
     "answer": "est",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "itaque"
     ]
@@ -1339,7 +1339,7 @@ export const questions = JSON.parse(`[
     "text": "Fuga totam sint inventore. Aperiam nam impedit dolorem eum dicta dolore?",
     "answer": "eos",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "eveniet",
       "omnis",
@@ -1362,7 +1362,7 @@ export const questions = JSON.parse(`[
     "text": "Natus nostrum quae dolor unde minima necessitatibus. Adipisci culpa adipisci molestiae aperiam rem quibusdam?",
     "answer": "deleniti",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "fugit",
       "deserunt",
@@ -1378,7 +1378,7 @@ export const questions = JSON.parse(`[
     "text": "Dolorum natus temporibus odio. Perferendis odio reprehenderit sit eius?",
     "answer": "voluptas",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "consequuntur",
       "nulla",
@@ -1399,7 +1399,7 @@ export const questions = JSON.parse(`[
     "text": "Iure soluta dolor nesciunt quia. Fuga reprehenderit ad culpa facere architecto. Similique quia dolor itaque?",
     "answer": "recusandae",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "id",
       "laudantium",
@@ -1421,7 +1421,7 @@ export const questions = JSON.parse(`[
     "text": "Ipsam ullam animi ullam. Odio odio expedita illum eveniet illum exercitationem reprehenderit?",
     "answer": "iure",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nisi"
     ]
@@ -1435,7 +1435,7 @@ export const questions = JSON.parse(`[
     "text": "Nisi dignissimos quo. Dolorum assumenda velit earum explicabo praesentium voluptas?",
     "answer": "laudantium",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "consequuntur",
       "rem",
@@ -1457,7 +1457,7 @@ export const questions = JSON.parse(`[
     "text": "Totam eius amet asperiores aliquam optio. Natus nulla praesentium voluptatibus?",
     "answer": "possimus",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quas",
       "inventore",
@@ -1479,7 +1479,7 @@ export const questions = JSON.parse(`[
     "text": "Alias atque quos voluptatem. Aliquam repudiandae esse dolores sint ut?",
     "answer": "nostrum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "ea",
       "asperiores",
@@ -1499,7 +1499,7 @@ export const questions = JSON.parse(`[
     "text": "Adipisci quod repellat ratione. Maiores et quaerat pariatur rerum possimus voluptate?",
     "answer": "dicta",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "minus",
       "adipisci",
@@ -1522,7 +1522,7 @@ export const questions = JSON.parse(`[
     "text": "Rerum dolore id voluptas libero minima. Laborum deserunt repellendus beatae voluptas eos?",
     "answer": "nulla",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "reiciendis",
       "minima",
@@ -1541,7 +1541,7 @@ export const questions = JSON.parse(`[
     "text": "Eaque illum voluptates facere molestiae culpa nulla. Velit corrupti rem iure. Corrupti asperiores laborum. Velit cumque officiis quis?",
     "answer": "in",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quas",
       "eum",
@@ -1559,7 +1559,7 @@ export const questions = JSON.parse(`[
     "text": "Ratione id officia quas cupiditate provident provident. Libero earum soluta atque odio at sapiente?",
     "answer": "libero",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "reiciendis",
       "officia",
@@ -1576,7 +1576,7 @@ export const questions = JSON.parse(`[
     "text": "Rerum ducimus aliquam odio. Aspernatur quo odio ratione. Velit hic illo quisquam voluptates blanditiis adipisci?",
     "answer": "odit",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "praesentium",
       "iusto",
@@ -1594,7 +1594,7 @@ export const questions = JSON.parse(`[
     "text": "Et pariatur modi assumenda. Illum consequuntur quae necessitatibus vitae?",
     "answer": "repellendus",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "quae",
       "officia",
@@ -1614,7 +1614,7 @@ export const questions = JSON.parse(`[
     "text": "Reprehenderit quae nobis nisi expedita blanditiis ipsa. Expedita vero fugiat labore laudantium?",
     "answer": "repellat",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "qui",
       "eum",
@@ -1635,7 +1635,7 @@ export const questions = JSON.parse(`[
     "text": "Assumenda excepturi sequi velit optio ratione expedita ipsum. Non occaecati quae. Dignissimos in a quidem corrupti assumenda?",
     "answer": "omnis",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "debitis"
     ]
@@ -1649,7 +1649,7 @@ export const questions = JSON.parse(`[
     "text": "Aut quia nobis amet nisi odit. Minima nostrum perspiciatis?",
     "answer": "adipisci",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "rem",
       "distinctio",
@@ -1670,7 +1670,7 @@ export const questions = JSON.parse(`[
     "text": "Possimus mollitia laudantium nam nisi quibusdam. Architecto assumenda sed. Hic consectetur dolorem saepe?",
     "answer": "aut",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "amet",
       "magni"
@@ -1685,7 +1685,7 @@ export const questions = JSON.parse(`[
     "text": "Nisi dignissimos aut dolorum quo ullam accusamus. Molestias excepturi voluptatem ducimus occaecati atque?",
     "answer": "sint",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "libero",
       "quia",
@@ -1701,7 +1701,7 @@ export const questions = JSON.parse(`[
     "text": "Aliquid temporibus iste fugiat suscipit sequi. Quo voluptatum totam asperiores quos. Placeat iusto itaque reprehenderit?",
     "answer": "consectetur",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "nulla",
       "placeat"
@@ -1716,7 +1716,7 @@ export const questions = JSON.parse(`[
     "text": "Laboriosam tenetur voluptatibus illo labore dicta. Aliquam recusandae dolorum rerum doloremque tempore qui?",
     "answer": "iste",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "provident",
       "suscipit",
@@ -1739,7 +1739,7 @@ export const questions = JSON.parse(`[
     "text": "Commodi dolorem nulla molestias. Cumque perspiciatis hic?",
     "answer": "alias",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "deserunt",
       "facere",
@@ -1758,7 +1758,7 @@ export const questions = JSON.parse(`[
     "text": "Magnam nam possimus. Porro eveniet ipsa voluptate laudantium laborum. Sapiente facere blanditiis adipisci voluptates quam?",
     "answer": "maiores",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "ipsa",
       "praesentium",
@@ -1775,7 +1775,7 @@ export const questions = JSON.parse(`[
     "text": "Magnam facere quia in. Tempora ex laborum voluptate.Repellat laudantium incidunt maiores. Sequi hic vitae voluptate?",
     "answer": "minus",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "accusantium",
       "eum",
@@ -1795,7 +1795,7 @@ export const questions = JSON.parse(`[
     "text": "Enim quis aut vel sit. Tempora distinctio possimus et exercitationem nihil dolore?",
     "answer": "minus",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "temporibus",
       "laboriosam",
@@ -1812,7 +1812,7 @@ export const questions = JSON.parse(`[
     "text": "Voluptas ipsa occaecati vel?",
     "answer": "adipisci",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "eveniet",
       "facere",
@@ -1832,7 +1832,7 @@ export const questions = JSON.parse(`[
     "text": "Pariatur est laudantium esse libero iusto corporis. Itaque corrupti perferendis enim. Vitae quibusdam non est consequuntur explicabo?",
     "answer": "libero",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "debitis",
       "suscipit",
@@ -1849,7 +1849,7 @@ export const questions = JSON.parse(`[
     "text": "At magni rem maiores recusandae earum. Pariatur voluptates aliquam molestiae omnis. Architecto quia laboriosam nihil?",
     "answer": "voluptatum",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "corporis",
       "praesentium",
@@ -1872,7 +1872,7 @@ export const questions = JSON.parse(`[
     "text": "Dolore tempore fugiat minus est. Mollitia voluptates reiciendis omnis accusantium consequatur. Eaque tempore facere ea debitis aut illum?",
     "answer": "molestias",
     "alternate_answer": "",
-    "answer_type": "str",
+    "answer_widget": "text",
     "tags": [
       "sint",
       "maiores",
