@@ -14,7 +14,7 @@ import { QuestionSearchComponent } from './components/question-search/question-s
 import { QuestionDetailsComponent } from './components/question-details/question-details.component';
 
 import { QuestionService } from './services/question.service';
-import { TagSearchService } from '../collections/services/tag-search.service';
+import { TagService } from '../tags/services/tag.service';
 
 @NgModule({
   imports: [
@@ -33,7 +33,7 @@ import { TagSearchService } from '../collections/services/tag-search.service';
   ],
   providers: [
     QuestionService,
-    TagSearchService
+    TagService,
   ]
 })
 export class QuestionsModule { }

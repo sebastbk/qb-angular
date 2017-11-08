@@ -19,7 +19,7 @@ export class QuestionService {
   
   searchQuestions(params: SearchParams): Observable<Question[]> {
     let tags = params.q ? params.q.split(/\s/).join(')|(') : '';
-    return this.http.get<Question[]>(`${this.questionsUrl}?tags=${tags}`).pipe(
+    return this.http.get<Question[]>(`${this.questionsUrl}?tags=(${tags})`).pipe(
       catchError(this.handleError('searchQuestions', []))
     )
   }

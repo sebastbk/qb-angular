@@ -1,0 +1,15 @@
+#search-box:not(:focus) + #live-suggest:not(:hover) {
+  display: none;
+}
+
+#live-suggest {
+  position:absolute;
+  z-index:50;
+  max-height:10rem;
+  overflow-y:auto;
+  cursor:default;
+}
+
+#live-suggest > li:hover {
+  background: whitesmoke;
+}

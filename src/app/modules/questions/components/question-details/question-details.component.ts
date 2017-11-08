@@ -12,8 +12,8 @@ import { QuestionService } from '../../services/question.service';
 })
 export class QuestionDetailsComponent implements OnInit {
   @Input() question: Question;
-  editMode: boolean;
 
+  editMode: boolean;
   questionForm: FormGroup;
   difficulties = difficulties;
   answer_widgets = answer_widgets;

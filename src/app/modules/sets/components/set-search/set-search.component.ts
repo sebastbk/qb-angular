@@ -8,20 +8,20 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Question } from '../../models/question';
-import { QuestionService } from '../../services/question.service';
+import { Set } from '../../models/set';
+import { SetService } from '../../services/set.service';
 import { SearchParams } from '../../models/search-params';
 
 import { Tag } from '../../../tags/models/tag';
 import { TagService } from '../../../tags/services/tag.service';
 
 @Component({
-  selector: 'qb-question-search',
-  templateUrl: './question-search.component.html',
-  styleUrls: ['./question-search.component.scss']
+  selector: 'qb-set-search',
+  templateUrl: './set-search.component.html',
+  styleUrls: ['./set-search.component.scss']
 })
-export class QuestionSearchComponent implements OnInit {
-  questions$: Observable<Question[]>;
+export class SetSearchComponent implements OnInit {
+  sets$: Observable<Set[]>;
   private searchParams = new BehaviorSubject<SearchParams>({} as SearchParams);
 
   tags$: Observable<Tag[]>;
@@ -32,7 +32,7 @@ export class QuestionSearchComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private questionService: QuestionService,
+    private setService: SetService,
     private tagService: TagService
   ) { }
 
@@ -63,10 +63,10 @@ export class QuestionSearchComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    this.questions$ = this.searchParams.pipe(
+    this.sets$ = this.searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((params: SearchParams) => this.questionService.searchQuestions(params)),
+      switchMap((params: SearchParams) => this.setService.searchSets(params)),
     );
 
     this.tags$ = this.searchTerms.pipe(

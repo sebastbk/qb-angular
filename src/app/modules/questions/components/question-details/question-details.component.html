@@ -68,7 +68,7 @@
     <button type="reset" (click)="revert()"
             [disabled]="questionForm.pristine"
             class="btn btn-warning">Revert</button> &nbsp;
-    <button type="cancel" (click)="revert()"
+    <button type="cancel" (click)="editMode=false;revert()"
             class="btn btn-danger">Cancel</button>
   </form>
 </div>
