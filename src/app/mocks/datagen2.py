@@ -30,7 +30,7 @@ class Tag(Model):
     def add_question(self, q):
         self.questions.add(q)
 
-    def add_set(self, s):
+    def add_collection(self, s):
         self.sets.add(s)
 
     def as_dict(self):
@@ -81,13 +81,14 @@ class Question(Model):
         }
 
 
-class Set(Model):
-    def __init__(self, id, created_by, created_on, modified_on, title):
+class Collection(Model):
+    def __init__(self, id, created_by, created_on, modified_on, title, question_count=0):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
         self.title = title
+        self.question_count = question_count
         self.tags = set()
 
     def add_tag(self, tag):
@@ -100,6 +101,7 @@ class Set(Model):
             'created_on': self.created_on,
             'modified_on': self.modified_on,
             'title': self.title,
+            'question_count': self.question_count,
             'tags': [tag.name for tag in self.tags] 
         }
 
@@ -195,43 +197,44 @@ class QuestionManager(ModelManager):
             f.writelines(template(json.dumps(questions, indent=2, default=datetime_handler)).split(r'\n'))
 
 
-class SetManager(ModelManager):
-    sets = {}
+class CollectionManager(ModelManager):
+    collections = {}
 
     def __init__(self, tag_manager, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.tag_manager = tag_manager
 
-    def set_tags(self, set_, tags=None, k=1):
+    def set_tags(self, collection, tags=None, k=1):
         if tags is None:
             tags = self.tag_manager.tags.values()
         for tag in random.sample(set(tags), k):
-            TagSetManager.add(tag, set_)
+            TagCollectionManager.add(tag, collection)
 
     def title(self):
-        return self.fake.text(max_nb_chars=30)
+        return self.fake.text(max_nb_chars=30)[:-1]
 
-    def new_set(self):
+    def new_collection(self):
         dt = self.datetime()
-        s = Set(
+        s = Collection(
             id=self.next_id(), 
             created_by=self.user(), 
             created_on=dt,
             modified_on=dt,
-            title=self.title()
+            title=self.title(),
+            question_count=random.randint(1, 50)
         )
         self.set_tags(s, k=random.randint(1, 20))
-        self.sets[s.id] = s
+        self.collections[s.id] = s
 
     def make(self, k=1):
-        return [self.new_set() for _ in range(k)]
+        return [self.new_collection() for _ in range(k)]
 
     @classmethod
     def export(cls):
-        sets = [s.as_dict() for s in cls.sets.values()]
-        with open('sets.ts', 'w') as f:
-            template = "export const sets = JSON.parse(`{}`)".format
-            f.writelines(template(json.dumps(sets, indent=2, default=datetime_handler)).split(r'\n'))
+        collections = [c.as_dict() for c in cls.collections.values()]
+        with open('collections.ts', 'w') as f:
+            template = "export const collections = JSON.parse(`{}`)".format
+            f.writelines(template(json.dumps(collections, indent=2, default=datetime_handler)).split(r'\n'))
 
 
 class TagQuestionManager:
@@ -241,20 +244,20 @@ class TagQuestionManager:
         question.add_tag(tag)
 
 
-class TagSetManager:
+class TagCollectionManager:
     @staticmethod
-    def add(tag, set):
-        tag.add_set(set)
-        set.add_tag(tag)
+    def add(tag, collection):
+        tag.add_collection(collection)
+        collection.add_tag(tag)
 
 
 if __name__ == '__main__':
     tag_manager = TagManager()
     question_manager = QuestionManager(tag_manager)
-    set_manager = SetManager(tag_manager)
+    collection_manage = CollectionManager(tag_manager)
     tag_manager.make(100)
     question_manager.make(100)
-    set_manager.make(100)
+    collection_manage.make(100)
     tag_manager.export()
     question_manager.export()
-    set_manager.export()
+    collection_manage.export()

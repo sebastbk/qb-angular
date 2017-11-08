@@ -8,20 +8,20 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Set } from '../../models/set';
-import { SetService } from '../../services/set.service';
+import { Collection } from '../../models/collection';
+import { CollectionService } from '../../services/collection.service';
 import { SearchParams } from '../../models/search-params';
 
 import { Tag } from '../../../tags/models/tag';
 import { TagService } from '../../../tags/services/tag.service';
 
 @Component({
-  selector: 'qb-set-search',
-  templateUrl: './set-search.component.html',
-  styleUrls: ['./set-search.component.scss']
+  selector: 'qb-collection-search',
+  templateUrl: './collection-search.component.html',
+  styleUrls: ['./collection-search.component.scss']
 })
-export class SetSearchComponent implements OnInit {
-  sets$: Observable<Set[]>;
+export class CollectionSearchComponent implements OnInit {
+  collections$: Observable<Collection[]>;
   private searchParams = new BehaviorSubject<SearchParams>({} as SearchParams);
 
   tags$: Observable<Tag[]>;
@@ -32,7 +32,7 @@ export class SetSearchComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private setService: SetService,
+    private collectionService: CollectionService,
     private tagService: TagService
   ) { }
 
@@ -63,10 +63,10 @@ export class SetSearchComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    this.sets$ = this.searchParams.pipe(
+    this.collections$ = this.searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((params: SearchParams) => this.setService.searchSets(params)),
+      switchMap((params: SearchParams) => this.collectionService.searchCollections(params)),
     );
 
     this.tags$ = this.searchTerms.pipe(

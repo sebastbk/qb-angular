@@ -1,4 +1,4 @@
-export class Set {
+export class Collection {
   id?: number;
   created_by?: string;
   created_on?: Date;
