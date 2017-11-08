@@ -3,12 +3,12 @@ export class Question {
   created_by?: string;
   created_on?: Date;
   modified_on?: Date;
-  difficulty: number;
-  text: string;
-  answer: string;
-  alternate_answer: string;
-  answer_widget: string;
-  tags: string[];
+  difficulty: number = 1;
+  text: string = '';
+  answer: string = '';
+  alternate_answer: string = '';
+  answer_widget: string = 'text';
+  tags: string[] = [];
 }
 
 export const difficulties = [

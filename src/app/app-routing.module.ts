@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { CollectionsModule } from './modules/collections/collections.module';
-import { NewsModule } from './modules/news/news.module';
+import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
+  { path: 'collections', loadChildren: 'app/modules/collections/collections.module#CollectionsModule' }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-  ],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

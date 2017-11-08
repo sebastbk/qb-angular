@@ -1,16 +1,18 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { Question, difficulties, answer_widgets } from '../../models/question';
 import { QuestionService } from '../../services/question.service';
 
 @Component({
-  selector: 'qb-question-form',
-  templateUrl: './question-form.component.html',
-  styleUrls: ['./question-form.component.scss']
+  selector: 'qb-question-details',
+  templateUrl: './question-details.component.html',
+  styleUrls: ['./question-details.component.scss']
 })
-export class QuestionFormComponent implements OnChanges {
+export class QuestionDetailsComponent implements OnInit {
   @Input() question: Question;
+  editMode: boolean;
 
   questionForm: FormGroup;
   difficulties = difficulties;
@@ -18,8 +20,9 @@ export class QuestionFormComponent implements OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private questionService: QuestionService) {
-
+    private route: ActivatedRoute,
+    private questionService: QuestionService
+  ) {
     this.createForm();
   }
 
@@ -32,6 +35,10 @@ export class QuestionFormComponent implements OnChanges {
       difficulty: 1,
       tags: ''
     })
+  }
+
+  ngOnInit(): void {
+    if(!this.question) { this.getQuestion(); }
   }
 
   ngOnChanges() {
@@ -47,18 +54,22 @@ export class QuestionFormComponent implements OnChanges {
 
   onSubmit() {
     this.question = this.prepareSaveQuestion();
-    this.questionService.update(this.question)
-      .catch(this.handleErrors)
-    this.ngOnChanges();
+    let observable = this.question.id ? 
+      this.questionService.updateQuestion(this.question) : 
+      this.questionService.createQuestion(this.question);
+    observable.subscribe(question => question => this.setQuestion(question));
   }
 
-  handleErrors(error) {
-    console.log(error);
+  setQuestion(question: Question) {
+    this.question = question;
+    this.revert();
   }
+
+  revert() { this.ngOnChanges(); }
 
   prepareSaveQuestion(): Question {
     const formModel = this.questionForm.value;
-
+    
     const saveQuestion: Question = {
       id: this.question.id,
       text: formModel.text as string,
@@ -71,5 +82,11 @@ export class QuestionFormComponent implements OnChanges {
     return saveQuestion;
   }
 
-  revert() { this.ngOnChanges(); }
+  getQuestion(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    // return a new question obj if the id is 0
+    if (id === 0) { this.question = new Question(); return; }
+    this.questionService.getQuestion(id)
+      .subscribe(question => this.setQuestion(question));
+  }
 }
