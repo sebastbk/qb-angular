@@ -34,4 +34,17 @@ $flex-options: (grow: 1 0 auto, auto: auto, none: none);
   cursor: pointer;
 }
 
+label {
+  font-weight: bold;
+}
 
+@each $tag in (input, textarea, select) {
+  #{$tag}[disabled] {
+    border-color: transparent;
+    background-color: transparent !important;
+  }
+}
+
+textarea {
+  resize: none;
+}

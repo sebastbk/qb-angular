@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Collection } from '../../models/collection';
 import { CollectionService } from '../../services/collection.service';
@@ -19,6 +20,7 @@ export class CollectionDetailsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private location: Location,
     private collectionService: CollectionService
   ) {
     this.createForm();
@@ -56,6 +58,10 @@ export class CollectionDetailsComponent implements OnInit {
   }
 
   revert() { this.ngOnChanges(); }
+
+  goBack(): void {
+    this.location.back();
+  }
 
   prepareSaveCollection(): Collection {
     const formModel = this.collectionForm.value;

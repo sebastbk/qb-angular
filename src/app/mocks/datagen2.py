@@ -58,9 +58,11 @@ class Question(Model):
 
     def answer_widget(self):
         if isinstance(self.answer, datetime):
-            return 'datetime'
+            return 'date'
         elif isinstance(self.answer, str):
-            return 'str'
+            return 'text'
+        elif isinstance(self.number, int):
+            return 'number'
         raise Exception('Unknown answer type')
 
     def add_tag(self, tag):

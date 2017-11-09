@@ -1,10 +1,13 @@
+<button class="btn btn-primary float-right" type="button" (click)="goBack()">Back</button>
 <div *ngIf="collection">
   <h2 class="text-primary text-capitalize">{{collection.title}}</h2>
-  <div class="text-muted">
-    <span>#{{collection.id}}</span>
-    <span>{{collection.created_by}}</span> &middot;
-    <span>{{collection.created_on | date:'short'}}</span>
-  </div>
+  <ul class="list-inline text-muted">
+    <li class="list-inline-item">#{{collection.id}}</li>
+    <li class="list-inline-item">
+      <a class="text-primary" [routerLink]="['/users', collection.created_by]">{{collection.created_by}}</a>
+    </li>
+    <li class="list-inline-item">{{collection.created_on | date:'short'}}</li>
+  </ul>
   <ul class="list-inline">
     <li *ngFor="let tag of collection?.tags" class="list-inline-item badge badge-primary">{{tag}}</li>
   </ul>

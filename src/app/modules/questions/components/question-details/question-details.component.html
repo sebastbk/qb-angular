@@ -1,74 +1,82 @@
-<div *ngIf="question">
-  <div class="d-flex justify-content-between">
+<form *ngIf="question" [formGroup]="questionForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <div class="float-right">
+      <button *ngIf="questionForm.disabled" type="button" class="btn btn-primary" (click)="questionForm.enable()">Edit</button>
+      <button *ngIf="question.id" type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+    </div>
     <h2>{{question.id ? '#'+question.id : 'New Question'}}</h2>
-    <button *ngIf="!editMode" type="button" class="btn btn-link" (click)="editMode = true">
-      <span class="oi oi-pencil"></span>
-    </button>
   </div>
+  
+  <!-- meta data -->
   <div class="d-flex justify-content-between text-muted">
-    <div *ngIf="question.id">
-      <span>{{question.created_by}}</span> &middot;
-      <span>{{question.created_on | date:'short'}}</span>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a class="text-primary" [routerLink]="['/users', question.created_by]">{{question.created_by}}</a>
+      </li>
+      <li class="list-inline-item">{{question.created_on | date:'short'}}</li>
+    </ul>
+    <div>
+      <label>Difficulty</label>
+      <ngb-rating [max]="5" formControlName="difficulty"></ngb-rating>
     </div>
-    <div *ngIf="!editMode">
-      <span class="text-uppercase">Difficulty</span>
-      <ngb-rating [rate]="question.difficulty" [max]="5" [readonly]="true"></ngb-rating>
+  </div> <!-- ./d-flex -->
+
+  <div class="form-group">
+    <label>Question</label>
+    <textarea class="form-control"
+              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+              formControlName="text"></textarea>
+  </div>
+
+  <!-- <div class="form-group">
+    <label>Answer Widget</label>
+    <select class="form-control" formControlName="answer_widget">
+      <option *ngFor="let widget of answer_widgets" [value]="widget.value">{{widget.name}}</option>
+    </select>
+  </div> -->
+
+  <div class="form-group">
+    <label>Answer</label>
+    <div class="d-block">
+      <div class="btn-group" [hidden]="questionForm.disabled" ngbRadioGroup name="radioBasic" formControlName="answer_widget">
+        <label *ngFor="let widget of answer_widgets" ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="widget.value"> {{widget.name}}
+        </label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <input #answer [type]="questionForm.get('answer_widget').value" class="form-control"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                formControlName="answer">
+      </div>
+      <div class="col">
+        <input #alternateAnswer [type]="questionForm.get('answer_widget').value" class="form-control"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                formControlName="alternate_answer">
+      </div>
     </div>
   </div>
-  <div *ngIf="!editMode">
-    <p>{{question.text}}</p>
-    <p class="ml-5 text-primary">{{question.answer}}<span *ngIf="question.alternate_answer"> <span class="font-weight-bold">or</span> {{question.alternate_answer}}</span></p>
-    <hr />
-    <ul class="list-inline mb-0">
-      <li *ngFor="let tag of question?.tags"
+
+  <div class="form-group">
+    <label>Tags</label>
+    <textarea [hidden]="questionForm.disabled"  class="form-control" rows="2"
+              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+              formControlName="tags"></textarea>
+    <ul *ngIf="questionForm.disabled" class="list-inline mb-0">
+      <li *ngFor="let tag of question.tags"
           class="list-inline-item badge badge-primary">
         {{tag}}
       </li>
     </ul>
   </div>
-  <form *ngIf="!question.id || editMode" [formGroup]="questionForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="form-group">
-      <label>Question</label>
-      <textarea class="form-control" rows="3" formControlName="text"></textarea>
-    </div>
-    <div class="form-group">
-      <label>Answer Widget</label>
-      <select class="form-control" #answerWidget formControlName="answer_widget">
-        <option *ngFor="let widget of answer_widgets"
-                [value]="widget.value">{{widget.name}}</option>
-      </select>
-    </div>
-    <div [ngSwitch]="answerWidget.value">
-      <div class="form-group">
-        <label>Answer</label>
-        <div class="form-row">
-          <div class="col">
-            <input [type]="answerWidget.value" class="form-control" placeholder="Answer" formControlName="answer">
-          </div>
-          <div class="col">
-            <input [type]="answerWidget.value" class="form-control" placeholder="Alternate" formControlName="alternate_answer">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Difficulty</label>
-      <select class="form-control" formControlName="difficulty">
-        <option *ngFor="let difficulty of difficulties"
-                [value]="difficulty.value">{{difficulty.name}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Tags</label>
-      <textarea class="form-control" rows="2" formControlName="tags"></textarea>
-    </div>
+
+
+  <div *ngIf="questionForm.enabled">
     <button type="submit"
             [disabled]="questionForm.pristine"
             class="btn btn-success">Save</button> &nbsp;
-    <button type="reset" (click)="revert()"
-            [disabled]="questionForm.pristine"
-            class="btn btn-warning">Revert</button> &nbsp;
-    <button type="cancel" (click)="editMode=false;revert()"
+    <button type="reset" (click)="cancel()"
             class="btn btn-danger">Cancel</button>
-  </form>
-</div>
+  </div>
+</form>
