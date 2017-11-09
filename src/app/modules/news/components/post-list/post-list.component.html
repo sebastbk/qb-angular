@@ -1,10 +1,13 @@
-<ul class="list-group">
-  <li *ngFor="let post of posts"
-      (click)="setSelected(post)"
-      class="list-group-item list-group-item-action border-0 rounded-0">
-    <h5 class="d-inline text-primary">{{post.title}}</h5>
-    <div class="text-muted">
-      <small>{{post.created_on | date:'short'}}</small>
-    </div>
+<ul class="list-unstyled">
+  <li *ngFor="let post of posts$ | async"
+      class="list-post">
+    <header class="mb-3">
+      <h2 class="text-primary text-capitalize">
+        <a [routerLink]="['/news', post.id]">{{post.title}}</a>
+      </h2>
+      <div class="text-muted mb-3">{{post.created_on | date:'short'}}</div>
+      <img [routerLink]="['/news', post.id]" class="w-100 link" src="assets/images/placeholder_800x450.png">
+    </header>
+    <p>{{post.lead}}</p>
   </li>
 </ul>

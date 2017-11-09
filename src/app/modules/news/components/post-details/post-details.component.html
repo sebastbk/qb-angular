@@ -1,0 +1,12 @@
+<div *ngIf="post">
+  <header class="mb-3">
+    <h2 class="text-primary text-capitalize">{{post.title}}</h2>
+    <div class="text-muted pb-3">
+      <span>{{post.created_by}}</span> &middot;
+      <span>{{post.created_on | date:'short'}}</span>
+    </div>
+    <img class="w-100" src="assets/images/placeholder_800x450.png">
+  </header>
+  <p>{{post.lead}}</p>
+  <p>{{post.body}}</p>
+</div>

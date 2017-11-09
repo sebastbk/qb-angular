@@ -1,61 +1,68 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { Observable }    from 'rxjs/Observable';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { Post } from '../models/post';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class PostService {
   private postsUrl = 'api/posts';
-  private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
-  getPosts(): Promise<Post[]> {
-    return this.http.get(this.postsUrl)
-      .toPromise()
-      .then(response => response.json().data as Post[])
-      .catch(this.handleError);
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.postsUrl).pipe(
+      catchError(this.handleError('getPosts', []))
+    );
   }
-
-  getPost(id: number): Promise<Post> {
+  
+  getPost(id: number): Observable<Post> {
     const url = `${this.postsUrl}/${id}`;
-    return this.http.get(url)
-      .toPromise()
-      .then(response => response.json().data as Post)
-      .catch(this.handleError);
+    return this.http.get<Post>(url).pipe(
+      catchError(this.handleError<Post>(`getPost id=${id}`))
+    );
+  }
+  
+  updatePost(post: Post): Observable<Post> {
+    return this.http.put(this.postsUrl, post, httpOptions).pipe(
+      catchError(this.handleError<any>('updatePost'))
+    )
   }
 
-  update(post: Post): Promise<Post> {
-    const url = `${this.postsUrl}/${post.id}`;
-    return this.http
-      .put(url, JSON.stringify(post), {headers: this.headers})
-      .toPromise()
-      .then(() => post)
-      .catch(this.handleError);
+  createPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.postsUrl, post, httpOptions).pipe(
+      catchError(this.handleError<any>('createPost'))
+    )
   }
 
-  create(name: string): Promise<Post> {
-    return this.http
-      .post(this.postsUrl, JSON.stringify({name: name}), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json().data as Post)
-      .catch(this.handleError);
-  }
-
-  delete(id: number): Promise<void> {
+  deletePost(post: Post | number): Observable<Post> {
+    const id = typeof post === 'number' ? post : post.id;
     const url = `${this.postsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+
+    return this.http.delete<Post>(url, httpOptions).pipe(
+      catchError(this.handleError<any>('deletePost'))
+    )
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any):  Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    }
   }
 }

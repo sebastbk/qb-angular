@@ -4,9 +4,9 @@ import { HttpModule } from '@angular/http';
 
 import { NewsRoutingModule } from './news-routing.module';
 
-import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { NewsComponent } from './news.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
 import { PostListComponent } from './components/post-list/post-list.component';
-import { PostsComponent } from './components/posts/posts.component';
 
 import { PostService } from './services/post.service';
 
@@ -17,9 +17,9 @@ import { PostService } from './services/post.service';
     HttpModule,
   ],
   declarations: [
-    PostDetailComponent,
+    NewsComponent,
+    PostDetailsComponent,
     PostListComponent,
-    PostsComponent,
   ],
   providers: [
     PostService,

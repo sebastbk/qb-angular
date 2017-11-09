@@ -1,0 +1,9 @@
+.list-post {
+  &:not(:last-child) {
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 2rem;
+  }
+  &:not(:first-child) {
+    padding-top: 2rem;
+  }
+}

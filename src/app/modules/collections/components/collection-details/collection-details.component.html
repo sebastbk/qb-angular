@@ -1,16 +1,13 @@
-<div *ngIf="collection" class="card mt-5 mx-auto" style="width:768px;">
-  <h2 class="card-header bg-primary text-white">#{{collection.id}} <small>{{collection.title}}</small></h2>
-  <div class="card-body">
-    <div class="d-flex justify-content-space-between">
-      <div class="text-muted">
-        <span>{{collection.created_by}}</span> &middot;
-        <span>{{collection.created_on | date:'short'}}</span>
-      </div>
-    </div>
-    <ul class="list-inline">
-      <li *ngFor="let tag of collection?.tags" class="list-inline-item badge badge-primary">{{tag}}</li>
-    </ul>
-    <hr />
-    <h4 class="text-primary text-uppercase font-weight-bold">{{collection.question_count}} {{'question' | pluralize:collection.question_count}}</h4>
+<div *ngIf="collection">
+  <h2 class="text-primary text-capitalize">{{collection.title}}</h2>
+  <div class="text-muted">
+    <span>#{{collection.id}}</span>
+    <span>{{collection.created_by}}</span> &middot;
+    <span>{{collection.created_on | date:'short'}}</span>
   </div>
+  <ul class="list-inline">
+    <li *ngFor="let tag of collection?.tags" class="list-inline-item badge badge-primary">{{tag}}</li>
+  </ul>
+  <hr />
+  <h4 class="text-primary text-uppercase font-weight-bold">{{collection.question_count}} {{'question' | pluralize:collection.question_count}}</h4>
 </div>

@@ -1,5 +1,5 @@
 <h1 class="text-primary text-uppercase text-center mb-0">Questions</h1>
-<form [formGroup]="searchForm" class="sticky-top bg-white py-5" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="searchForm" class="sticky-top bg-white p-3 py-lg-5" (ngSubmit)="onSubmit()" novalidate>
   <div class="form-group mb-0" style="position:relative">
     <input id="search-box" class="form-control mb-2 rounded-0 px-3" #searchBox formControlName="q"
             autocomplete="off"
@@ -32,7 +32,7 @@
       class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
     <div class="d-flex w-100 justify-content-between">
       <small class="text-muted">
-        <a class="text-primary" [routerLink]="['/collections/questions', question.id]">#{{question.id}}</a> &middot;
+        <a class="text-primary" [routerLink]="['/questions', question.id]">#{{question.id}}</a> &middot;
         <a class="text-primary" [routerLink]="['/users', question.created_by]">{{question.created_by}}</a> &middot;
         <span>{{question.created_on | age}}</span>
         </small>

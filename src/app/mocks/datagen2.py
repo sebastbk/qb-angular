@@ -106,6 +106,22 @@ class Collection(Model):
         }
 
 
+class Post(Model):
+    def __init__(self, id, created_by, created_on, modified_on, title, lead, body):
+        self.id = id
+        self.created_by = created_by
+        self.created_on = created_on
+        self.modified_on = modified_on
+        self.title = title
+        self.lead = lead
+        self.body = body
+
+
+class TextMixin:
+    def title(self):
+        return self.fake.text(max_nb_chars=30)[:-1]
+
+
 # Managers
 class ModelManager:
     id = 100000
@@ -197,7 +213,7 @@ class QuestionManager(ModelManager):
             f.writelines(template(json.dumps(questions, indent=2, default=datetime_handler)).split(r'\n'))
 
 
-class CollectionManager(ModelManager):
+class CollectionManager(TextMixin, ModelManager):
     collections = {}
 
     def __init__(self, tag_manager, *args, **kwargs):
@@ -209,9 +225,6 @@ class CollectionManager(ModelManager):
             tags = self.tag_manager.tags.values()
         for tag in random.sample(set(tags), k):
             TagCollectionManager.add(tag, collection)
-
-    def title(self):
-        return self.fake.text(max_nb_chars=30)[:-1]
 
     def new_collection(self):
         dt = self.datetime()
@@ -237,6 +250,33 @@ class CollectionManager(ModelManager):
             f.writelines(template(json.dumps(collections, indent=2, default=datetime_handler)).split(r'\n'))
 
 
+class PostManager(TextMixin, ModelManager):
+    posts = {}
+
+    def new_post(self):
+        dt = self.datetime()
+        p = Post(
+            id=self.next_id(), 
+            created_by=self.user(), 
+            created_on=dt,
+            modified_on=dt,
+            title=self.title(),
+            lead=self.fake.paragraph(),
+            body=self.fake.paragraphs(nb=random.randint(3, 10))
+        )
+        self.posts[p.id] = p
+
+    def make(self, k=1):
+        return [self.new_post() for _ in range(k)]
+
+    @classmethod
+    def export(cls):
+        posts = [p.as_dict() for p in cls.posts.values()]
+        with open('posts.ts', 'w') as f:
+            template = "export const posts = JSON.parse(`{}`)".format
+            f.writelines(template(json.dumps(posts, indent=2, default=datetime_handler)).split(r'\n'))
+
+
 class TagQuestionManager:
     @staticmethod
     def add(tag, question):
@@ -254,10 +294,15 @@ class TagCollectionManager:
 if __name__ == '__main__':
     tag_manager = TagManager()
     question_manager = QuestionManager(tag_manager)
-    collection_manage = CollectionManager(tag_manager)
+    collection_manager = CollectionManager(tag_manager)
+    post_manager = PostManager()
+
     tag_manager.make(100)
     question_manager.make(100)
-    collection_manage.make(100)
+    collection_manager.make(100)
+    post_manager.make(20)
+
     tag_manager.export()
     question_manager.export()
-    collection_manage.export()
+    collection_manager.export()
+    post_manager.export()

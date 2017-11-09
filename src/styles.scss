@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+$break-points: (0: 0%, 25: 25%, 33: 33%, 50: 50%, 66: 66%, 75: 75%, 100: 100%);
+$sides: (top, left, bottom, right);
+
+@each $break-point, $size in $break-points {
+  .h-min-#{$break-point} {
+    min-height: $size;
+  }
+  .w-min-#{$break-point} {
+    min-width: $size;
+  }
+  .h-max-#{$break-point} {
+    max-height: $size;
+  }
+  .w-max-#{$break-point} {
+    max-width: $size;
+  }
+}
+
+$flex-options: (grow: 1 0 auto, auto: auto, none: none);
+@each $option, $value in $flex-options {
+  .flex-#{$option} {
+    flex: $value;
+  }
+}
+
+@each $direction in (x, y) {
+  .scroll-#{$direction} {
+    overflow-#{$direction}: auto;
+  }
+}
+
+.link {
+  cursor: pointer;
+}
+
+

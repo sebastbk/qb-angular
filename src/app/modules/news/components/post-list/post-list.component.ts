@@ -1,22 +1,22 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
+import { Observable }      from 'rxjs/Observable';
 
 import { Post } from '../../models/post';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'qb-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss']
 })
-export class PostListComponent implements OnChanges {
-  @Input() posts: Post[];
-  public selectedPost: Post;
+export class PostListComponent implements OnInit {
+  @Input() posts$: Observable<Post[]>;
 
-  setSelected(post: Post): void {
-    this.selectedPost = post;
-  }
+  constructor (private postService: PostService) {}
 
-  ngOnChanges(): void {
-    if (!this.selectedPost && this.posts)
-      this.selectedPost = this.posts[0]
+  ngOnInit(): void {
+    this.posts$ = this.postService.getPosts();
   }
 }
