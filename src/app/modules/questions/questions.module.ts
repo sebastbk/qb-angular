@@ -15,6 +15,7 @@ import { QuestionDetailsComponent } from './components/question-details/question
 
 import { QuestionService } from './services/question.service';
 import { TagService } from '../tags/services/tag.service';
+import { QuestionListComponent } from './components/question-list/question-list.component';
 
 @NgModule({
   imports: [
@@ -26,10 +27,14 @@ import { TagService } from '../tags/services/tag.service';
     QuestionsRoutingModule,
     SharedModule,
   ],
+  exports: [
+    QuestionListComponent,
+  ],
   declarations: [
     QuestionsComponent,
     QuestionSearchComponent,
     QuestionDetailsComponent,
+    QuestionListComponent,
   ],
   providers: [
     QuestionService,

@@ -27,21 +27,4 @@
   </div>
 </form>
 
-<!-- search results -->
-<ul class="list-group">
-  <li *ngFor="let question of questions$ | async"
-      class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
-    <div class="d-flex w-100 justify-content-between">
-      <small class="text-muted">
-        <a class="text-primary" [routerLink]="['/questions', question.id]">#{{question.id}}</a> &middot;
-        <a class="text-primary" [routerLink]="['/users', question.created_by]">{{question.created_by}}</a> &middot;
-        <span>{{question.created_on | age}}</span>
-        </small>
-      <a class="px-1"><span class="oi oi-ellipses text-primary" aria-hidden="true"></span></a>
-    </div> <!-- ./d-flex -->
-    <p class="mb-0" (click)="question.showAnswer = !question.showAnswer">
-      {{question.text}}
-      <span *ngIf="question.showAnswer" class="text-primary">{{question.answer}}</span>
-    </p>
-  </li> <!-- ./list-group-item -->
-</ul>
+<qb-question-list [questions]="questions$ | async"></qb-question-list>

@@ -15,11 +15,12 @@
         </li>
       </ul>
   </div>
-  <div class="text-right">
-    <span class="text-uppercase text-muted" (click)="toggleFilters()">
+  <div class="d-flex justify-content-between text-uppercase">
+    <a [routerLink]="'/collections/new'">New Collection</a>
+    <div class="text-muted" (click)="toggleFilters()">
       Search Filters
       <span class="oi oi-magnifying-glass"></span>
-    </span>
+    </div>
   </div>
   <div [hidden]="!showFilters">
     TODO: filters
@@ -32,13 +33,15 @@
       class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0">
     <div class="d-flex w-100 justify-content-between">
       <small class="text-muted">
-        <a class="text-primary" [routerLink]="['/collections', collection.id]">#{{collection.id}}</a> &middot;
-        <a class="text-primary" [routerLink]="['/users', collection.created_by]">{{collection.created_by}}</a> &middot;
+        <a [routerLink]="['/collections', collection.id]">#{{collection.id}}</a> &middot;
+        <a [routerLink]="['/users', collection.created_by]">{{collection.created_by}}</a> &middot;
         <span class="font-weight-bold">{{collection.question_count}}<span class="d-none d-sm-inline"> {{"question" | pluralize:collection.question_count}}</span></span> &middot;
         <span>{{collection.created_on | age}}</span>
       </small>
       <a class="px-1"><span class="oi oi-ellipses text-primary" aria-hidden="true"></span></a>
     </div> <!-- ./d-flex -->
-    <div>{{collection.title}}</div>
+    <a class="text-capitalize" [routerLink]="['/collections', collection.id]">
+      {{collection.title}}
+    </a>
   </li> <!-- ./list-group-item -->
 </ul>

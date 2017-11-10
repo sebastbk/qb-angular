@@ -3,6 +3,7 @@ export class Question {
   created_by?: string;
   created_on?: Date;
   modified_on?: Date;
+  collections?: number[];
   difficulty: number = 1;
   text: string = '';
   answer: string = '';

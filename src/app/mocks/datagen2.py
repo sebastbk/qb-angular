@@ -25,20 +25,20 @@ class Tag(Model):
         self.id = id
         self.name = name
         self.questions = set()
-        self.sets = set()
+        self.collections = set()
 
     def add_question(self, q):
         self.questions.add(q)
 
     def add_collection(self, s):
-        self.sets.add(s)
+        self.collections.add(s)
 
     def as_dict(self):
         return {
             'id': self.id,
             'name': self.name,
             'question_count': len(self.questions),
-            'set_count': len(self.sets)
+            'collection_count': len(self.collections)
         }
 
 
@@ -55,6 +55,7 @@ class Question(Model):
         self.answer = answer
         self.alternate_answer = alternate_answer
         self.tags = set()
+        self.collections = set()
 
     def answer_widget(self):
         if isinstance(self.answer, datetime):
@@ -68,6 +69,9 @@ class Question(Model):
     def add_tag(self, tag):
         self.tags.add(tag)
 
+    def add_collection(self, collection):
+        self.collections.add(collection)
+
     def as_dict(self):
         return {
             'id': self.id,
@@ -79,22 +83,40 @@ class Question(Model):
             'answer': self.answer,
             'alternate_answer': self.alternate_answer,
             'answer_widget': self.answer_widget(),
+            'collections': [c.id for c in self.collections],
             'tags': [tag.name for tag in self.tags] 
         }
 
 
 class Collection(Model):
-    def __init__(self, id, created_by, created_on, modified_on, title, question_count=0):
+    def __init__(self, id, created_by, created_on, modified_on, title):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
         self.title = title
-        self.question_count = question_count
+        self.questions = set()
         self.tags = set()
 
     def add_tag(self, tag):
         self.tags.add(tag)
+
+    def add_question(self, question):
+        self.questions.add(question)
+
+    def for_list(self):
+        return {
+            'id': self.id,
+            'title': self.title
+        }
+
+    @property
+    def question_count(self):
+        return len(self.questions)
+
+    @property
+    def average_difficulty(self):
+        return sum((x.difficulty for x in self.questions)) / self.question_count
 
     def as_dict(self):
         return {
@@ -104,6 +126,8 @@ class Collection(Model):
             'modified_on': self.modified_on,
             'title': self.title,
             'question_count': self.question_count,
+            'average_difficulty': self.average_difficulty,
+            'questions': [x.id for x in self.questions],
             'tags': [tag.name for tag in self.tags] 
         }
 
@@ -218,9 +242,10 @@ class QuestionManager(ModelManager):
 class CollectionManager(TextMixin, ModelManager):
     collections = {}
 
-    def __init__(self, tag_manager, *args, **kwargs):
+    def __init__(self, tag_manager, question_manager, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.tag_manager = tag_manager
+        self.question_manager = question_manager
 
     def set_tags(self, collection, tags=None, k=1):
         if tags is None:
@@ -228,18 +253,24 @@ class CollectionManager(TextMixin, ModelManager):
         for tag in random.sample(set(tags), k):
             TagCollectionManager.add(tag, collection)
 
+    def set_questions(self, collection, questions=None, k=1):
+        if questions is None:
+            questions = self.question_manager.questions.values()
+        for question in random.sample(set(questions), k):
+            CollectionQuestionManager.add(collection, question)
+
     def new_collection(self):
         dt = self.datetime()
-        s = Collection(
+        c = Collection(
             id=self.next_id(), 
             created_by=self.user(), 
             created_on=dt,
             modified_on=dt,
             title=self.title(),
-            question_count=random.randint(1, 50)
         )
-        self.set_tags(s, k=random.randint(1, 20))
-        self.collections[s.id] = s
+        self.set_tags(c, k=random.randint(1, 20))
+        self.set_questions(c, k=random.randint(1, 50))
+        self.collections[c.id] = c
 
     def make(self, k=1):
         return [self.new_collection() for _ in range(k)]
@@ -293,10 +324,17 @@ class TagCollectionManager:
         collection.add_tag(tag)
 
 
+class CollectionQuestionManager:
+    @staticmethod
+    def add(collection, question):
+        collection.add_question(question)
+        question.add_collection(collection)
+
+
 if __name__ == '__main__':
     tag_manager = TagManager()
     question_manager = QuestionManager(tag_manager)
-    collection_manager = CollectionManager(tag_manager)
+    collection_manager = CollectionManager(tag_manager, question_manager)
     post_manager = PostManager()
 
     tag_manager.make(100)

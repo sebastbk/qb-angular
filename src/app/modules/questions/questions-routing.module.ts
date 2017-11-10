@@ -10,7 +10,6 @@ const routes: Routes = [
     path: '', component: QuestionsComponent,
     children: [
       { path: '', component: QuestionSearchComponent },
-      { path: 'new', component: QuestionDetailsComponent },
       { path: ':id', component: QuestionDetailsComponent },
     ]
   }

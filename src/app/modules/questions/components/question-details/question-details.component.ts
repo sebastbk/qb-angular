@@ -1,5 +1,5 @@
-import { Component, OnInit, OnChanges, Input, ViewChild } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -62,14 +62,15 @@ export class QuestionDetailsComponent implements OnInit {
   onSubmit(): void {
     this.questionForm.disable();
     this.question = this.prepareSaveQuestion();
-    let observable = this.question.id ? 
+    this.question.id ? 
       this.questionService.updateQuestion(this.question) : 
-      this.questionService.createQuestion(this.question);
-    observable.subscribe(question => {
-      // TODO: this method seems to be rather slow to update the url
-      this.location.replaceState(`/questions/${question.id}`);
-      this.question = question;
-    });
+      this.questionService.createQuestion(this.question)
+        .subscribe(question => {
+          console.log(question);
+          // TODO: this method seems to be rather slow to update the url
+          this.location.replaceState(`/questions/${question.id}`);
+          this.setQuestion(question);
+        });
   }
 
   setQuestion(question: Question) {
@@ -95,20 +96,20 @@ export class QuestionDetailsComponent implements OnInit {
       answer: formModel.answer as string,
       alternate_answer: formModel.alternate_answer as string,
       difficulty: formModel.difficulty as number,
-      tags: formModel.tags.split(/\s/) as string[]
+      tags: formModel.tags.trim().replace(/\s+/g, ' ').split(/\s/) as string[]
     };
     return saveQuestion;
   }
 
   getQuestion(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     // return a new question obj if the id is 0
-    if (id === 0) {
+    if (id === null) {
       this.question = new Question();
       this.questionForm.enable();
       return;
     }
-    this.questionService.getQuestion(id)
+    this.questionService.getQuestion(+id)
       .subscribe(question => this.setQuestion(question));
   }
 }

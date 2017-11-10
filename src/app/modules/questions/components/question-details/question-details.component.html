@@ -4,7 +4,7 @@
       <button *ngIf="questionForm.disabled" type="button" class="btn btn-primary" (click)="questionForm.enable()">Edit</button>
       <button *ngIf="question.id" type="button" class="btn btn-primary" (click)="goBack()">Back</button>
     </div>
-    <h2>{{question.id ? '#'+question.id : 'New Question'}}</h2>
+    <h2 class="text-primary">{{question.id ? '#'+question.id : 'New Question'}}</h2>
   </div>
   
   <!-- meta data -->
@@ -23,9 +23,10 @@
 
   <div class="form-group">
     <label>Question</label>
-    <textarea class="form-control"
+    <textarea class="form-control" maxlength="255" rows="3"
               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
               formControlName="text"></textarea>
+    <div *ngIf="questionForm.enabled" class="text-muted text-right">{{questionForm.get('text').value.length}}/255</div>
   </div>
 
   <!-- <div class="form-group">
@@ -70,7 +71,6 @@
       </li>
     </ul>
   </div>
-
 
   <div *ngIf="questionForm.enabled">
     <button type="submit"

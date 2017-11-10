@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SharedModule } from '../../shared/shared.module';
+import { QuestionsModule } from '../questions/questions.module';
 
 import { CollectionsRoutingModule } from './collections-routing.module';
 
@@ -12,6 +15,7 @@ import { CollectionSearchComponent } from './components/collection-search/collec
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 
 import { CollectionService } from './services/collection.service';
+import { QuestionService } from '../questions/services/question.service';
 import { TagService } from '../tags/services/tag.service';
 
 @NgModule({
@@ -20,8 +24,10 @@ import { TagService } from '../tags/services/tag.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgbModule,
     CollectionsRoutingModule,
     SharedModule,
+    QuestionsModule,
   ],
   declarations: [
     CollectionsComponent,
@@ -30,6 +36,7 @@ import { TagService } from '../tags/services/tag.service';
   ],
   providers: [
     CollectionService,
+    QuestionService,
     TagService,
   ]
 })

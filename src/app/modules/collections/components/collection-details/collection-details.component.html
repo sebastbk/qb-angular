@@ -1,16 +1,49 @@
-<button class="btn btn-primary float-right" type="button" (click)="goBack()">Back</button>
 <div *ngIf="collection">
-  <h2 class="text-primary text-capitalize">{{collection.title}}</h2>
-  <ul class="list-inline text-muted">
-    <li class="list-inline-item">#{{collection.id}}</li>
-    <li class="list-inline-item">
-      <a class="text-primary" [routerLink]="['/users', collection.created_by]">{{collection.created_by}}</a>
-    </li>
-    <li class="list-inline-item">{{collection.created_on | date:'short'}}</li>
-  </ul>
-  <ul class="list-inline">
-    <li *ngFor="let tag of collection?.tags" class="list-inline-item badge badge-primary">{{tag}}</li>
-  </ul>
-  <hr />
-  <h4 class="text-primary text-uppercase font-weight-bold">{{collection.question_count}} {{'question' | pluralize:collection.question_count}}</h4>
+<form [formGroup]="collectionForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <div class="float-right">
+      <button *ngIf="collectionForm.disabled" type="button" class="btn btn-primary" (click)="collectionForm.enable()">Edit</button>
+      <button *ngIf="collection.id" type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+    </div>
+    <h2 class="text-primary text-capitalize">{{collection.id}}</h2>
+  </div>
+
+  <!-- meta data -->
+  <div class="d-flex justify-content-between text-muted">
+    <ul class="list-inline text-muted">
+      <li class="list-inline-item">#{{collection.id}}</li>
+      <li class="list-inline-item">
+        <a class="text-primary" [routerLink]="['/users', collection.created_by]">{{collection.created_by}}</a>
+      </li>
+      <li class="list-inline-item">{{collection.created_on | date:'short'}}</li>
+    </ul>
+    <div>
+      <span>Average Difficulty</span>
+      <ngb-rating [max]="5" [rate]="collection.average_difficulty" [readonly]="true"></ngb-rating>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <textarea [hidden]="collectionForm.disabled"  class="form-control" rows="2"
+              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+              formControlName="tags"></textarea>
+    <ul *ngIf="collectionForm.disabled" class="list-inline mb-0">
+      <li *ngFor="let tag of collection.tags"
+          class="list-inline-item badge badge-primary">
+        {{tag}}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="collectionForm.enabled">
+    <button type="submit"
+            [disabled]="collectionForm.pristine"
+            class="btn btn-success">Save</button> &nbsp;
+    <button type="reset" (click)="cancel()"
+            class="btn btn-danger">Cancel</button>
+  </div>
+</form>
+<hr />
+<h4 class="text-primary text-uppercase font-weight-bold">{{collection.question_count}} {{'question' | pluralize:collection.question_count}}</h4>
+<qb-question-list [questions]="questions"></qb-question-list>
 </div>

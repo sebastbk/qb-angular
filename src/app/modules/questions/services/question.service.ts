@@ -24,6 +24,12 @@ export class QuestionService {
     )
   }
 
+  getCollectionQuestions(id: number): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.questionsUrl}?collections=${id}`).pipe(
+      catchError(this.handleError('getCollectionQuestions', []))
+    )
+  }
+
   getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(this.questionsUrl).pipe(
       catchError(this.handleError('getQuestions', []))
