@@ -10,12 +10,13 @@ import { SharedModule } from '../../shared/shared.module';
 import { QuestionsRoutingModule } from './questions-routing.module';
 
 import { QuestionsComponent } from './questions.component';
+import { QuestionListComponent } from './components/question-list/question-list.component';
 import { QuestionSearchComponent } from './components/question-search/question-search.component';
 import { QuestionDetailsComponent } from './components/question-details/question-details.component';
 
 import { QuestionService } from './services/question.service';
+import { QuestionDetailsService } from './services/question-details.service';
 import { TagService } from '../tags/services/tag.service';
-import { QuestionListComponent } from './components/question-list/question-list.component';
 
 @NgModule({
   imports: [
@@ -32,11 +33,12 @@ import { QuestionListComponent } from './components/question-list/question-list.
   ],
   declarations: [
     QuestionsComponent,
+    QuestionListComponent,
     QuestionSearchComponent,
     QuestionDetailsComponent,
-    QuestionListComponent,
   ],
   providers: [
+    QuestionDetailsService,
     QuestionService,
     TagService,
   ]

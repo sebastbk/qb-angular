@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'qb-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
-export class NewsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class NewsComponent { }

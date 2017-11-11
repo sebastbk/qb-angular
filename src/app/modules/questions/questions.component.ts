@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'qb-questions',
-  templateUrl: './questions.component.html',
-  styleUrls: ['./questions.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
-export class QuestionsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class QuestionsComponent { }
