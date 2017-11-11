@@ -15,7 +15,6 @@ import { QuestionSearchComponent } from './components/question-search/question-s
 import { QuestionDetailsComponent } from './components/question-details/question-details.component';
 
 import { QuestionService } from './services/question.service';
-import { QuestionDetailsService } from './services/question-details.service';
 import { TagService } from '../tags/services/tag.service';
 
 @NgModule({
@@ -38,7 +37,6 @@ import { TagService } from '../tags/services/tag.service';
     QuestionDetailsComponent,
   ],
   providers: [
-    QuestionDetailsService,
     QuestionService,
     TagService,
   ]
