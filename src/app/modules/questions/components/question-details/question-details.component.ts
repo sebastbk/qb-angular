@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -12,7 +12,7 @@ import { QuestionService } from '../../services/question.service';
   styleUrls: ['./question-details.component.scss']
 })
 export class QuestionDetailsComponent implements OnInit {
-  @Input() question: Question;
+  question: Question;
   
   questionForm: FormGroup;
   difficulties = difficulties;
@@ -39,7 +39,11 @@ export class QuestionDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.question) { this.getQuestion(); }
+    this.route.data
+      .subscribe((data: { question: Question }) => {
+        this.question = data.question;
+        this.ngOnChanges();
+      });
   }
 
   ngOnChanges(): void {
@@ -99,17 +103,5 @@ export class QuestionDetailsComponent implements OnInit {
       tags: formModel.tags.trim().replace(/\s+/g, ' ').split(/\s/) as string[]
     };
     return saveQuestion;
-  }
-
-  getQuestion(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    // return a new question obj if the id is 0
-    if (id === null) {
-      this.question = new Question();
-      this.questionForm.enable();
-      return;
-    }
-    this.questionService.getQuestion(+id)
-      .subscribe(question => this.setQuestion(question));
   }
 }
