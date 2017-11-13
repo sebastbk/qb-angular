@@ -14,11 +14,7 @@ export const routes: Routes = [
     path: 'news',
     loadChildren: 'app/modules/news/news.module#NewsModule'
   },
-  { 
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/news'
-  },
+  { path: '', redirectTo: '/news', pathMatch: 'full' },
 ];
 
 @NgModule({
