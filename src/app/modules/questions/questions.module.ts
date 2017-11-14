@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,14 +14,12 @@ import { QuestionSearchComponent } from './components/question-search/question-s
 import { QuestionDetailsComponent } from './components/question-details/question-details.component';
 
 import { QuestionService } from './services/question.service';
-import { TagService } from '../tags/services/tag.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     NgbModule,
     QuestionsRoutingModule,
     SharedModule,
@@ -38,7 +35,6 @@ import { TagService } from '../tags/services/tag.service';
   ],
   providers: [
     QuestionService,
-    TagService,
   ]
 })
 export class QuestionsModule { }

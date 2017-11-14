@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,7 +22,6 @@ import { TagService } from '../tags/services/tag.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     NgbModule,
     CollectionsRoutingModule,
     SharedModule,

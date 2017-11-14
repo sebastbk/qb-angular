@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 
 import { NewsRoutingModule } from './news-routing.module';
 
@@ -14,7 +13,6 @@ import { PostService } from './services/post.service';
   imports: [
     CommonModule,
     NewsRoutingModule,
-    HttpModule,
   ],
   declarations: [
     NewsComponent,

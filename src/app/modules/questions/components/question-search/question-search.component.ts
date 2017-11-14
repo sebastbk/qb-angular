@@ -12,8 +12,7 @@ import { Question } from '../../models/question';
 import { QuestionService } from '../../services/question.service';
 import { SearchParams } from '../../models/search-params';
 
-import { Tag } from '../../../tags/models/tag';
-import { TagService } from '../../../tags/services/tag.service';
+import { Tag, TagService } from '../../../../core/services/tag.service';
 
 @Component({
   selector: 'qb-question-search',

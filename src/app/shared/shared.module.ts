@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AgePipe } from './pipes/age.pipe';
 import { PluralizePipe } from './pipes/pluralize.pipe';
 
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [],
   exports: [
     AgePipe,
     PluralizePipe,
   ],
-  declarations: [AgePipe, PluralizePipe]
+  declarations: [
+    AgePipe,
+    PluralizePipe
+  ]
 })
 export class SharedModule { }
