@@ -5,6 +5,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Post } from '../models/post';
+export { Post }
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

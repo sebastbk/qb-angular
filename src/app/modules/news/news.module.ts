@@ -7,8 +7,6 @@ import { NewsComponent } from './news.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 
-import { PostService } from './services/post.service';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -18,9 +16,6 @@ import { PostService } from './services/post.service';
     NewsComponent,
     PostDetailsComponent,
     PostListComponent,
-  ],
-  providers: [
-    PostService,
   ]
 })
 export class NewsModule { }

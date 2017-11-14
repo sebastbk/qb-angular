@@ -8,12 +8,8 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Collection } from '../../models/collection';
-import { CollectionService } from '../../services/collection.service';
-import { SearchParams } from '../../models/search-params';
-
-import { Tag } from '../../../tags/models/tag';
-import { TagService } from '../../../tags/services/tag.service';
+import { Collection, CollectionService } from '../../../../core/services/collection.service';
+import { Tag, TagService } from '../../../../core/services/tag.service';
 
 @Component({
   selector: 'qb-collection-search',
@@ -22,7 +18,7 @@ import { TagService } from '../../../tags/services/tag.service';
 })
 export class CollectionSearchComponent implements OnInit {
   collections$: Observable<Collection[]>;
-  private searchParams = new BehaviorSubject<SearchParams>({} as SearchParams);
+  private searchParams = new BehaviorSubject<string>('');
 
   tags$: Observable<Tag[]>;
   private searchTerms = new Subject<string>();
@@ -43,7 +39,7 @@ export class CollectionSearchComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.searchParams.next(this.searchForm.value as SearchParams);
+    this.searchParams.next(this.searchForm.value as string);
   }
 
   updateQuery(query: string, cursor: number, word: string) {
@@ -66,7 +62,7 @@ export class CollectionSearchComponent implements OnInit {
     this.collections$ = this.searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((params: SearchParams) => this.collectionService.searchCollections(params)),
+      switchMap((query: string) => this.collectionService.searchCollections(query)),
     );
 
     this.tags$ = this.searchTerms.pipe(

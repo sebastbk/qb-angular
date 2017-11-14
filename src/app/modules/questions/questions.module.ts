@@ -13,8 +13,6 @@ import { QuestionListComponent } from './components/question-list/question-list.
 import { QuestionSearchComponent } from './components/question-search/question-search.component';
 import { QuestionDetailsComponent } from './components/question-details/question-details.component';
 
-import { QuestionService } from './services/question.service';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -33,8 +31,5 @@ import { QuestionService } from './services/question.service';
     QuestionSearchComponent,
     QuestionDetailsComponent,
   ],
-  providers: [
-    QuestionService,
-  ]
 })
 export class QuestionsModule { }

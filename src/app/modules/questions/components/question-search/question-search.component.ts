@@ -8,9 +8,7 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Question } from '../../models/question';
-import { QuestionService } from '../../services/question.service';
-import { SearchParams } from '../../models/search-params';
+import { Question, QuestionService } from '../../../../core/services/question.service';
 
 import { Tag, TagService } from '../../../../core/services/tag.service';
 
@@ -21,7 +19,7 @@ import { Tag, TagService } from '../../../../core/services/tag.service';
 })
 export class QuestionSearchComponent implements OnInit {
   questions$: Observable<Question[]>;
-  private searchParams = new BehaviorSubject<SearchParams>({} as SearchParams);
+  private searchParams = new BehaviorSubject<string>('');
 
   tags$: Observable<Tag[]>;
   private searchTerms = new Subject<string>();
@@ -42,7 +40,7 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.searchParams.next(this.searchForm.value as SearchParams);
+    this.searchParams.next(this.searchForm.value as string);
   }
 
   updateQuery(query: string, cursor: number, word: string) {
@@ -65,7 +63,7 @@ export class QuestionSearchComponent implements OnInit {
     this.questions$ = this.searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((params: SearchParams) => this.questionService.searchQuestions(params)),
+      switchMap((query: string) => this.questionService.searchQuestions(query)),
     );
 
     this.tags$ = this.searchTerms.pipe(

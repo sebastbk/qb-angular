@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable }             from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { Question } from '../models/question';
-import { QuestionService } from './question.service';
+import { Question, QuestionService } from '../../../core/services/question.service';
 
 @Injectable()
 export class QuestionDetailsResolver implements Resolve<Question> {

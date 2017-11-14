@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { Observable }      from 'rxjs/Observable';
 
-import { Post } from '../../models/post';
-import { PostService } from '../../services/post.service';
+import { Post, PostService } from '../../../../core/services/post.service';
 
 @Component({
   selector: 'qb-post-list',

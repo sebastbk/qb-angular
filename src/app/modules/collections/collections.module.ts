@@ -13,10 +13,6 @@ import { CollectionsComponent } from './collections.component';
 import { CollectionSearchComponent } from './components/collection-search/collection-search.component';
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 
-import { CollectionService } from './services/collection.service';
-import { QuestionService } from '../questions/services/question.service';
-import { TagService } from '../tags/services/tag.service';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -32,10 +28,5 @@ import { TagService } from '../tags/services/tag.service';
     CollectionSearchComponent,
     CollectionDetailsComponent,
   ],
-  providers: [
-    CollectionService,
-    QuestionService,
-    TagService,
-  ]
 })
 export class CollectionsModule { }

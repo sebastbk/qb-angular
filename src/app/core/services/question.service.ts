@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Question } from '../models/question';
-import { SearchParams } from '../models/search-params';
+export { Question }
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,8 +17,8 @@ export class QuestionService {
 
   constructor(private http: HttpClient) { }
   
-  searchQuestions(params: SearchParams): Observable<Question[]> {
-    let tags = params.q ? params.q.split(/\s/).join(')|(') : '';
+  searchQuestions(query: string): Observable<Question[]> {
+    let tags = query.split(/\s/).join(')|(');
     return this.http.get<Question[]>(`${this.questionsUrl}?tags=(${tags})`).pipe(
       catchError(this.handleError('searchQuestions', []))
     )

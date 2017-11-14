@@ -5,7 +5,6 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Tag } from '../models/tag';
-// re export for convenience
 export { Tag };
 
 const httpOptions = {

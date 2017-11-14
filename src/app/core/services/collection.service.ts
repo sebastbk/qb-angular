@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Collection } from '../models/collection';
-import { SearchParams } from '../models/search-params';
+export { Collection }
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,8 +17,8 @@ export class CollectionService {
 
   constructor(private http: HttpClient) { }
   
-  searchCollections(params: SearchParams): Observable<Collection[]> {
-    let tags = params.q ? params.q.split(/\s/).join(')|(') : '';
+  searchCollections(query: string): Observable<Collection[]> {
+    let tags = query.split(/\s/).join(')|(');
     return this.http.get<Collection[]>(`${this.collectionsUrl}?tags=(${tags})`).pipe(
       catchError(this.handleError('searchCollections', []))
     )
