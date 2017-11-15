@@ -25,8 +25,8 @@ import { CoreModule } from './core/core.module';
       InMemoryDataService, { dataEncapsulation: false }
     ),
     NgbModule.forRoot(),
-    AppRoutingModule,
     CoreModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })

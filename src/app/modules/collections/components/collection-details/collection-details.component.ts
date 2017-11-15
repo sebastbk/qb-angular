@@ -12,7 +12,7 @@ import { Question, QuestionService } from '../../../../core/services/question.se
   styleUrls: ['./collection-details.component.scss']
 })
 export class CollectionDetailsComponent implements OnInit {
-  @Input() collection: Collection;
+  collection: Collection;
   questions: Question[];
 
   collectionForm: FormGroup;
@@ -35,7 +35,11 @@ export class CollectionDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.collection) { this.getCollection(); }
+    this.route.data
+      .subscribe((data: { collection: Collection }) => {
+        this.collection = data.collection;
+        this.ngOnChanges();
+      });
   }
 
   ngOnChanges() {
@@ -83,17 +87,5 @@ export class CollectionDetailsComponent implements OnInit {
       tags: formModel.tags.trim().replace(/\s+/g, ' ').split(/\s/) as string[]
     };
     return saveCollection;
-  }
-
-  getCollection(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    // return a new collection obj if the id is 0
-    if (id === null) {
-      this.collection = new Collection();
-      this.collectionForm.enable();
-      return;
-    }
-    this.collectionService.getCollection(+id)
-      .subscribe(collection => this.setCollection(collection));
   }
 }

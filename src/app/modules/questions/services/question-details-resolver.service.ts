@@ -16,16 +16,16 @@ export class QuestionDetailsResolver implements Resolve<Question> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Question> {
-    let id = route.paramMap.get('id');
+    let id = +route.paramMap.get('id');
 
-    return this.questionService.getQuestion(+id).map(question => {
+    return this.questionService.getQuestion(id).map(question => {
       if (question) {
         return question;
       } else {
         this.router.navigate(['/questions']);
         return null;
       }
-    })
+    });
   }
 
 }

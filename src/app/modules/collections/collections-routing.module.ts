@@ -5,19 +5,32 @@ import { CollectionsComponent } from './collections.component';
 import { CollectionSearchComponent } from './components/collection-search/collection-search.component';
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 
+import { CollectionDetailsResolver } from './services/collection-details-resolver.service'; 
+
 const routes: Routes = [
   { 
     path: '', component: CollectionsComponent,
     children: [
-      { path: '', component: CollectionSearchComponent },
-      { path: 'new', component: CollectionDetailsComponent },
-      { path: ':id', component: CollectionDetailsComponent },
+      { 
+        path: '',
+        component: CollectionSearchComponent
+      },
+      { 
+        path: ':id',
+        component: CollectionDetailsComponent,
+        resolve: {
+          collection: CollectionDetailsResolver
+        }
+      },
     ]
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CollectionDetailsResolver
+  ]
 })
 export class CollectionsRoutingModule { }
