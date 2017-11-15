@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Question, difficulties, answer_widgets } from '../../../../core/models/question';
-import { QuestionService } from '../../../../core/services/question.service';
+import { Question, difficulties, answer_widgets } from '@core/models/question';
+import { QuestionService } from '@core/services/question.service';
 
 @Component({
   selector: 'qb-question-details',

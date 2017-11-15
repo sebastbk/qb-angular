@@ -5,7 +5,7 @@ import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@a
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { Question, QuestionService } from '../../../core/services/question.service';
+import { Question, QuestionService } from '@core/services/question.service';
 
 @Injectable()
 export class QuestionDetailsResolver implements Resolve<Question> {

@@ -1,16 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Question } from '@core/models/question';
 
 @Component({
   selector: 'qb-question-list',
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.scss']
 })
-export class QuestionListComponent implements OnInit {
-  @Input() questions;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class QuestionListComponent {
+  @Input() questions: Question[];
 }

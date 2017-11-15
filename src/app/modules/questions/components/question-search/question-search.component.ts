@@ -8,9 +8,8 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Question, QuestionService } from '../../../../core/services/question.service';
-
-import { Tag, TagService } from '../../../../core/services/tag.service';
+import { Question, QuestionService } from '@core/services/question.service';
+import { Tag, TagService } from '@core/services/tag.service';
 
 @Component({
   selector: 'qb-question-search',

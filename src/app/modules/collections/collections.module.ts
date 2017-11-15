@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { QuestionsModule } from '../questions/questions.module';
 
 import { CollectionsRoutingModule } from './collections-routing.module';
@@ -19,9 +19,9 @@ import { CollectionDetailsComponent } from './components/collection-details/coll
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    CollectionsRoutingModule,
     SharedModule,
     QuestionsModule,
+    CollectionsRoutingModule,
   ],
   declarations: [
     CollectionsComponent,

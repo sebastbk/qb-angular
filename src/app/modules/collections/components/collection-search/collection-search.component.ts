@@ -8,8 +8,8 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Collection, CollectionService } from '../../../../core/services/collection.service';
-import { Tag, TagService } from '../../../../core/services/tag.service';
+import { Collection, CollectionService } from '@core/services/collection.service';
+import { Tag, TagService } from '@core/services/tag.service';
 
 @Component({
   selector: 'qb-collection-search',

@@ -5,7 +5,7 @@ import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@a
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { Collection, CollectionService } from '../../../core/services/collection.service';
+import { Collection, CollectionService } from '@core/services/collection.service';
 
 @Injectable()
 export class CollectionDetailsResolver implements Resolve<Collection> {

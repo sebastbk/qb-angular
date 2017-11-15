@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Collection, CollectionService } from '../../../../core/services/collection.service';
-import { Question, QuestionService } from '../../../../core/services/question.service';
+import { Collection, CollectionService } from '@core/services/collection.service';
+import { Question, QuestionService } from '@core/services/question.service';
 
 @Component({
   selector: 'qb-collection-details',

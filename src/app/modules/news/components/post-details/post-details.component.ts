@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Post, PostService } from '../../../../core/services/post.service';
+import { Post, PostService } from '@core/services/post.service';
 
 @Component({
   selector: 'qb-post-details',

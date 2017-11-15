@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 import { QuestionsRoutingModule } from './questions-routing.module';
 
@@ -19,8 +19,8 @@ import { QuestionDetailsComponent } from './components/question-details/question
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    QuestionsRoutingModule,
     SharedModule,
+    QuestionsRoutingModule,
   ],
   exports: [
     QuestionListComponent,
