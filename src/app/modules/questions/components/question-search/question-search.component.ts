@@ -39,7 +39,8 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.searchParams.next(this.searchForm.value as string);
+    let query = this.searchForm.get('q').value as string
+    this.searchParams.next(query);
   }
 
   updateQuery(query: string, cursor: number, word: string) {

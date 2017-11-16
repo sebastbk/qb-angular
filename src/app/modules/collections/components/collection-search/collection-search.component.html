@@ -8,7 +8,7 @@
             (click)="searchTags(searchBox.value, searchBox.selectionEnd)" />
       <ul [hidden]="(tags | async)?.length == 0" id="live-suggest" class="list-unstyled bg-white text-muted border border-light w-100">
         <li *ngFor="let tag of tags$ | async"
-            (click)="updateQuery(searchBox.value, searchBox.selectionEnd, tag.name)"
+            (click)="updateQuery(searchBox.value, searchBox.selectionEnd, tag.name); searchBox.focus();"
             class="d-flex justify-content-between px-3">
           <div>{{tag.name}}</div>
           <div class="ml-5">{{tag.collection_count}}</div>

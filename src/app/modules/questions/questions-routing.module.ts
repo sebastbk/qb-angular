@@ -11,8 +11,11 @@ const routes: Routes = [
   {
     path: 'questions', component: QuestionsComponent,
     children: [
-      { path: '', component: QuestionSearchComponent },
-      { 
+      {
+        path: '',
+        component: QuestionSearchComponent,
+      },
+      {
         path: ':id', 
         component: QuestionDetailsComponent,
         resolve: {
