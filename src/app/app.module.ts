@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 
 import { CoreModule } from './core/core.module';
+import { QuestionsModule } from './modules/questions/questions.module';
+import { CollectionsModule } from './modules/collections/collections.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { CoreModule } from './core/core.module';
     ),
     NgbModule.forRoot(),
     CoreModule,
+    QuestionsModule,
+    CollectionsModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

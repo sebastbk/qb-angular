@@ -9,7 +9,7 @@ import { QuestionDetailsResolver } from './services/question-details-resolver.se
 
 const routes: Routes = [
   {
-    path: '', component: QuestionsComponent,
+    path: 'questions', component: QuestionsComponent,
     children: [
       { path: '', component: QuestionSearchComponent },
       { 

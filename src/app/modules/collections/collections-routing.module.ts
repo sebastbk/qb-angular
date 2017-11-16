@@ -9,7 +9,7 @@ import { CollectionDetailsResolver } from './services/collection-details-resolve
 
 const routes: Routes = [
   { 
-    path: '', component: CollectionsComponent,
+    path: 'collections', component: CollectionsComponent,
     children: [
       { 
         path: '',
