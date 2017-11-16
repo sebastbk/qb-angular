@@ -30,12 +30,14 @@ export class QuestionSearchComponent implements OnInit {
     private fb: FormBuilder,
     private questionService: QuestionService,
     private tagService: TagService
-  ) { }
+  ) {
+    this.createForm(); 
+  }
 
   createForm() {
     this.searchForm = this.fb.group({
       q: ''
-    })
+    });
   }
 
   onSubmit(): void {
@@ -58,8 +60,6 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createForm();
-
     this.questions$ = this.searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
