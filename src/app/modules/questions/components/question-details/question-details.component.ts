@@ -24,6 +24,7 @@ export class QuestionDetailsComponent implements OnInit {
     private location: Location,
     private questionService: QuestionService,
   ) {
+    this.question = new Question();
     this.createForm();
   }
 
@@ -41,8 +42,7 @@ export class QuestionDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.data
       .subscribe((data: { question: Question }) => {
-        this.question = data.question;
-        this.ngOnChanges();
+        if (data.question) { this.setQuestion(data.question) }
       });
   }
 

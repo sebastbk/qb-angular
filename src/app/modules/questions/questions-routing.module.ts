@@ -16,6 +16,10 @@ const routes: Routes = [
         component: QuestionSearchComponent,
       },
       {
+        path: 'new',
+        component: QuestionDetailsComponent,
+      },
+      {
         path: ':id', 
         component: QuestionDetailsComponent,
         resolve: {
