@@ -9,16 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './components/nav/nav.component';
 
 import { CoreModule } from './core/core.module';
-import { QuestionsModule } from './modules/questions/questions.module';
-import { CollectionsModule } from './modules/collections/collections.module';
+import { QuestionsModule } from './questions/questions.module';
+import { CollectionsModule } from './collections/collections.module';
+import { TagsModule } from './tags/tags.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +29,7 @@ import { CollectionsModule } from './modules/collections/collections.module';
     CoreModule,
     QuestionsModule,
     CollectionsModule,
+    TagsModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

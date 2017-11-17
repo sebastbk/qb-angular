@@ -1,16 +1,17 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { QuestionService } from './services/question.service';
-import { CollectionService } from './services/collection.service';
-import { TagService } from './services/tag.service';
-import { PostService } from './services/post.service';
+import { NavRootComponent } from './nav-root/nav-root.component';
 
 @NgModule({
-  providers: [
-    QuestionService,
-    CollectionService,
-    TagService,
-    PostService,
+  imports: [
+    RouterModule
+  ],
+  declarations: [
+    NavRootComponent
+  ],
+  exports: [
+    NavRootComponent
   ]
 })
 export class CoreModule {
@@ -18,14 +19,6 @@ export class CoreModule {
     if (parentModule) {
       throw new Error(
         'CoreModule is already loaded. Import it in the AppModule only');
-    }
-  }
-
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: CoreModule,
-      providers: [
-      ]
     }
   }
 }

@@ -4,7 +4,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'news',
-    loadChildren: 'app/modules/news/news.module#NewsModule'
+    loadChildren: '@qb/news/news.module#NewsModule'
   },
   { path: '', redirectTo: '/news', pathMatch: 'full' },
 ];
