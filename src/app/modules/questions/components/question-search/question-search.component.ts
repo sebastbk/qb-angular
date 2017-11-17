@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable }      from 'rxjs/Observable';
 import { Subject }         from 'rxjs/Subject';
@@ -8,7 +9,8 @@ import { of }              from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Question, QuestionService } from '@core/services/question.service';
+import { Question } from '@core/models/question';
+import { QuestionSearchConfig, QuestionSearchService } from '@modules/questions/services/question-search.service';
 import { Tag, TagService } from '@core/services/tag.service';
 
 @Component({
@@ -18,7 +20,6 @@ import { Tag, TagService } from '@core/services/tag.service';
 })
 export class QuestionSearchComponent implements OnInit {
   questions$: Observable<Question[]>;
-  private searchParams = new BehaviorSubject<string>('');
 
   tags$: Observable<Tag[]>;
   private searchTerms = new Subject<string>();
@@ -28,26 +29,27 @@ export class QuestionSearchComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private questionService: QuestionService,
+    private route: ActivatedRoute,
+    private questionSearchService: QuestionSearchService,
     private tagService: TagService
   ) {
-    this.createForm(); 
+    this.createForm(this.questionSearchService.config);
+    this.questions$ = this.questionSearchService.questions$;
   }
 
-  createForm() {
-    this.searchForm = this.fb.group({
-      q: ''
-    });
+  createForm(config: QuestionSearchConfig) {
+    this.searchForm = this.fb.group(config);
   }
 
   onSubmit(): void {
-    let query = this.searchForm.get('q').value as string
-    this.searchParams.next(query);
+    let query = this.searchForm.get('query').value as string
+    let config = new QuestionSearchConfig(query)
+    this.questionSearchService.search(config);
   }
 
   updateQuery(query: string, cursor: number, word: string) {
     let value = query.replaceWordAt(cursor, word);
-    this.searchForm.get('q').setValue(value);
+    this.searchForm.get('query').setValue(value);
   }
 
   searchTags(query: string, cursor=0) {
@@ -60,12 +62,6 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.questions$ = this.searchParams.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((query: string) => this.questionService.searchQuestions(query)),
-    );
-
     this.tags$ = this.searchTerms.pipe(
       distinctUntilChanged(),
       switchMap((term: string) => term ?

@@ -18,7 +18,7 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
   
   searchQuestions(query: string): Observable<Question[]> {
-    let tags = query.split(/\s/).join(')|(');
+    let tags = query ? query.split(/\s/).join(')|(') : '';
     return this.http.get<Question[]>(`${this.questionsUrl}?tags=(${tags})`).pipe(
       catchError(this.handleError('searchQuestions', []))
     )
