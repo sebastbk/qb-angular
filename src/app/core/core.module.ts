@@ -1,17 +1,17 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NavRootComponent } from './nav-root/nav-root.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   imports: [
     RouterModule
   ],
   declarations: [
-    NavRootComponent
+    NavComponent
   ],
   exports: [
-    NavRootComponent
+    NavComponent
   ]
 })
 export class CoreModule {
