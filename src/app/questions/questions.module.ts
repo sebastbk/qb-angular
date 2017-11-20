@@ -12,7 +12,7 @@ import { QuestionSearchComponent } from './question-search/question-search.compo
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
 // services
-import { QuestionService } from './shared/question.service'
+import { QuestionService } from './shared/question.service';
 
 @NgModule({
   imports: [

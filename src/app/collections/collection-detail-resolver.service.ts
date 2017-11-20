@@ -17,7 +17,7 @@ export class CollectionDetailResolver implements Resolve<Collection> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Collection> {
-    let id = +route.paramMap.get('id');
+    const id = +route.paramMap.get('id');
 
     return this.collectionService.getCollection(id).map(collection => {
       if (collection) {

@@ -8,7 +8,7 @@ import { Question } from './shared/question.model';
 import { QuestionService } from './shared/question.service';
 
 export class QuestionSearchConfig {
-  query: string = '';
+  query: string;
 
   constructor (query?: string) {
     this.query = query || '';
@@ -42,7 +42,7 @@ export class QuestionSearchService {
     this._questions$ = this._searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((config: QuestionSearchConfig) => 
+      switchMap((config: QuestionSearchConfig) =>
         this.questionService.searchQuestions(config.query)),
     );
   }

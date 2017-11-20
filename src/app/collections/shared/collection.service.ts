@@ -15,12 +15,12 @@ export class CollectionService {
   private collectionsUrl = 'api/collections';
 
   constructor(private http: HttpClient) { }
-  
+
   searchCollections(query: string): Observable<Collection[]> {
-    let tags = query.split(/\s/).join(')|(');
+    const tags = query.split(/\s/).join(')|(');
     return this.http.get<Collection[]>(`${this.collectionsUrl}?tags=(${tags})`).pipe(
       catchError(this.handleError('searchCollections', []))
-    )
+    );
   }
 
   getCollections(): Observable<Collection[]> {
@@ -28,24 +28,24 @@ export class CollectionService {
       catchError(this.handleError('getCollections', []))
     );
   }
-  
+
   getCollection(id: number): Observable<Collection> {
     const url = `${this.collectionsUrl}/${id}`;
     return this.http.get<Collection>(url).pipe(
       catchError(this.handleError<Collection>(`getCollection id=${id}`))
     );
   }
-  
+
   updateCollection(collection: Collection): Observable<Collection> {
     return this.http.put(this.collectionsUrl, collection, httpOptions).pipe(
       catchError(this.handleError<any>('updateCollection'))
-    )
+    );
   }
 
   createCollection(collection: Collection): Observable<Collection> {
     return this.http.post<Collection>(this.collectionsUrl, collection, httpOptions).pipe(
       catchError(this.handleError<any>('createCollection'))
-    )
+    );
   }
 
   deleteCollection(collection: Collection | number): Observable<Collection> {
@@ -54,7 +54,7 @@ export class CollectionService {
 
     return this.http.delete<Collection>(url, httpOptions).pipe(
       catchError(this.handleError<any>('deleteCollection'))
-    )
+    );
   }
 
   /**
@@ -70,6 +70,6 @@ export class CollectionService {
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
-    }
+    };
   }
 }

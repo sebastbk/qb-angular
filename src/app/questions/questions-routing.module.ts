@@ -20,7 +20,7 @@ const routes: Routes = [
         component: QuestionDetailComponent,
       },
       {
-        path: ':id', 
+        path: ':id',
         component: QuestionDetailComponent,
         resolve: {
           question: QuestionDetailResolver

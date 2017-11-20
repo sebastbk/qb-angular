@@ -17,7 +17,7 @@ export class QuestionDetailResolver implements Resolve<Question> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Question> {
-    let id = +route.paramMap.get('id');
+    const id = +route.paramMap.get('id');
 
     return this.questionService.getQuestion(id).map(question => {
       if (question) {

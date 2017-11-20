@@ -186,7 +186,7 @@ class TagManager(ModelManager):
     def export(cls):
         tags = [t.as_dict() for t in cls.tags.values()]
         with open('tags.ts', 'w') as f:
-            template = "export const tags = JSON.parse(`{}`)".format
+            template = "export const tags = JSON.parse(`{}`);\n".format
             f.write(template(json.dumps(tags, indent=2)))
 
 
@@ -235,7 +235,7 @@ class QuestionManager(ModelManager):
     def export(cls):
         questions = [q.as_dict() for q in cls.questions.values()]
         with open('questions.ts', 'w') as f:
-            template = "export const questions = JSON.parse(`{}`)".format
+            template = "export const questions = JSON.parse(`{}`);\n".format
             f.writelines(template(json.dumps(questions, indent=2, default=datetime_handler)).split(r'\n'))
 
 
@@ -279,7 +279,7 @@ class CollectionManager(TextMixin, ModelManager):
     def export(cls):
         collections = [c.as_dict() for c in cls.collections.values()]
         with open('collections.ts', 'w') as f:
-            template = "export const collections = JSON.parse(`{}`)".format
+            template = "export const collections = JSON.parse(`{}`);\n".format
             f.writelines(template(json.dumps(collections, indent=2, default=datetime_handler)).split(r'\n'))
 
 
@@ -306,7 +306,7 @@ class PostManager(TextMixin, ModelManager):
     def export(cls):
         posts = [p.as_dict() for p in cls.posts.values()]
         with open('posts.ts', 'w') as f:
-            template = "export const posts = JSON.parse(`{}`)".format
+            template = "export const posts = JSON.parse(`{}`);\n".format
             f.writelines(template(json.dumps(posts, indent=2, default=datetime_handler)).split(r'\n'))
 
 

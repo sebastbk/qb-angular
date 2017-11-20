@@ -10,9 +10,9 @@ import { QuestionService } from '../shared/question.service';
   selector: 'qb-question-detail',
   templateUrl: './question-detail.component.html'
 })
-export class QuestionDetailComponent implements OnInit {
+export class QuestionDetailComponent implements OnInit, OnChanges {
   question: Question;
-  
+
   questionForm: FormGroup;
   difficulties = difficulties;
   answer_widgets = answer_widgets;
@@ -35,13 +35,13 @@ export class QuestionDetailComponent implements OnInit {
       alternate_answer: '',
       difficulty: 1,
       tags: ''
-    })
+    });
   }
 
   ngOnInit(): void {
     this.route.data
       .subscribe((data: { question: Question }) => {
-        if (data.question) { this.setQuestion(data.question) }
+        if (data.question) { this.setQuestion(data.question); }
       });
   }
 
@@ -65,8 +65,8 @@ export class QuestionDetailComponent implements OnInit {
   onSubmit(): void {
     this.questionForm.disable();
     this.question = this.prepareSaveQuestion();
-    this.question.id ? 
-      this.questionService.updateQuestion(this.question) : 
+    this.question.id ?
+      this.questionService.updateQuestion(this.question) :
       this.questionService.createQuestion(this.question)
         .subscribe(question => {
           console.log(question);
@@ -80,18 +80,18 @@ export class QuestionDetailComponent implements OnInit {
     this.question = question;
     this.ngOnChanges();
   }
-  
-  cancel(): void { 
+
+  cancel(): void {
     this.question.id ? this.ngOnChanges() : this.goBack();
   }
 
   goBack(): void {
     this.location.back();
   }
-  
+
   prepareSaveQuestion(): Question {
     const formModel = this.questionForm.value;
-    
+
     const saveQuestion: Question = {
       id: this.question.id,
       text: formModel.text as string,

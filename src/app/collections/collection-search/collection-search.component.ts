@@ -1,10 +1,10 @@
 import { Component, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { Observable }      from 'rxjs/Observable';
-import { Subject }         from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { of }              from 'rxjs/observable/of';
+import { of } from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
@@ -37,21 +37,21 @@ export class CollectionSearchComponent implements OnInit {
   createForm() {
     this.searchForm = this.fb.group({
       q: ''
-    })
+    });
   }
 
   onSubmit(): void {
-    let query = this.searchForm.get('q').value as string
+    const query = this.searchForm.get('q').value as string;
     this.searchParams.next(query);
   }
 
   updateQuery(query: string, cursor: number, word: string) {
-    let value = query.replaceWordAt(cursor, word);
+    const value = query.replaceWordAt(cursor, word);
     this.searchForm.get('q').setValue(value);
   }
 
-  searchTags(query: string, cursor=0) {
-    let term = query.getWordAt(cursor);
+  searchTags(query: string, cursor= 0) {
+    const term = query.getWordAt(cursor);
     this.searchTerms.next(term);
   }
 

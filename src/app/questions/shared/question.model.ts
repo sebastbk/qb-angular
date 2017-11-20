@@ -4,11 +4,11 @@ export class Question {
   created_on?: Date;
   modified_on?: Date;
   collections?: number[];
-  difficulty: number = 1;
-  text: string = '';
-  answer: string = '';
-  alternate_answer: string = '';
-  answer_widget: string = 'text';
+  difficulty: number;
+  text: string;
+  answer: string;
+  alternate_answer: string;
+  answer_widget: string;
   tags: string[] = [];
 }
 
@@ -18,11 +18,11 @@ export const difficulties = [
   { value: 3, name: '3' },
   { value: 4, name: '4' },
   { value: 5, name: '5' }
-]
+];
 
 export const answer_widgets = [
   { value: 'text', name: 'Text' },
   { value: 'number', name: 'Number' },
   { value: 'date', name: 'Date' },
   { value: 'time', name: 'Time' }
-]
+];

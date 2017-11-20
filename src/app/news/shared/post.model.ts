@@ -3,7 +3,7 @@ export class Post {
   created_by?: string;
   created_on?: Date;
   modified_on?: Date;
-  title: string = '';
-  lead: string = '';
-  body: string = '';
+  title: string;
+  lead: string;
+  body: string;
 }

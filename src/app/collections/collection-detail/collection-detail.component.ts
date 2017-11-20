@@ -12,7 +12,7 @@ import { QuestionService } from '@qb/questions/shared/question.service';
   selector: 'qb-collection-detail',
   templateUrl: './collection-detail.component.html',
 })
-export class CollectionDetailComponent implements OnInit {
+export class CollectionDetailComponent implements OnInit, OnChanges {
   collection: Collection;
   questions: Question[];
 
@@ -56,8 +56,8 @@ export class CollectionDetailComponent implements OnInit {
   onSubmit() {
     this.collectionForm.disable();
     this.collection = this.prepareSaveCollection();
-    let observable = this.collection.id ? 
-      this.collectionService.updateCollection(this.collection) : 
+    const observable = this.collection.id ?
+      this.collectionService.updateCollection(this.collection) :
       this.collectionService.createCollection(this.collection);
     observable.subscribe(collection => {
       // TODO: this method seems to be rather slow to update the url
@@ -81,7 +81,7 @@ export class CollectionDetailComponent implements OnInit {
 
   prepareSaveCollection(): Collection {
     const formModel = this.collectionForm.value;
-    
+
     const saveCollection: Collection = {
       id: this.collection.id,
       title: formModel.title as string,

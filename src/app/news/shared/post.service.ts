@@ -21,24 +21,24 @@ export class PostService {
       catchError(this.handleError('getPosts', []))
     );
   }
-  
+
   getPost(id: number): Observable<Post> {
     const url = `${this.postsUrl}/${id}`;
     return this.http.get<Post>(url).pipe(
       catchError(this.handleError<Post>(`getPost id=${id}`))
     );
   }
-  
+
   updatePost(post: Post): Observable<Post> {
     return this.http.put(this.postsUrl, post, httpOptions).pipe(
       catchError(this.handleError<any>('updatePost'))
-    )
+    );
   }
 
   createPost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.postsUrl, post, httpOptions).pipe(
       catchError(this.handleError<any>('createPost'))
-    )
+    );
   }
 
   deletePost(post: Post | number): Observable<Post> {
@@ -47,7 +47,7 @@ export class PostService {
 
     return this.http.delete<Post>(url, httpOptions).pipe(
       catchError(this.handleError<any>('deletePost'))
-    )
+    );
   }
 
   /**
@@ -63,6 +63,6 @@ export class PostService {
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
-    }
+    };
   }
 }

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable }      from 'rxjs/Observable';
-import { Subject }         from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { of }              from 'rxjs/observable/of';
+import { of } from 'rxjs/observable/of';
 
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
@@ -44,18 +44,18 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let query = this.searchForm.get('query').value as string
-    let config = new QuestionSearchConfig(query)
+    const query = this.searchForm.get('query').value as string;
+    const config = new QuestionSearchConfig(query);
     this.questionSearchService.search(config);
   }
 
   updateQuery(query: string, cursor: number, word: string) {
-    let value = query.replaceWordAt(cursor, word);
+    const value = query.replaceWordAt(cursor, word);
     this.searchForm.get('query').setValue(value);
   }
 
-  searchTags(query: string, cursor=0) {
-    let term = query.getWordAt(cursor);
+  searchTags(query: string, cursor= 0) {
+    const term = query.getWordAt(cursor);
     this.searchTerms.next(term);
   }
 

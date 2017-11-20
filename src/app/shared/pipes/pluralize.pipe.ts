@@ -12,9 +12,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: 'pluralize'})
 export class PluralizePipe implements PipeTransform {
   transform(subject: string, count: string): string {
-    let num = parseFloat(count);
+    const num = parseFloat(count);
     if ((isNaN(num) ? 2 : num) > 1) {
-      let plural = subject.endsWith('y') || subject.endsWith('i') ? 'ies' : 's';
+      const plural = subject.endsWith('y') || subject.endsWith('i') ? 'ies' : 's';
       return `${subject}${plural}`;
     }
     return subject;

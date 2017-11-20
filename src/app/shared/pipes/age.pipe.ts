@@ -35,38 +35,36 @@ export class AgePipe implements PipeTransform {
   }
 
   transform(value: string): string {
-    let duration = Date.now() - new Date(value).getTime();
-    if      (duration < 0) return 'the future';
-    else if (duration < 30 * SECOND) return 'just now';
-    else if (duration < MINUTE) {
-      let seconds = Math.floor(duration / SECOND);
+    const duration = Date.now() - new Date(value).getTime();
+    if (duration < 0) {
+      return 'the future';
+    } else if (duration < 30 * SECOND) {
+      return 'just now';
+    } else if (duration < MINUTE) {
+      const seconds = Math.floor(duration / SECOND);
       return `${seconds} ${this.pluralize('second', seconds)} ago`;
-    }
-    else if (duration < HOUR) {
-      let minutes = Math.floor(duration / MINUTE);
+    } else if (duration < HOUR) {
+      const minutes = Math.floor(duration / MINUTE);
       return `${minutes} ${this.pluralize('minute', minutes)} ago`;
-    }
-    else if (duration < 0.5 * DAY) {
-      let hours = Math.floor(duration / HOUR);
+    } else if (duration < 0.5 * DAY) {
+      const hours = Math.floor(duration / HOUR);
       return `${hours} ${this.pluralize('hour', hours)} ago`;
-    }
-    else if (duration < DAY) return 'today';
-    else if (duration < 2 * DAY) return 'yesterday';
-    else if (duration < WEEK) {
-      let days = Math.floor(duration / DAY);
+    } else if (duration < DAY) {
+      return 'today';
+    } else if (duration < 2 * DAY) {
+      return 'yesterday';
+    } else if (duration < WEEK) {
+      const days = Math.floor(duration / DAY);
       return `${days} ${this.pluralize('day', days)} ago`;
-    }
-    else if (duration < MONTH) {
-      let weeks = Math.floor(duration / WEEK);
+    } else if (duration < MONTH) {
+      const weeks = Math.floor(duration / WEEK);
       return `${weeks} ${this.pluralize('week', weeks)} ago`;
-    }
-    else if (duration < YEAR) {
-      let months = Math.floor(duration / MONTH);
+    } else if (duration < YEAR) {
+      const months = Math.floor(duration / MONTH);
       return `${months} ${this.pluralize('month', months)} ago`;
-    }
-    else {
-      let years = Math.floor(duration / YEAR);
-      return `${years} ${this.pluralize('year', years)} ago`; 
+    } else {
+      const years = Math.floor(duration / YEAR);
+      return `${years} ${this.pluralize('year', years)} ago`;
     }
   }
 }

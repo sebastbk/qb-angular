@@ -15,18 +15,18 @@ export class QuestionService {
   private questionsUrl = 'api/questions';
 
   constructor(private http: HttpClient) { }
-  
+
   searchQuestions(query: string): Observable<Question[]> {
-    let tags = query ? query.split(/\s/).join(')|(') : '';
+    const tags = query ? query.split(/\s/).join(')|(') : '';
     return this.http.get<Question[]>(`${this.questionsUrl}?tags=(${tags})`).pipe(
       catchError(this.handleError('searchQuestions', []))
-    )
+    );
   }
 
   getCollectionQuestions(id: number): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.questionsUrl}?collections=${id}`).pipe(
       catchError(this.handleError('getCollectionQuestions', []))
-    )
+    );
   }
 
   getQuestions(): Observable<Question[]> {
@@ -34,24 +34,24 @@ export class QuestionService {
       catchError(this.handleError('getQuestions', []))
     );
   }
-  
+
   getQuestion(id: number): Observable<Question> {
     const url = `${this.questionsUrl}/${id}`;
     return this.http.get<Question>(url).pipe(
       catchError(this.handleError<Question>(`getQuestion id=${id}`))
     );
   }
-  
+
   updateQuestion(question: Question): Observable<Question> {
     return this.http.put(this.questionsUrl, question, httpOptions).pipe(
       catchError(this.handleError<any>('updateQuestion'))
-    )
+    );
   }
 
   createQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.questionsUrl, question, httpOptions).pipe(
       catchError(this.handleError<any>('createQuestion'))
-    )
+    );
   }
 
   deleteQuestion(question: Question | number): Observable<Question> {
@@ -60,7 +60,7 @@ export class QuestionService {
 
     return this.http.delete<Question>(url, httpOptions).pipe(
       catchError(this.handleError<any>('deleteQuestion'))
-    )
+    );
   }
 
   /**
@@ -76,6 +76,6 @@ export class QuestionService {
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
-    }
+    };
   }
 }

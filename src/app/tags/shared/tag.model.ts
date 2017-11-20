@@ -1,6 +1,6 @@
 export class Tag {
   id?: number;
-  name: string = '';
+  name: string;
   question_count?: number;
   set_count?: number;
 }

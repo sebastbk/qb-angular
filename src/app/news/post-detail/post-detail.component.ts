@@ -1,15 +1,15 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Post } from '../shared/post.model'
+import { Post } from '../shared/post.model';
 import { PostService } from '../shared/post.service';
 
 @Component({
   selector: 'qb-post-detail',
   templateUrl: './post-detail.component.html',
 })
-export class PostDetailComponent {
+export class PostDetailComponent implements OnInit {
   @Input() post: Post;
 
   constructor(

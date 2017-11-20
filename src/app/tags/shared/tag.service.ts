@@ -19,7 +19,7 @@ export class TagService {
   searchTags(term: string): Observable<Tag[]> {
     return this.http.get<Tag[]>(`${this.tagsUrl}/?name=${term}`).pipe(
       catchError(this.handleError('searchTags', []))
-    )
+    );
   }
 
   getTags(): Observable<Tag[]> {
@@ -27,24 +27,24 @@ export class TagService {
       catchError(this.handleError('getTags', []))
     );
   }
-  
+
   getTag(id: number): Observable<Tag> {
     const url = `${this.tagsUrl}/${id}`;
     return this.http.get<Tag>(url).pipe(
       catchError(this.handleError<Tag>(`getTag id=${id}`))
     );
   }
-  
+
   updateTag(tag: Tag): Observable<Tag> {
     return this.http.put(this.tagsUrl, tag, httpOptions).pipe(
       catchError(this.handleError<any>('updateTag'))
-    )
+    );
   }
 
   createTag(tag: Tag): Observable<Tag> {
     return this.http.post<Tag>(this.tagsUrl, tag, httpOptions).pipe(
       catchError(this.handleError<any>('createTag'))
-    )
+    );
   }
 
   deleteTag(tag: Tag | number): Observable<Tag> {
@@ -53,7 +53,7 @@ export class TagService {
 
     return this.http.delete<Tag>(url, httpOptions).pipe(
       catchError(this.handleError<any>('deleteTag'))
-    )
+    );
   }
 
   /**
@@ -69,6 +69,6 @@ export class TagService {
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
-    }
+    };
   }
 }

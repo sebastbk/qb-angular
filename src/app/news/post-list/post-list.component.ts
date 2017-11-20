@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { Observable }      from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
-import { Post } from '../shared/post.model'
+import { Post } from '../shared/post.model';
 import { PostService } from '../shared/post.service';
 
 @Component({
