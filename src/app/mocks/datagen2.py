@@ -44,12 +44,14 @@ class Tag(Model):
 
 class Question(Model):
     def __init__(
-        self, id, created_by, created_on, modified_on, difficulty,
+        self, id, created_by, created_on, modified_on, rating, difficulty,
         text, answer, alternate_answer=''):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
+        self.rating = rating
+        self.favorite = False
         self.difficulty = difficulty
         self.text = text
         self.answer = answer
@@ -78,6 +80,8 @@ class Question(Model):
             'created_by': self.created_by,
             'created_on': self.created_on,
             'modified_on': self.modified_on,
+            'rating': self.rating,
+            'favorite': self.favorite,
             'difficulty': self.difficulty,
             'text': self.text,
             'answer': self.answer,
@@ -204,6 +208,10 @@ class QuestionManager(ModelManager):
             TagQuestionManager.add(tag, question)
 
     @staticmethod
+    def rating():
+        return random.uniform(0.0, 10.0)
+
+    @staticmethod
     def difficulty():
         return random.randint(1, 5)
 
@@ -221,6 +229,7 @@ class QuestionManager(ModelManager):
             created_by=self.user(), 
             created_on=dt,
             modified_on=dt,
+            rating=self.rating(),
             difficulty=self.difficulty(),
             text=self.text(),
             answer=self.answer()

@@ -3,6 +3,8 @@ export class Question {
   created_by?: string;
   created_on?: Date;
   modified_on?: Date;
+  rating?: number;
+  favorite?: boolean;
   collections?: number[];
   difficulty: number;
   text: string;

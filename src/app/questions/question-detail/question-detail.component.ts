@@ -108,6 +108,8 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       created_by: this.question.created_by || 'admin',
       created_on: this.question.created_on || new Date(),
       modified_on: new Date(),
+      rating: this.question.rating || 0,
+      favorite: this.question.favorite || false,
       collections: this.question.collections || [],
       // end mock
       text: formModel.text as string,
