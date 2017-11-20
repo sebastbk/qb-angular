@@ -27,29 +27,18 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     this.createForm();
   }
 
-  createForm() {
-    this.questionForm = this.fb.group({
-      text: '',
-      answer_widget: 'text',
-      answer: '',
-      alternate_answer: '',
-      difficulty: 1,
-      tags: ''
-    });
-  }
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.data
       .subscribe((data: { question: Question }) => {
         if (data.question) { this.setQuestion(data.question); }
       });
   }
 
-  ngOnChanges(): void {
+  ngOnChanges() {
     this.questionForm.disable();
     this.questionForm.get('answer_widget')
       .reset(this.question.answer_widget);
-    // wrap in timeout to give the DOM time to update the answer inputs
+    // wrap in timeout to give the DOM time to update the answer input widgets
     setTimeout(() => {
       this.questionForm.reset({
         text: this.question.text,
@@ -62,18 +51,20 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     }, 0);
   }
 
-  onSubmit(): void {
+  cancel() {
+    this.question.id ? this.ngOnChanges() : this.goBack();
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  onSubmit() {
     this.questionForm.disable();
-    this.question = this.prepareSaveQuestion();
-    this.question.id ?
-      this.questionService.updateQuestion(this.question) :
-      this.questionService.createQuestion(this.question)
-        .subscribe(question => {
-          console.log(question);
-          // TODO: this method seems to be rather slow to update the url
-          this.location.replaceState(`/questions/${question.id}`);
-          this.setQuestion(question);
-        });
+    const question = this.prepareSaveQuestion();
+    question.id
+      ? this.updateQuestion(question)
+      : this.createQuestion(question);
   }
 
   setQuestion(question: Question) {
@@ -81,15 +72,32 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     this.ngOnChanges();
   }
 
-  cancel(): void {
-    this.question.id ? this.ngOnChanges() : this.goBack();
+  private updateQuestion(question: Question) {
+    this.questionService.updateQuestion(this.question)
+      .subscribe(q => this.setQuestion(q));
   }
 
-  goBack(): void {
-    this.location.back();
+  private createQuestion(question: Question) {
+    this.questionService.createQuestion(this.question)
+      .subscribe(q => {
+        this.setQuestion(q);
+        // TODO: this method seems to be rather slow to update the url
+        this.location.replaceState(`/questions/${question.id}`);
+      });
   }
 
-  prepareSaveQuestion(): Question {
+  private createForm() {
+    this.questionForm = this.fb.group({
+      text: '',
+      answer_widget: 'text',
+      answer: '',
+      alternate_answer: '',
+      difficulty: 1,
+      tags: ''
+    });
+  }
+
+  private prepareSaveQuestion(): Question {
     const formModel = this.questionForm.value;
 
     // added server defined fields for mock service
