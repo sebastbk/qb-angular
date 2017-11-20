@@ -38,7 +38,11 @@ export class CollectionService {
 
   updateCollection(collection: Collection): Observable<Collection> {
     return this.http.put(this.collectionsUrl, collection, httpOptions).pipe(
-      catchError(this.handleError<any>('updateCollection'))
+      catchError(this.handleError<any>('updateCollection')),
+      // in memory web service does not support patch so we use put and return
+      // the input on success. This means we also expect all of the body on the call.
+      // TODO: Replace with PATCH when converting to real back end.
+      map(() => collection)
     );
   }
 

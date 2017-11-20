@@ -44,7 +44,11 @@ export class QuestionService {
 
   updateQuestion(question: Question): Observable<Question> {
     return this.http.put(this.questionsUrl, question, httpOptions).pipe(
-      catchError(this.handleError<any>('updateQuestion'))
+      catchError(this.handleError<any>('updateQuestion')),
+      // in memory web service does not support patch so we use put and return
+      // the input on success. This means we also expect all of the body on the call.
+      // TODO: Replace with PATCH when converting to real back end.
+      map(() => question)
     );
   }
 

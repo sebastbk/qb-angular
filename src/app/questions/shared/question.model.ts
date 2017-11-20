@@ -1,8 +1,8 @@
 export class Question {
   id?: number;
   created_by?: string;
-  created_on?: Date;
-  modified_on?: Date;
+  created_on?: string;
+  modified_on?: string;
   rating?: number;
   favorite?: boolean;
   collections?: number[];

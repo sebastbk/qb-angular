@@ -1,10 +1,11 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Question, difficulties, answer_widgets } from '../shared/question.model';
 import { QuestionService } from '../shared/question.service';
+import { query } from '@angular/core/src/animation/dsl';
 
 @Component({
   selector: 'qb-question-detail',
@@ -73,27 +74,26 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
   }
 
   private updateQuestion(question: Question) {
-    this.questionService.updateQuestion(this.question)
+    this.questionService.updateQuestion(question)
       .subscribe(q => this.setQuestion(q));
   }
 
   private createQuestion(question: Question) {
-    this.questionService.createQuestion(this.question)
+    this.questionService.createQuestion(question)
       .subscribe(q => {
         this.setQuestion(q);
-        // TODO: this method seems to be rather slow to update the url
-        this.location.replaceState(`/questions/${question.id}`);
+        this.location.replaceState(`/questions/${q.id}`);
       });
   }
 
   private createForm() {
     this.questionForm = this.fb.group({
-      text: '',
-      answer_widget: 'text',
-      answer: '',
+      text: ['', Validators.required],
+      answer_widget: ['text', Validators.required],
+      answer: ['', Validators.required],
       alternate_answer: '',
-      difficulty: 1,
-      tags: ''
+      difficulty: [1, Validators.required],
+      tags: ['', Validators.required]
     });
   }
 
@@ -102,12 +102,13 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
 
     // added server defined fields for mock service
     // TODO: replace 'admin' with a user service
+    const modified_on = (new Date()).toJSON();
     const saveQuestion: Question = {
       id: this.question.id,
       // mock
       created_by: this.question.created_by || 'admin',
-      created_on: this.question.created_on || new Date(),
-      modified_on: new Date(),
+      created_on: this.question.created_on || modified_on,
+      modified_on: modified_on,
       rating: this.question.rating || 0,
       favorite: this.question.favorite || false,
       collections: this.question.collections || [],
