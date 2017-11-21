@@ -45,7 +45,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
         text: this.question.text,
         answer_widget: this.question.answer_widget,
         answer: this.question.answer,
-        alternate_answer: this.question.alternate_answer,
+        alt_answer: this.question.alt_answer,
         difficulty: this.question.difficulty,
         tags: this.question.tags.join(' ')
       });
@@ -91,7 +91,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       text: ['', Validators.required],
       answer_widget: ['text', Validators.required],
       answer: ['', Validators.required],
-      alternate_answer: '',
+      alt_answer: '',
       difficulty: [1, Validators.required],
       tags: ['', Validators.required]
     });
@@ -109,14 +109,14 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       created_by: this.question.created_by || 'admin',
       created_on: this.question.created_on || modified_on,
       modified_on: modified_on,
-      rating: this.question.rating || 0,
+      avg_rating: this.question.avg_rating || 0,
       favorite: this.question.favorite || false,
       collections: this.question.collections || [],
       // end mock
       text: formModel.text as string,
       answer_widget: formModel.answer_widget as string,
       answer: formModel.answer as string,
-      alternate_answer: formModel.alternate_answer as string,
+      alt_answer: formModel.alt_answer as string,
       difficulty: formModel.difficulty as number,
       tags: formModel.tags.trim().replace(/\s+/g, ' ').split(/\s/) as string[]
     };

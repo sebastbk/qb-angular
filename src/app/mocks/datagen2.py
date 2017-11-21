@@ -44,18 +44,19 @@ class Tag(Model):
 
 class Question(Model):
     def __init__(
-        self, id, created_by, created_on, modified_on, rating, difficulty,
-        text, answer, alternate_answer=''):
+        self, id, created_by, created_on, modified_on, avg_rating, difficulty,
+        text, answer, alt_answer=''):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
-        self.rating = rating
+        self.rating = 0
+        self.avg_rating = avg_rating
         self.favorite = False
         self.difficulty = difficulty
         self.text = text
         self.answer = answer
-        self.alternate_answer = alternate_answer
+        self.alt_answer = alt_answer
         self.tags = set()
         self.collections = set()
 
@@ -81,11 +82,12 @@ class Question(Model):
             'created_on': self.created_on,
             'modified_on': self.modified_on,
             'rating': self.rating,
+            'avg_rating': self.avg_rating,
             'favorite': self.favorite,
             'difficulty': self.difficulty,
             'text': self.text,
             'answer': self.answer,
-            'alternate_answer': self.alternate_answer,
+            'alt_answer': self.alt_answer,
             'answer_widget': self.answer_widget(),
             'collections': [c.id for c in self.collections],
             'tags': [tag.name for tag in self.tags] 
@@ -208,8 +210,8 @@ class QuestionManager(ModelManager):
             TagQuestionManager.add(tag, question)
 
     @staticmethod
-    def rating():
-        return random.uniform(0.0, 10.0)
+    def avg_rating():
+        return random.uniform(1.0, 5.0)
 
     @staticmethod
     def difficulty():
@@ -229,7 +231,7 @@ class QuestionManager(ModelManager):
             created_by=self.user(), 
             created_on=dt,
             modified_on=dt,
-            rating=self.rating(),
+            avg_rating=self.avg_rating(),
             difficulty=self.difficulty(),
             text=self.text(),
             answer=self.answer()

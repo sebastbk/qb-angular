@@ -4,12 +4,13 @@ export class Question {
   created_on?: string;
   modified_on?: string;
   rating?: number;
+  avg_rating?: number;
   favorite?: boolean;
   collections?: number[];
   difficulty: number;
   text: string;
   answer: string;
-  alternate_answer: string;
+  alt_answer: string;
   answer_widget: string;
   tags: string[] = [];
 }

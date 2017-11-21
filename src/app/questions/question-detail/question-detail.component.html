@@ -12,7 +12,7 @@
       </li>
       <li class="list-inline-item">{{question.created_on | date:'short'}}</li>
     </ul>
-    <div class="font-weight-bold">Rating {{question.rating | number:'1.2-2'}}</div>
+    <div class="font-weight-bold">Rating {{question.avg_rating | number:'1.2-2'}}</div>
   </div> <!-- ./d-flex -->
 
   <div class="form-group">
@@ -44,7 +44,7 @@
       <div class="col">
         <input #alternateAnswer [type]="questionForm.get('answer_widget').value" class="form-control"
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                formControlName="alternate_answer">
+                formControlName="alt_answer">
       </div>
     </div>
   </div>
