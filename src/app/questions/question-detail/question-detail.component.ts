@@ -5,7 +5,6 @@ import { Location } from '@angular/common';
 
 import { Question, difficulties, answer_widgets } from '../shared/question.model';
 import { QuestionService } from '../shared/question.service';
-import { query } from '@angular/core/src/animation/dsl';
 
 @Component({
   selector: 'qb-question-detail',
@@ -17,6 +16,16 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
   questionForm: FormGroup;
   difficulties = difficulties;
   answer_widgets = answer_widgets;
+
+  get text() { return this.questionForm.get('text'); }
+
+  get answerWidget() { return this.questionForm.get('answer_widget'); }
+
+  get answer() { return this.questionForm.get('answer'); }
+
+  get altAnswer() { return this.questionForm.get('alt_answer'); }
+
+  get tags() { return this.questionForm.get('tags'); }
 
   constructor(
     private fb: FormBuilder,
@@ -68,6 +77,27 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       : this.createQuestion(question);
   }
 
+  onAnswerWidgetChange() {
+    this.answer.setValue('');
+    this.altAnswer.setValue('');
+  }
+
+  onTagsKeyPress(event: any) {
+    const inputChar = String.fromCharCode(event.charCode);
+    if (!/[\w ]/g.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  onTagsBlur() {
+    const tags = this.tags.value
+      .trim()
+      .replace(/\s+/g, ' ') // replace all whitespace with spaces
+      .replace(/[^\w ]/g, '') // strip non word characters (except spaces)
+      .toLowerCase();
+    this.tags.setValue(tags);
+  }
+
   setQuestion(question: Question) {
     this.question = question;
     this.ngOnChanges();
@@ -93,7 +123,10 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       answer: ['', Validators.required],
       alt_answer: '',
       difficulty: [1, Validators.required],
-      tags: ['', Validators.required]
+      tags: ['', [
+        Validators.required,
+        Validators.pattern('\\s*\\w{3,30}(\\s+\\w{3,30}){0,9}\\s*')
+      ]]
     });
   }
 
@@ -110,6 +143,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       created_on: this.question.created_on || modified_on,
       modified_on: modified_on,
       avg_rating: this.question.avg_rating || 0,
+      rating: this.question.rating || 0,
       favorite: this.question.favorite || false,
       collections: this.question.collections || [],
       // end mock
@@ -118,7 +152,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       answer: formModel.answer as string,
       alt_answer: formModel.alt_answer as string,
       difficulty: formModel.difficulty as number,
-      tags: formModel.tags.trim().replace(/\s+/g, ' ').split(/\s/) as string[]
+      tags: formModel.tags.trim().split(/\s+/) as string[]
     };
     return saveQuestion;
   }

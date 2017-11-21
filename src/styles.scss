@@ -38,14 +38,7 @@ label {
   font-weight: bold;
 }
 
-@each $tag in (input, textarea, select) {
-  #{$tag}[disabled] {
-    border-color: transparent;
-    background-color: transparent !important;
-  }
-}
-
-textarea {
+textarea.no-resize {
   resize: none;
 }
 

@@ -1,6 +1,5 @@
 <form *ngIf="question" [formGroup]="questionForm" (ngSubmit)="onSubmit()" novalidate>
   <div>
-    
     <h2 class="text-primary">{{question.id ? '#'+question.id : 'New Question'}}</h2>
   </div>
   
@@ -15,40 +14,71 @@
     <div class="font-weight-bold">Rating {{question.avg_rating | number:'1.2-2'}}</div>
   </div> <!-- ./d-flex -->
 
+  <!-- question -->
   <div class="form-group">
     <label>Question</label>
     <div *ngIf="questionForm.disabled" style="padding: 7px 13px;">{{question.text}}</div>
     <div [hidden]="questionForm.disabled">
-      <textarea class="form-control" required maxlength="255" rows="3"
+      <textarea class="form-control no-resize" required maxlength="255" rows="3"
+                placeholder="Ask a question!"
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 formControlName="text"></textarea>
       <div class="text-muted text-right">{{questionForm.get('text').value.length}}/255</div>
+      <!-- errors -->
+      <div *ngIf="text.invalid && (text.dirty || text.touched)"
+            class="alert alert-danger">
+        <div *ngIf="text.errors.required">
+          Please enter a question above.
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- answers -->
   <div class="form-group">
     <label>Answer</label>
-    <div class="d-block">
-      <div class="btn-group" [hidden]="questionForm.disabled" ngbRadioGroup name="radioBasic" formControlName="answer_widget">
-        <label *ngFor="let widget of answer_widgets" ngbButtonLabel class="btn-primary">
-          <input ngbButton type="radio" [value]="widget.value"> {{widget.name}}
-        </label>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="col">
-        <input #answer [type]="questionForm.get('answer_widget').value" class="form-control" required
-                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                formControlName="answer">
-      </div>
-      <div class="col">
-        <input #alternateAnswer [type]="questionForm.get('answer_widget').value" class="form-control"
-                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                formControlName="alt_answer">
-      </div>
-    </div>
-  </div>
 
+    <div *ngIf="questionForm.disabled" style="padding: 7px 13px;">
+      {{question.answer}}<span *ngIf="question.alt_answer"> <b>or</b> {{question.alt_answer}}</span>
+    </div>
+
+    <div [hidden]="questionForm.disabled">
+      <div class="form-row">
+        <div class="col-12 col-lg-4 mb-3">
+          <select class="form-control" (change)="onAnswerWidgetChange()" formControlName="answer_widget">
+            <option *ngFor="let widget of answer_widgets" [value]="widget.value">{{widget.name}}</option>
+          </select>
+          <!-- <div class="btn-group" ngbRadioGroup name="radioBasic" formControlName="answer_widget">
+            <label *ngFor="let widget of answer_widgets" ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="widget.value"> {{widget.name}}
+            </label>
+          </div> -->
+        </div>
+        <div class="col-6 col-lg-4">
+          <input  [type]="answerWidget.value" class="form-control" required
+                  placeholder="Answer"
+                  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="30"
+                  formControlName="answer">
+        </div>
+        <div class="col-6 col-lg-4">
+          <input  [type]="answerWidget.value" class="form-control"
+                  placeholder="Alternate Answer"
+                  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="30"
+                  formControlName="alt_answer">
+        </div>
+      </div>
+      <!-- errors -->
+      <div *ngIf="answer.invalid && (answer.dirty || answer.touched)"
+            class="alert alert-danger">
+        <div *ngIf="answer.errors.required">
+          A primary answer is required.
+        </div>
+      </div>
+    </div>
+    
+  </div> <!-- ./form-group -->
+
+  <!-- difficulty -->
   <div class="form-group">
     <label>Difficulty</label>
     <div class="d-block" style="padding: 7px 13px;">
@@ -56,17 +86,35 @@
     </div>
   </div>
 
+  <!-- tags -->
   <div class="form-group">
     <label>Tags</label>
-    <textarea [hidden]="questionForm.disabled" class="form-control" rows="2" required
-              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-              formControlName="tags"></textarea>
     <ul *ngIf="questionForm.disabled" class="list-inline mb-0" style="padding: 7px 13px;">
       <li *ngFor="let tag of question.tags"
           class="list-inline-item badge badge-primary">
         {{tag}}
       </li>
     </ul>
+    <div [hidden]="questionForm.disabled">
+      <textarea class="form-control no-resize"
+                placeholder="Add tags here!"
+                rows="2" maxlength="255" required
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                aria-describedby="tagsHelpBlock"
+                (keypress)="onTagsKeyPress($event)" (blur)="onTagsBlur()"
+                formControlName="tags"></textarea>
+      <small id="tagsHelpBlock" class="form-text text-muted">Use underscores to separate words in the same tag, i.e. quiz_bowl</small>
+      <!-- errors -->
+      <div *ngIf="tags.invalid && (tags.dirty || tags.touched)"
+            class="alert alert-danger mt-1">
+        <div *ngIf="tags.errors.required">
+          At least one tag is required so other users can find your question.
+        </div>
+        <div *ngIf="tags.errors.pattern">
+          Tags must be 3-30 characters long, with a max of 10 tags.
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="clearfix">
