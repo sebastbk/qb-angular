@@ -1,9 +1,6 @@
 <form *ngIf="question" [formGroup]="questionForm" (ngSubmit)="onSubmit()" novalidate>
   <div>
-    <div class="float-right">
-      <button *ngIf="questionForm.disabled" type="button" class="btn btn-primary" (click)="questionForm.enable()">Edit</button>
-      <button *ngIf="question.id" type="button" class="btn btn-primary" (click)="goBack()">Back</button>
-    </div>
+    
     <h2 class="text-primary">{{question.id ? '#'+question.id : 'New Question'}}</h2>
   </div>
   
@@ -15,26 +12,19 @@
       </li>
       <li class="list-inline-item">{{question.created_on | date:'short'}}</li>
     </ul>
-    <div>
-      <label>Difficulty</label>
-      <ngb-rating [max]="5" formControlName="difficulty"></ngb-rating>
-    </div>
+    <div class="font-weight-bold">Rating {{question.rating | number:'1.2-2'}}</div>
   </div> <!-- ./d-flex -->
 
   <div class="form-group">
     <label>Question</label>
-    <textarea class="form-control" maxlength="255" rows="3"
-              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-              formControlName="text"></textarea>
-    <div *ngIf="questionForm.enabled" class="text-muted text-right">{{questionForm.get('text').value.length}}/255</div>
+    <div *ngIf="questionForm.disabled" style="padding: 7px 13px;">{{question.text}}</div>
+    <div [hidden]="questionForm.disabled">
+      <textarea class="form-control" maxlength="255" rows="3"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                formControlName="text"></textarea>
+      <div class="text-muted text-right">{{questionForm.get('text').value.length}}/255</div>
+    </div>
   </div>
-
-  <!-- <div class="form-group">
-    <label>Answer Widget</label>
-    <select class="form-control" formControlName="answer_widget">
-      <option *ngFor="let widget of answer_widgets" [value]="widget.value">{{widget.name}}</option>
-    </select>
-  </div> -->
 
   <div class="form-group">
     <label>Answer</label>
@@ -60,11 +50,18 @@
   </div>
 
   <div class="form-group">
+    <label>Difficulty</label>
+    <div class="d-block" style="padding: 7px 13px;">
+      <ngb-rating [max]="5" formControlName="difficulty"></ngb-rating>
+    </div>
+  </div>
+
+  <div class="form-group">
     <label>Tags</label>
     <textarea [hidden]="questionForm.disabled"  class="form-control" rows="2"
               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
               formControlName="tags"></textarea>
-    <ul *ngIf="questionForm.disabled" class="list-inline mb-0">
+    <ul *ngIf="questionForm.disabled" class="list-inline mb-0" style="padding: 7px 13px;">
       <li *ngFor="let tag of question.tags"
           class="list-inline-item badge badge-primary">
         {{tag}}
@@ -72,11 +69,20 @@
     </ul>
   </div>
 
-  <div *ngIf="questionForm.enabled">
-    <button type="submit"
-            [disabled]="questionForm.pristine"
-            class="btn btn-success">Save</button> &nbsp;
-    <button type="reset" (click)="cancel()"
-            class="btn btn-danger">Cancel</button>
+  <div class="clearfix">
+    <div class="float-left">
+      <div *ngIf="questionForm.enabled" class="d-inline">
+        <button type="submit"
+                [disabled]="questionForm.pristine"
+                class="btn btn-success">Save</button>
+        <button type="reset" (click)="cancel()"
+                class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+    <div class="float-right">
+      <button *ngIf="questionForm.disabled" type="button" class="btn btn-primary" (click)="questionForm.enable()">Edit</button>
+      <button *ngIf="question.id" type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+    </div>
   </div>
+
 </form>
