@@ -19,7 +19,7 @@
     <label>Question</label>
     <div *ngIf="questionForm.disabled" style="padding: 7px 13px;">{{question.text}}</div>
     <div [hidden]="questionForm.disabled">
-      <textarea class="form-control" maxlength="255" rows="3"
+      <textarea class="form-control" required maxlength="255" rows="3"
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 formControlName="text"></textarea>
       <div class="text-muted text-right">{{questionForm.get('text').value.length}}/255</div>
@@ -37,7 +37,7 @@
     </div>
     <div class="form-row">
       <div class="col">
-        <input #answer [type]="questionForm.get('answer_widget').value" class="form-control"
+        <input #answer [type]="questionForm.get('answer_widget').value" class="form-control" required
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 formControlName="answer">
       </div>
@@ -58,7 +58,7 @@
 
   <div class="form-group">
     <label>Tags</label>
-    <textarea [hidden]="questionForm.disabled"  class="form-control" rows="2"
+    <textarea [hidden]="questionForm.disabled" class="form-control" rows="2" required
               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
               formControlName="tags"></textarea>
     <ul *ngIf="questionForm.disabled" class="list-inline mb-0" style="padding: 7px 13px;">
@@ -73,7 +73,7 @@
     <div class="float-left">
       <div *ngIf="questionForm.enabled" class="d-inline">
         <button type="submit"
-                [disabled]="questionForm.pristine"
+                [disabled]="questionForm.pristine || questionForm.invalid"
                 class="btn btn-success">Save</button>
         <button type="reset" (click)="cancel()"
                 class="btn btn-danger">Cancel</button>
