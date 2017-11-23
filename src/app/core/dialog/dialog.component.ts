@@ -1,16 +1,24 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Button } from '../dialog.service';
+export class Button {
+  name: string;
+  result: any;
+}
+
+export class DialogContent {
+  title?: string;
+  message: string;
+  buttons?: Button[];
+  center?: boolean;
+}
 
 @Component({
   templateUrl: './dialog.component.html',
   styleUrls: [ './dialog.component.scss' ]
 })
 export class DialogComponent {
-  @Input() title: string;
-  @Input() message: string;
-  @Input() buttons: Button[];
+  @Input() content: DialogContent;
 
   constructor(public activeModal: NgbActiveModal) { }
 

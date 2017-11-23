@@ -1,15 +1,11 @@
-<div *ngIf="title" class="modal-header">
-  <h4 class="modal-title">{{title}}</h4>
-  <button type="button" class="close" aria-label="Close" 
-          (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
+<div *ngIf="content.title" class="modal-header bg-primary">
+  <h4 class="modal-title text-white text-uppercase">{{content.title}}</h4>
 </div>
-<div *ngIf="message" class="modal-body">
-  <div class="modal-message">{{message}}</div>
+<div class="modal-body" [class.text-center]="content.center">
+  {{content.message}}
 </div>
-<div *ngIf="buttons" class="modal-btn-footer bg-primary">
-  <button *ngFor="let button of buttons" type="button" class="btn btn-primary btn-modal text-uppercase" 
+<div *ngIf="content.buttons" class="modal-btn-footer bg-primary">
+  <button *ngFor="let button of content.buttons" type="button" class="btn btn-primary btn-modal text-uppercase" 
           (click)="activeModal.close(button.result)">
           {{button.name}}</button>
 </div>

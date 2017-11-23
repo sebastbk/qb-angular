@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './question-detail.component.html'
 })
 export class QuestionDetailComponent implements OnInit, OnChanges {
-  question: Question;
+  question: Question = new Question();
 
   questionForm: FormGroup;
   difficulties = difficulties;
@@ -37,7 +37,6 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     private dialogService: DialogService,
     private questionService: QuestionService,
   ) {
-    this.question = new Question();
     this.createForm();
   }
 
@@ -67,7 +66,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
 
   canDeactivate(): Promise<boolean> | boolean {
     if (this.questionForm.pristine) { return true; }
-    return this.dialogService.confirm('Discard changes?');
+    return this.dialogService.confirm(`Discard ${this.question.id ? 'changes' : 'new question'}?`);
   }
 
   cancel() {

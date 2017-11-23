@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { DialogComponent } from './dialog/dialog.component';
-
-export class Button {
-  name: string;
-  result: any;
-}
+import { DialogComponent, DialogContent, Button } from './dialog/dialog.component';
 
 const ok: Button = {
   name: 'Ok',
@@ -26,16 +19,23 @@ export class DialogService {
 
   constructor(private modalService: NgbModal) { }
 
-  confirm(message?: string): Promise<boolean> {
-    const modalRef = this.modalService.open(DialogComponent, {
-      backdrop: 'static',
-      keyboard: false,
-      size: 'sm',
-      windowClass: 'mt-6'
-    });
-    modalRef.componentInstance.message = message || 'Are you sure?';
-    modalRef.componentInstance.buttons = [ok, cancel];
+  open(content: any, options?: NgbModalOptions): NgbModalRef {
+    return this.modalService.open(content, options);
+  }
+
+  openDialog(content: DialogContent, options?: NgbModalOptions): Promise<any> {
+    const modalRef = this.open(DialogComponent, options);
+    modalRef.componentInstance.content = content;
     return modalRef.result;
   }
 
+  confirm(message?: string): Promise<boolean> {
+    const content = {
+      message: message || 'Are you sure?',
+      buttons: [ok, cancel],
+      center: true
+    };
+    return this.openDialog(content, { size: 'sm', windowClass: 'mt-6' })
+      .then((result) => result, () => false);
+  }
 }
