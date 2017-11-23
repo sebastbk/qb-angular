@@ -5,7 +5,11 @@ import { QuestionsComponent } from './questions.component';
 import { QuestionSearchComponent } from './question-search/question-search.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
+// resolvers
 import { QuestionDetailResolver } from './question-detail-resolver.service';
+
+// guards
+import { CanDeactivateGuard } from '@qb/core/can-deactivate-guard.service';
 
 const routes: Routes = [
   {
@@ -18,10 +22,12 @@ const routes: Routes = [
       {
         path: 'new',
         component: QuestionDetailComponent,
+        canDeactivate: [CanDeactivateGuard]
       },
       {
         path: ':id',
         component: QuestionDetailComponent,
+        canDeactivate: [CanDeactivateGuard],
         resolve: {
           question: QuestionDetailResolver
         }

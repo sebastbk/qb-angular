@@ -50,3 +50,15 @@ textarea.no-resize {
 .ng-invalid:not(form) {
   border-left: 5px solid #a94442; /* red */
 }
+
+
+// modal
+.modal-content {
+  border: none !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+}
+
+.mt-6 {
+  margin-top: 6rem!important;
+}

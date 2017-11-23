@@ -1,17 +1,37 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+// shared
+import { SharedModule } from '@qb/shared/shared.module';
+
+// components
 import { NavComponent } from './nav/nav.component';
+import { DialogComponent } from './dialog/dialog.component';
+
+// services
+import { DialogService } from './dialog.service';
+
+// guards
+import { CanDeactivateGuard } from './can-deactivate-guard.service';
 
 @NgModule({
   imports: [
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   declarations: [
-    NavComponent
+    NavComponent,
+    DialogComponent
   ],
   exports: [
-    NavComponent
+    NavComponent,
+  ],
+  providers: [
+    DialogService,
+    CanDeactivateGuard
+  ],
+  entryComponents: [
+    DialogComponent
   ]
 })
 export class CoreModule {

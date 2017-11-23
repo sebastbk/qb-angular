@@ -3,8 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { DialogService } from '@qb/core/dialog.service';
+
 import { Question, difficulties, answer_widgets } from '../shared/question.model';
 import { QuestionService } from '../shared/question.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'qb-question-detail',
@@ -31,6 +34,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private location: Location,
+    private dialogService: DialogService,
     private questionService: QuestionService,
   ) {
     this.question = new Question();
@@ -59,6 +63,11 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
         tags: this.question.tags.join(' ')
       });
     }, 0);
+  }
+
+  canDeactivate(): Promise<boolean> | boolean {
+    if (this.questionForm.pristine) { return true; }
+    return this.dialogService.confirm('Discard changes?');
   }
 
   cancel() {
