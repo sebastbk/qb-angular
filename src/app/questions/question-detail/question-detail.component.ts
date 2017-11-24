@@ -11,7 +11,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'qb-question-detail',
-  templateUrl: './question-detail.component.html'
+  templateUrl: './question-detail.component.html',
+  styleUrls: [ './question-detail.component.scss' ]
 })
 export class QuestionDetailComponent implements OnInit, OnChanges {
   question: Question = new Question();
