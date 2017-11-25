@@ -28,7 +28,7 @@ import { TagsModule } from './tags/tags.module';
     ),
     NgbModule.forRoot(),
     CoreModule,
-    AuthModule,
+    AuthModule.forRoot(),
     QuestionsModule,
     CollectionsModule,
     TagsModule,

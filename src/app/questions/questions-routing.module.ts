@@ -10,6 +10,7 @@ import { QuestionDetailResolver } from './question-detail-resolver.service';
 
 // guards
 import { CanDeactivateGuard } from '@qb/core/can-deactivate-guard.service';
+import { AuthGuard } from '@qb/auth/shared/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       {
         path: 'new',
         component: QuestionDetailComponent,
+        canActivate: [AuthGuard],
         canDeactivate: [CanDeactivateGuard]
       },
       {

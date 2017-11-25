@@ -5,19 +5,19 @@ import {
   CanLoad,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  NavigationExtras,
   Route, Router
 } from '@angular/router';
 
+import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AdminGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.checkLogin(state.url);
+    return this.checkAdmin();
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -25,12 +25,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   canLoad(route: Route): boolean {
-    return this.checkLogin(`/${route.path}`);
+    return this.checkAdmin();
   }
 
-  checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) { return true; }
-    this.authService.redirectToLogin(url);
+  checkAdmin(): boolean {
+    if (this.authService.isAdmin) { return true; }
+    this.authService.redirectToForbidden();
     return false;
   }
+
 }

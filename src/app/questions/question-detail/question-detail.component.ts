@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { DialogService } from '@qb/core/dialog.service';
+import { AuthService } from '@qb/auth/shared/auth.service';
 
 import { Question, difficulties, answer_widgets } from '../shared/question.model';
 import { QuestionService } from '../shared/question.service';
@@ -16,6 +17,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class QuestionDetailComponent implements OnInit, OnChanges {
   question: Question = new Question();
+
+  get isOwner() { return this.authService.isAdmin || this.question.created_by === this.authService.username; }
 
   questionForm: FormGroup;
   difficulties = difficulties;
@@ -37,6 +40,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     private location: Location,
     private dialogService: DialogService,
     private questionService: QuestionService,
+    private authService: AuthService
   ) {
     this.createForm();
   }
@@ -148,7 +152,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
     const saveQuestion: Question = {
       id: this.question.id,
       // mock
-      created_by: this.question.created_by || 'admin',
+      created_by: this.question.created_by || this.authService.username,
       created_on: this.question.created_on || modified_on,
       modified_on: modified_on,
       avg_rating: this.question.avg_rating || 0,

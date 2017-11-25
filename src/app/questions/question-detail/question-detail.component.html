@@ -128,7 +128,7 @@
       </div>
     </div>
     <div class="float-right">
-      <button *ngIf="questionForm.disabled" type="button" class="btn btn-primary" (click)="questionForm.enable()">Edit</button>
+      <button *ngIf="isOwner && questionForm.disabled" type="button" class="btn btn-primary" (click)="questionForm.enable()">Edit</button>
       <button *ngIf="question.id" type="button" class="btn btn-primary" (click)="goBack()">Back</button>
     </div>
   </div>
