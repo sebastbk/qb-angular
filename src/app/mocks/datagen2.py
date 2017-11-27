@@ -95,12 +95,13 @@ class Question(Model):
 
 
 class Collection(Model):
-    def __init__(self, id, created_by, created_on, modified_on, title):
+    def __init__(self, id, created_by, created_on, modified_on, title, description):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
         self.title = title
+        self.description = description
         self.questions = set()
         self.tags = set()
 
@@ -131,6 +132,7 @@ class Collection(Model):
             'created_on': self.created_on,
             'modified_on': self.modified_on,
             'title': self.title,
+            'description': self.description,
             'question_count': self.question_count,
             'average_difficulty': self.average_difficulty,
             'questions': [x.id for x in self.questions],
@@ -278,6 +280,7 @@ class CollectionManager(TextMixin, ModelManager):
             created_on=dt,
             modified_on=dt,
             title=self.title(),
+            description=self.fake.text(max_nb_chars=255)
         )
         self.set_tags(c, k=random.randint(1, 20))
         self.set_questions(c, k=random.randint(1, 50))

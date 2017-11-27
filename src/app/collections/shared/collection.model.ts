@@ -7,5 +7,6 @@ export class Collection {
   average_difficulty?: number;
   questions?: number[];
   title: string;
+  description: string;
   tags: string[] = [];
 }

@@ -31,6 +31,7 @@ export class CollectionDetailComponent implements OnInit, OnChanges {
   createForm() {
     this.collectionForm = this.fb.group({
       title: '',
+      description: '',
       tags: ''
     });
   }
@@ -47,6 +48,7 @@ export class CollectionDetailComponent implements OnInit, OnChanges {
     this.collectionForm.disable();
     this.collectionForm.reset({
       title: this.collection.title,
+      description: this.collection.description,
       tags: this.collection.tags.join(' ')
     });
     this.questionService.getCollectionQuestions(this.collection.id)
@@ -85,6 +87,7 @@ export class CollectionDetailComponent implements OnInit, OnChanges {
     const saveCollection: Collection = {
       id: this.collection.id,
       title: formModel.title as string,
+      description: formModel.description as string,
       tags: formModel.tags.trim().replace(/\s+/g, ' ').split(/\s/) as string[]
     };
     return saveCollection;
