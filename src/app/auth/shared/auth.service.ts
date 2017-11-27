@@ -41,6 +41,12 @@ export class AuthService {
     this.router.navigate(['/login'], extras);
   }
 
+  resolveRedirect(extras?: NavigationExtras) {
+    const redirect = this.redirectUrl || '/';
+    this.redirectUrl = ''; // clear existing redirect on navigate
+    this.router.navigate([redirect], extras);
+  }
+
   redirectToForbidden() {
     this.router.navigate(['/forbidden']);
   }

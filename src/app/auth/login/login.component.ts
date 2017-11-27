@@ -37,13 +37,11 @@ export class LoginComponent implements OnInit {
     const credentials = this.loginForm.value;
     this.authService.login(credentials).subscribe(() => {
       if (this.authService.isLoggedIn) {
-        const redirect = this.authService.redirectUrl ?
-          this.authService.redirectUrl : '/';
         const navigationExtras: NavigationExtras = {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
-        this.router.navigate([redirect], navigationExtras);
+        this.authService.resolveRedirect(navigationExtras);
       }
     });
   }

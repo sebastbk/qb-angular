@@ -15,8 +15,7 @@ export class NavComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
-    this.authService.redirectUrl = this.router.url;
-    this.router.navigate(['/login']);
+    this.authService.redirectToLogin(this.router.url);
   }
 
   logout() {
