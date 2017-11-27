@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '@qb/auth/shared/auth.service';
 
@@ -6,14 +7,16 @@ import { AuthService } from '@qb/auth/shared/auth.service';
   selector: 'qb-nav',
   templateUrl: './nav.component.html',
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
 
   get isLoggedIn() { return this.authService.isLoggedIn; }
   get username() { return this.authService.username; }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {
+  login() {
+    this.authService.redirectUrl = this.router.url;
+    this.router.navigate(['/login']);
   }
 
   logout() {
