@@ -41,9 +41,12 @@ export class AuthService {
     this.router.navigate(['/login'], extras);
   }
 
-  resolveRedirect(extras?: NavigationExtras) {
-    const redirect = this.redirectUrl || '/';
-    this.redirectUrl = ''; // clear existing redirect on navigate
+  redirectFromLogin(extras?: NavigationExtras) {
+    let redirect = this.redirectUrl ? this.redirectUrl : '/';
+    // do not attempt to redirect back to the login page
+    if (redirect === '/login') { redirect = '/'; }
+    // clear existing redirect on navigate
+    this.redirectUrl = '';
     this.router.navigate([redirect], extras);
   }
 

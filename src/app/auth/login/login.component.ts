@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
-        this.authService.resolveRedirect(navigationExtras);
+        this.authService.redirectFromLogin(navigationExtras);
       }
     });
   }
