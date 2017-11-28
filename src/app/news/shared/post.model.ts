@@ -6,4 +6,5 @@ export class Post {
   title: string;
   lead: string;
   body: string;
+  image?: string;
 }
