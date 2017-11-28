@@ -155,9 +155,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       created_by: this.question.created_by || this.authService.username,
       created_on: this.question.created_on || modified_on,
       modified_on: modified_on,
-      avg_rating: this.question.avg_rating || 0,
-      rating: this.question.rating || 0,
-      favorite: this.question.favorite || false,
+      likes: this.question.likes || 0,
       collections: this.question.collections || [],
       // end mock
       text: formModel.text as string,

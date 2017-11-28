@@ -44,15 +44,14 @@ class Tag(Model):
 
 class Question(Model):
     def __init__(
-        self, id, created_by, created_on, modified_on, avg_rating, difficulty,
+        self, id, created_by, created_on, modified_on, likes, difficulty,
         text, answer, alt_answer=''):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
-        self.rating = 0
-        self.avg_rating = avg_rating
-        self.favorite = False
+        self.like = False,
+        self.likes = likes,
         self.difficulty = difficulty
         self.text = text
         self.answer = answer
@@ -81,9 +80,8 @@ class Question(Model):
             'created_by': self.created_by,
             'created_on': self.created_on,
             'modified_on': self.modified_on,
-            'rating': self.rating,
-            'avg_rating': self.avg_rating,
-            'favorite': self.favorite,
+            'like': self.like,
+            'likes': self.likes,
             'difficulty': self.difficulty,
             'text': self.text,
             'answer': self.answer,
@@ -95,11 +93,13 @@ class Question(Model):
 
 
 class Collection(Model):
-    def __init__(self, id, created_by, created_on, modified_on, title, description):
+    def __init__(self, id, created_by, created_on, modified_on, likes, title, description):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
         self.modified_on = modified_on
+        self.like = False,
+        self.likes = likes,
         self.title = title
         self.description = description
         self.questions = set()
@@ -131,6 +131,8 @@ class Collection(Model):
             'created_by': self.created_by,
             'created_on': self.created_on,
             'modified_on': self.modified_on,
+            'like': self.like,
+            'likes': self.likes,
             'title': self.title,
             'description': self.description,
             'question_count': self.question_count,
@@ -212,10 +214,6 @@ class QuestionManager(ModelManager):
             TagQuestionManager.add(tag, question)
 
     @staticmethod
-    def avg_rating():
-        return random.uniform(1.0, 5.0)
-
-    @staticmethod
     def difficulty():
         return random.randint(1, 5)
 
@@ -233,7 +231,7 @@ class QuestionManager(ModelManager):
             created_by=self.user(), 
             created_on=dt,
             modified_on=dt,
-            avg_rating=self.avg_rating(),
+            likes=random.randint(0, 500),
             difficulty=self.difficulty(),
             text=self.text(),
             answer=self.answer()
@@ -279,6 +277,7 @@ class CollectionManager(TextMixin, ModelManager):
             created_by=self.user(), 
             created_on=dt,
             modified_on=dt,
+            likes=random.randint(0, 500),
             title=self.title(),
             description=self.fake.text(max_nb_chars=255)
         )

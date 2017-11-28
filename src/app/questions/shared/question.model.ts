@@ -3,9 +3,8 @@ export class Question {
   created_by?: string;
   created_on?: string;
   modified_on?: string;
-  rating?: number;
-  avg_rating?: number;
-  favorite?: boolean;
+  likes?: number;
+  like?: boolean;
   collections?: number[];
   difficulty: number;
   text: string;
