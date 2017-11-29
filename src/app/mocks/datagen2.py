@@ -45,7 +45,7 @@ class Tag(Model):
 class Question(Model):
     def __init__(
         self, id, created_by, created_on, modified_on, likes, difficulty,
-        text, answer, alt_answer=''):
+        text, answer, alternate_answer=''):
         self.id = id
         self.created_by = created_by
         self.created_on = created_on
@@ -55,7 +55,7 @@ class Question(Model):
         self.difficulty = difficulty
         self.text = text
         self.answer = answer
-        self.alt_answer = alt_answer
+        self.alternate_answer = alternate_answer
         self.tags = set()
         self.collections = set()
 
@@ -85,7 +85,7 @@ class Question(Model):
             'difficulty': self.difficulty,
             'text': self.text,
             'answer': self.answer,
-            'alt_answer': self.alt_answer,
+            'alternate_answer': self.alternate_answer,
             'answer_widget': self.answer_widget(),
             'collections': [c.id for c in self.collections],
             'tags': [tag.name for tag in self.tags] 

@@ -9,7 +9,7 @@ export class Question {
   difficulty: number;
   text: string;
   answer: string;
-  alt_answer: string;
+  alternate_answer: string;
   answer_widget: string;
   tags: string[] = [];
 }

@@ -30,7 +30,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
 
   get answer() { return this.questionForm.get('answer'); }
 
-  get altAnswer() { return this.questionForm.get('alt_answer'); }
+  get altAnswer() { return this.questionForm.get('alternate_answer'); }
 
   get tags() { return this.questionForm.get('tags'); }
 
@@ -62,7 +62,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
         text: this.question.text,
         answer_widget: this.question.answer_widget,
         answer: this.question.answer,
-        alt_answer: this.question.alt_answer,
+        alternate_answer: this.question.alternate_answer,
         difficulty: this.question.difficulty,
         tags: this.question.tags.join(' ')
       });
@@ -134,7 +134,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       text: ['', Validators.required],
       answer_widget: ['text', Validators.required],
       answer: ['', Validators.required],
-      alt_answer: '',
+      alternate_answer: '',
       difficulty: [1, Validators.required],
       tags: ['', [
         Validators.required,
@@ -161,7 +161,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
       text: formModel.text as string,
       answer_widget: formModel.answer_widget as string,
       answer: formModel.answer as string,
-      alt_answer: formModel.alt_answer as string,
+      alternate_answer: formModel.alternate_answer as string,
       difficulty: formModel.difficulty as number,
       tags: formModel.tags.trim().split(/\s+/) as string[]
     };

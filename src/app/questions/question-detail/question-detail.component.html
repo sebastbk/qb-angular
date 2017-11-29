@@ -39,7 +39,7 @@
     <label>Answer</label>
 
     <div *ngIf="questionForm.disabled" style="padding: 7px 13px;">
-      {{question.answer}}<span *ngIf="question.alt_answer"> <b>or</b> {{question.alt_answer}}</span>
+      {{question.answer}}<span *ngIf="question.alternate_answer"> <b>or</b> {{question.alternate_answer}}</span>
     </div>
 
     <div [hidden]="questionForm.disabled">
@@ -64,7 +64,7 @@
           <input  [type]="answerWidget.value" class="form-control"
                   placeholder="Alternate Answer"
                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="30"
-                  formControlName="alt_answer">
+                  formControlName="alternate_answer">
         </div>
       </div>
       <!-- errors -->
