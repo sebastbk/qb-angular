@@ -146,18 +146,9 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
   private prepareSaveQuestion(): Question {
     const formModel = this.questionForm.value;
 
-    // added server defined fields for mock service
-    // TODO: replace 'admin' with a user service
     const modified_on = (new Date()).toJSON();
     const saveQuestion: Question = {
       id: this.question.id,
-      // mock
-      created_by: this.question.created_by || this.authService.username,
-      created_on: this.question.created_on || modified_on,
-      modified_on: modified_on,
-      likes: this.question.likes || 0,
-      collections: this.question.collections || [],
-      // end mock
       text: formModel.text as string,
       answer_widget: formModel.answer_widget as string,
       answer: formModel.answer as string,

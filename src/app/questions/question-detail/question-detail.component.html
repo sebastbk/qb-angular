@@ -4,7 +4,7 @@
   </div>
   
   <!-- meta data -->
-  <div class="d-flex justify-content-between text-muted">
+  <div *ngIf="question.id" class="d-flex justify-content-between text-muted">
     <ul class="list-inline">
       <li class="list-inline-item">
         <a class="text-primary" [routerLink]="['/users', question.created_by]">{{question.created_by}}</a>
