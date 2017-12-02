@@ -5,48 +5,52 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Post } from './post.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class PostService {
-  private postsUrl = 'api/posts';
+  private postsUrl = 'http://127.0.0.1:8000/api/posts';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postsUrl).pipe(
-      catchError(this.handleError('getPosts', []))
+    const url = `${this.postsUrl}/`;
+    return this.http.get<Post[]>(url).pipe(
+      catchError(this.handleError('getPosts', [])),
+      map((data: any) => data.results)
     );
   }
 
   getPost(id: number): Observable<Post> {
-    const url = `${this.postsUrl}/${id}`;
+    const url = `${this.postsUrl}/${id}/`;
     return this.http.get<Post>(url).pipe(
       catchError(this.handleError<Post>(`getPost id=${id}`))
     );
   }
 
   updatePost(post: Post): Observable<Post> {
-    return this.http.put(this.postsUrl, post, httpOptions).pipe(
-      catchError(this.handleError<any>('updatePost'))
+    const url = `${this.postsUrl}/${post.id}/`;
+    return this.http.put(url, post, this.authService.httpOptions).pipe(
+      catchError(this.handleError<any>(`updatePost id=${post.id}`))
     );
   }
 
   createPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.postsUrl, post, httpOptions).pipe(
+    const url = `${this.postsUrl}/`;
+    return this.http.post<Post>(url, post, this.authService.httpOptions).pipe(
       catchError(this.handleError<any>('createPost'))
     );
   }
 
   deletePost(post: Post | number): Observable<Post> {
     const id = typeof post === 'number' ? post : post.id;
-    const url = `${this.postsUrl}/${id}`;
+    const url = `${this.postsUrl}/${id}/`;
 
-    return this.http.delete<Post>(url, httpOptions).pipe(
-      catchError(this.handleError<any>('deletePost'))
+    return this.http.delete<Post>(url, this.authService.httpOptions).pipe(
+      catchError(this.handleError<any>(`deletePost id=${id}`))
     );
   }
 

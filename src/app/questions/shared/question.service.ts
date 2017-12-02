@@ -5,65 +5,61 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Question } from './question.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class QuestionService {
-  private questionsUrl = 'api/questions';
+  private questionsUrl = 'http://127.0.0.1:8000/api/questions';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   searchQuestions(query: string): Observable<Question[]> {
-    const tags = query ? query.split(/\s/).join(')|(') : '';
-    return this.http.get<Question[]>(`${this.questionsUrl}?tags=(${tags})`).pipe(
-      catchError(this.handleError('searchQuestions', []))
-    );
-  }
-
-  getCollectionQuestions(id: number): Observable<Question[]> {
-    return this.http.get<Question[]>(`${this.questionsUrl}?collections=${id}`).pipe(
-      catchError(this.handleError('getCollectionQuestions', []))
+    const tags = query ? query.split(/\s+/).join(',') : '';
+    const url = `${this.questionsUrl}/?search=${tags}`;
+    return this.http.get<Question[]>(url).pipe(
+      catchError(this.handleError('searchQuestions', [])),
+      map((data: any) => data.results)
     );
   }
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>(this.questionsUrl).pipe(
-      catchError(this.handleError('getQuestions', []))
+    const url = `${this.questionsUrl}/`;
+    return this.http.get<Question[]>(url).pipe(
+      catchError(this.handleError('getQuestions', [])),
+      map((data: any) => data.results)
     );
   }
 
   getQuestion(id: number): Observable<Question> {
-    const url = `${this.questionsUrl}/${id}`;
+    const url = `${this.questionsUrl}/${id}/`;
     return this.http.get<Question>(url).pipe(
       catchError(this.handleError<Question>(`getQuestion id=${id}`))
     );
   }
 
   updateQuestion(question: Question): Observable<Question> {
-    return this.http.put(this.questionsUrl, question, httpOptions).pipe(
-      catchError(this.handleError<any>('updateQuestion')),
-      // in memory web service does not support patch so we use put and return
-      // the input on success. This means we also expect all of the body on the call.
-      // TODO: Replace with PATCH when converting to real back end.
-      map(() => question)
+    const url = `${this.questionsUrl}/${question.id}/`;
+    return this.http.patch(url, question, this.authService.httpOptions).pipe(
+      catchError(this.handleError<any>(`updateQuestion id=${question.id}`))
     );
   }
 
   createQuestion(question: Question): Observable<Question> {
-    return this.http.post<Question>(this.questionsUrl, question, httpOptions).pipe(
+    const url = `${this.questionsUrl}/`;
+    return this.http.post<Question>(url, question, this.authService.httpOptions).pipe(
       catchError(this.handleError<any>('createQuestion'))
     );
   }
 
   deleteQuestion(question: Question | number): Observable<Question> {
     const id = typeof question === 'number' ? question : question.id;
-    const url = `${this.questionsUrl}/${id}`;
+    const url = `${this.questionsUrl}/${id}/`;
 
-    return this.http.delete<Question>(url, httpOptions).pipe(
-      catchError(this.handleError<any>('deleteQuestion'))
+    return this.http.delete<Question>(url, this.authService.httpOptions).pipe(
+      catchError(this.handleError<any>(`deleteQuestion id=${id}`))
     );
   }
 

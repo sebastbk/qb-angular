@@ -6,7 +6,6 @@ import { Location } from '@angular/common';
 import { Collection } from '../shared/collection.model';
 import { CollectionService } from '../shared/collection.service';
 import { Question } from '@qb/questions/shared/question.model';
-import { QuestionService } from '@qb/questions/shared/question.service';
 
 @Component({
   selector: 'qb-collection-detail',
@@ -23,7 +22,6 @@ export class CollectionDetailComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
     private location: Location,
     private collectionService: CollectionService,
-    private questionService: QuestionService,
   ) {
     this.createForm();
   }
@@ -51,7 +49,7 @@ export class CollectionDetailComponent implements OnInit, OnChanges {
       description: this.collection.description,
       tags: this.collection.tags.join(' ')
     });
-    this.questionService.getCollectionQuestions(this.collection.id)
+    this.collectionService.getCollectionQuestions(this.collection.id)
       .subscribe(questions => this.questions = questions);
   }
 

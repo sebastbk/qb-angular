@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './mocks/in-memory-data-service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,9 +21,6 @@ import { TagsModule } from './tags/tags.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
     NgbModule.forRoot(),
     CoreModule,
     AuthModule.forRoot(),

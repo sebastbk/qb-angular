@@ -5,59 +5,69 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Collection } from './collection.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { Question } from '@qb/questions/shared/question.model';
+import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class CollectionService {
-  private collectionsUrl = 'api/collections';
+  private collectionsUrl = 'http://127.0.0.1:8000/api/sets';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   searchCollections(query: string): Observable<Collection[]> {
-    const tags = query.split(/\s/).join(')|(');
-    return this.http.get<Collection[]>(`${this.collectionsUrl}?tags=(${tags})`).pipe(
-      catchError(this.handleError('searchCollections', []))
+    const tags = query.split(/\s+/).join(',');
+    const url = `${this.collectionsUrl}/?search=${tags}`;
+    return this.http.get<Collection[]>(url).pipe(
+      catchError(this.handleError('searchCollections', [])),
+      map((data: any) => data.results)
     );
   }
 
   getCollections(): Observable<Collection[]> {
-    return this.http.get<Collection[]>(this.collectionsUrl).pipe(
-      catchError(this.handleError('getCollections', []))
+    const url = `${this.collectionsUrl}/`;
+    return this.http.get<Collection[]>(url).pipe(
+      catchError(this.handleError('getCollections', [])),
+      map((data: any) => data.results)
     );
   }
 
   getCollection(id: number): Observable<Collection> {
-    const url = `${this.collectionsUrl}/${id}`;
+    const url = `${this.collectionsUrl}/${id}/`;
     return this.http.get<Collection>(url).pipe(
       catchError(this.handleError<Collection>(`getCollection id=${id}`))
     );
   }
 
+  getCollectionQuestions(id: number): Observable<Question[]> {
+    const url = `${this.collectionsUrl}/${id}/questions/`;
+    return this.http.get<Question[]>(url).pipe(
+      catchError(this.handleError(`getCollectionQuestions id=${id}`, []))
+    );
+  }
+
   updateCollection(collection: Collection): Observable<Collection> {
-    return this.http.put(this.collectionsUrl, collection, httpOptions).pipe(
-      catchError(this.handleError<any>('updateCollection')),
-      // in memory web service does not support patch so we use put and return
-      // the input on success. This means we also expect all of the body on the call.
-      // TODO: Replace with PATCH when converting to real back end.
-      map(() => collection)
+    const url = `${this.collectionsUrl}/${collection.id}/`;
+    return this.http.patch(url, collection, this.authService.httpOptions).pipe(
+      catchError(this.handleError<any>(`updateCollection id=${collection.id}`))
     );
   }
 
   createCollection(collection: Collection): Observable<Collection> {
-    return this.http.post<Collection>(this.collectionsUrl, collection, httpOptions).pipe(
+    const url = `${this.collectionsUrl}/`;
+    return this.http.post<Collection>(url, collection, this.authService.httpOptions).pipe(
       catchError(this.handleError<any>('createCollection'))
     );
   }
 
   deleteCollection(collection: Collection | number): Observable<Collection> {
     const id = typeof collection === 'number' ? collection : collection.id;
-    const url = `${this.collectionsUrl}/${id}`;
+    const url = `${this.collectionsUrl}/${id}/`;
 
-    return this.http.delete<Collection>(url, httpOptions).pipe(
-      catchError(this.handleError<any>('deleteCollection'))
+    return this.http.delete<Collection>(url, this.authService.httpOptions).pipe(
+      catchError(this.handleError<any>(`deleteCollection id=${id}`))
     );
   }
 
