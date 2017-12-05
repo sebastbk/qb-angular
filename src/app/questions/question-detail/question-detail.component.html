@@ -81,9 +81,12 @@
   <!-- difficulty -->
   <div class="form-group">
     <label>Difficulty</label>
-    <div class="d-block" style="padding: 7px 13px;">
-      <ngb-rating [max]="5" formControlName="difficulty"></ngb-rating>
-    </div>
+    <div *ngIf="questionForm.disabled" style="padding: 7px 13px;">{{question.difficulty}}</div>
+    <select [hidden]="questionForm.disabled" class="form-control" formControlName="difficulty">
+      <option *ngFor="let difficulty of difficulties" [value]="difficulty.value">
+        {{difficulty.name}}
+      </option>
+    </select>
   </div>
 
   <!-- tags -->

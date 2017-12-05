@@ -24,15 +24,11 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
   difficulties = difficulties;
   answer_widgets = answer_widgets;
 
-  get text() { return this.questionForm.get('text'); }
-
-  get answerWidget() { return this.questionForm.get('answer_widget'); }
-
-  get answer() { return this.questionForm.get('answer'); }
-
-  get altAnswer() { return this.questionForm.get('alternate_answer'); }
-
-  get tags() { return this.questionForm.get('tags'); }
+  get text()            { return this.questionForm.get('text'); }
+  get answerWidget()    { return this.questionForm.get('answer_widget'); }
+  get answer()          { return this.questionForm.get('answer'); }
+  get alternateAnswer() { return this.questionForm.get('alternate_answer'); }
+  get tags()            { return this.questionForm.get('tags'); }
 
   constructor(
     private fb: FormBuilder,
@@ -54,8 +50,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.questionForm.disable();
-    this.questionForm.get('answer_widget')
-      .reset(this.question.answer_widget);
+    this.answerWidget.reset(this.question.answer_widget);
     // wrap in timeout to give the DOM time to update the answer input widgets
     setTimeout(() => {
       this.questionForm.reset({
@@ -92,7 +87,7 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
 
   onAnswerWidgetChange() {
     this.answer.setValue('');
-    this.altAnswer.setValue('');
+    this.alternateAnswer.setValue('');
   }
 
   onTagsKeyPress(event: any) {
