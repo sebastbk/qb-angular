@@ -9,36 +9,22 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
-
 export class Credentials {
   username: string;
   password: string;
 }
 
-
-export class AuthResponse {
-  token?: string;
-  non_field_errors?: string[];
-}
-
-
 @Injectable()
 export class AuthService {
-  isLoggedIn = false;
   isAdmin = false;
   username: string;
-
   redirectUrl: string;
 
   private loginUrl = 'http://127.0.0.1:8000/login';
-  private token: string;
+  token: string;
 
-  get httpOptions(): any {
-    const headers = { 'Content-Type': 'application/json' };
-    if (this.token) {
-      headers['Authorization'] = `Bearer ${this.token}`;
-    }
-    return { headers: new HttpHeaders(headers) };
+  get isLoggedIn(): boolean {
+    return Boolean(this.token);
   }
 
   constructor(
@@ -48,25 +34,21 @@ export class AuthService {
 
   login(credentials: Credentials): Observable<boolean> {
     const url = `${this.loginUrl}/`;
-    return this.http.post<boolean>(url, credentials, this.httpOptions).pipe(
+    return this.http.post<boolean>(url, credentials).pipe(
       catchError(this.handleError<any>('login')),
-      tap((result: AuthResponse) => {
-        if ('token' in result) {
-          this.isLoggedIn = true;
-          this.username = credentials.username;
+      tap((result: any) => {
+        if (result !== undefined && 'token' in result) {
           this.token = result.token;
+          this.username = credentials.username;
         }
       }),
-      map((result: AuthResponse) => {
-        return 'token' in result;
-      }),
+      map(() => false )
     );
   }
 
   logout() {
-    this.isLoggedIn = false;
-    this.username = '';
     this.token = '';
+    this.username = '';
     window.location.reload();
   }
 

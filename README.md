@@ -9,14 +9,12 @@ My intent with this project is to learn Angular. Expect substantial changes to e
 
 ## Requirements
 
-* [ng-bootstrap](https://ng-bootstrap.github.io/)
-
+* [ng-bootstrap](https://ng-bootstrap.github.io/) - Enables some bootstrap javascript features.
+* [qb-django](https://github.com/sebastbk/qb-django) - A Django back end API.
 
 ## Questions
 
 The questions module contains components and services relating to questions.
-
-**Features**
 
 * Services to get, create, and modify questions.
 * A means to list and search for questions. (limited to the angular in memory data service.)
@@ -28,8 +26,6 @@ The questions module contains components and services relating to questions.
 ## Collections
 
 The collections module contains components and services relating to collections of questions.
-
-**Features**
 
 * Services to get, create, and modify collections.
 * A means to list and search for collections.
@@ -47,8 +43,6 @@ The news module currently displays a list of the latest posts.
 ## Auth
 
 The auth module contains the authentication services, guards, and login component.
-
-**Features**
 
 * Currently you can log in as any user with an arbitrary password.
 

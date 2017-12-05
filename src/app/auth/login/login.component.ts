@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router, NavigationExtras } from '@angular/router';
 
 import { AuthService } from '../shared/auth.service';
@@ -11,6 +12,7 @@ import { AuthService } from '../shared/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  message: string;
 
   get username() { return this.loginForm.get('username'); }
   get password() { return this.loginForm.get('password'); }
@@ -34,16 +36,22 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loginForm.disable();
     const credentials = this.loginForm.value;
-    this.authService.login(credentials).subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        const navigationExtras: NavigationExtras = {
-          queryParamsHandling: 'preserve',
-          preserveFragment: true
-        };
-        this.authService.redirectFromLogin(navigationExtras);
-      }
-    });
+    this.authService.login(credentials)
+      .subscribe(() => {
+        if (this.authService.isLoggedIn) {
+          const navigationExtras: NavigationExtras = {
+            queryParamsHandling: 'preserve',
+            preserveFragment: true
+          };
+          this.authService.redirectFromLogin(navigationExtras);
+        } else {
+          this.message = 'Invalid username or login.';
+          this.password.reset();
+          this.loginForm.enable();
+        }
+      });
   }
 
 }

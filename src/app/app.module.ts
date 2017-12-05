@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './auth/shared/auth-interceptor.service';
 import { QuestionsModule } from './questions/questions.module';
 import { CollectionsModule } from './collections/collections.module';
 import { TagsModule } from './tags/tags.module';

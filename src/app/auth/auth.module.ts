@@ -1,4 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // shared
 import { SharedModule } from '@qb/shared/shared.module';
@@ -8,6 +9,9 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 // services
 import { AuthService } from './shared/auth.service';
+
+// interceptors
+import { AuthInterceptor } from './shared/auth-interceptor.service';
 
 // guards
 import { AuthGuard } from './shared/auth-guard.service';
@@ -34,7 +38,12 @@ export class AuthModule {
       providers: [
         AuthService,
         AuthGuard,
-        AdminGuard
+        AdminGuard,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+        }
       ]
     };
   }

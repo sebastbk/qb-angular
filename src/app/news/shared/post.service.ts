@@ -5,16 +5,12 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Post } from './post.model';
-import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class PostService {
   private postsUrl = 'http://127.0.0.1:8000/api/posts';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getPosts(): Observable<Post[]> {
     const url = `${this.postsUrl}/`;
@@ -33,14 +29,14 @@ export class PostService {
 
   updatePost(post: Post): Observable<Post> {
     const url = `${this.postsUrl}/${post.id}/`;
-    return this.http.put(url, post, this.authService.httpOptions).pipe(
+    return this.http.put(url, post).pipe(
       catchError(this.handleError<any>(`updatePost id=${post.id}`))
     );
   }
 
   createPost(post: Post): Observable<Post> {
     const url = `${this.postsUrl}/`;
-    return this.http.post<Post>(url, post, this.authService.httpOptions).pipe(
+    return this.http.post<Post>(url, post).pipe(
       catchError(this.handleError<any>('createPost'))
     );
   }
@@ -49,7 +45,7 @@ export class PostService {
     const id = typeof post === 'number' ? post : post.id;
     const url = `${this.postsUrl}/${id}/`;
 
-    return this.http.delete<Post>(url, this.authService.httpOptions).pipe(
+    return this.http.delete<Post>(url).pipe(
       catchError(this.handleError<any>(`deletePost id=${id}`))
     );
   }

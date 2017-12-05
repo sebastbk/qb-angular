@@ -5,16 +5,12 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Question } from './question.model';
-import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class QuestionService {
   private questionsUrl = 'http://127.0.0.1:8000/api/questions';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  constructor(private http: HttpClient) { }
 
   searchQuestions(query: string): Observable<Question[]> {
     const tags = query ? query.split(/\s+/).join(',') : '';
@@ -42,14 +38,14 @@ export class QuestionService {
 
   updateQuestion(question: Question): Observable<Question> {
     const url = `${this.questionsUrl}/${question.id}/`;
-    return this.http.patch(url, question, this.authService.httpOptions).pipe(
+    return this.http.patch(url, question).pipe(
       catchError(this.handleError<any>(`updateQuestion id=${question.id}`))
     );
   }
 
   createQuestion(question: Question): Observable<Question> {
     const url = `${this.questionsUrl}/`;
-    return this.http.post<Question>(url, question, this.authService.httpOptions).pipe(
+    return this.http.post<Question>(url, question).pipe(
       catchError(this.handleError<any>('createQuestion'))
     );
   }
@@ -58,7 +54,7 @@ export class QuestionService {
     const id = typeof question === 'number' ? question : question.id;
     const url = `${this.questionsUrl}/${id}/`;
 
-    return this.http.delete<Question>(url, this.authService.httpOptions).pipe(
+    return this.http.delete<Question>(url).pipe(
       catchError(this.handleError<any>(`deleteQuestion id=${id}`))
     );
   }

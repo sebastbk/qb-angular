@@ -5,16 +5,12 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Tag } from './tag.model';
-import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class TagService {
   private tagsUrl = 'http://127.0.0.1:8000/api/tags';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  constructor(private http: HttpClient) { }
 
   searchTags(term: string): Observable<Tag[]> {
     const url = `${this.tagsUrl}/?search=${term}`;
@@ -41,14 +37,14 @@ export class TagService {
 
   updateTag(tag: Tag): Observable<Tag> {
     const url = `${this.tagsUrl}/${tag.id}/`;
-    return this.http.patch(url, tag, this.authService.httpOptions).pipe(
+    return this.http.patch(url, tag).pipe(
       catchError(this.handleError<any>(`updateTag id=${tag.id}`))
     );
   }
 
   createTag(tag: Tag): Observable<Tag> {
     const url = `${this.tagsUrl}/`;
-    return this.http.post<Tag>(url, tag, this.authService.httpOptions).pipe(
+    return this.http.post<Tag>(url, tag).pipe(
       catchError(this.handleError<any>('createTag'))
     );
   }
@@ -57,7 +53,7 @@ export class TagService {
     const id = typeof tag === 'number' ? tag : tag.id;
     const url = `${this.tagsUrl}/${id}/`;
 
-    return this.http.delete<Tag>(url, this.authService.httpOptions).pipe(
+    return this.http.delete<Tag>(url).pipe(
       catchError(this.handleError<any>(`deleteTag id=${id}`))
     );
   }

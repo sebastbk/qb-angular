@@ -6,16 +6,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Collection } from './collection.model';
 import { Question } from '@qb/questions/shared/question.model';
-import { AuthService } from '@qb/auth/shared/auth.service';
 
 @Injectable()
 export class CollectionService {
   private collectionsUrl = 'http://127.0.0.1:8000/api/sets';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  constructor(private http: HttpClient) { }
 
   searchCollections(query: string): Observable<Collection[]> {
     const tags = query.split(/\s+/).join(',');
@@ -50,14 +46,14 @@ export class CollectionService {
 
   updateCollection(collection: Collection): Observable<Collection> {
     const url = `${this.collectionsUrl}/${collection.id}/`;
-    return this.http.patch(url, collection, this.authService.httpOptions).pipe(
+    return this.http.patch(url, collection).pipe(
       catchError(this.handleError<any>(`updateCollection id=${collection.id}`))
     );
   }
 
   createCollection(collection: Collection): Observable<Collection> {
     const url = `${this.collectionsUrl}/`;
-    return this.http.post<Collection>(url, collection, this.authService.httpOptions).pipe(
+    return this.http.post<Collection>(url, collection).pipe(
       catchError(this.handleError<any>('createCollection'))
     );
   }
@@ -66,7 +62,7 @@ export class CollectionService {
     const id = typeof collection === 'number' ? collection : collection.id;
     const url = `${this.collectionsUrl}/${id}/`;
 
-    return this.http.delete<Collection>(url, this.authService.httpOptions).pipe(
+    return this.http.delete<Collection>(url).pipe(
       catchError(this.handleError<any>(`deleteCollection id=${id}`))
     );
   }
