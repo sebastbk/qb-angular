@@ -1,7 +1,7 @@
 <h1 class="text-primary text-uppercase text-center mb-0">Questions</h1>
 <form [formGroup]="searchForm" class="sticky-top bg-white p-3 py-lg-5" (ngSubmit)="onSubmit()" novalidate>
   <div class="form-group mb-0" style="position:relative">
-    <input id="search-box" class="form-control mb-2 rounded-0 px-3" #searchBox formControlName="query"
+    <input id="search-box" class="form-control mb-2 rounded-0 px-3" #searchBox formControlName="search"
             autocomplete="off"
             (keyup.enter)="searchBox.blur()"
             (keyup)="searchTags(searchBox.value, searchBox.selectionEnd)"

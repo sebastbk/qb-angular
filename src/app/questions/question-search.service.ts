@@ -7,48 +7,30 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Question } from './shared/question.model';
 import { QuestionService } from './shared/question.service';
 
-export class QuestionSearchConfig {
-  query: string;
-
-  constructor (query?: string) {
-    this.query = query || '';
-  }
-
-  public copy(): QuestionSearchConfig {
-    return new QuestionSearchConfig(this.query);
-  }
+export class SearchConfig {
+  search: string;
+  difficulty?: number;
 }
 
 @Injectable()
 export class QuestionSearchService {
-  private _config = new QuestionSearchConfig();
-  get config(): QuestionSearchConfig {
-    console.log(this._config);
-    return this._config.copy();
-  }
-  set config(config: QuestionSearchConfig) {
-    this._config = config.copy();
-  }
-
-  private _questions$;
-  get questions$(): Observable<Question[]> {
-    return this._questions$;
-  }
+  config = new SearchConfig();
+  questions$: Observable<Question[]>;
 
   private _searchParams;
 
   constructor(private questionService: QuestionService) {
-    this._searchParams = new BehaviorSubject<QuestionSearchConfig>(this._config);
-    this._questions$ = this._searchParams.pipe(
+    this._searchParams = new BehaviorSubject<SearchConfig>(this.config);
+    this.questions$ = this._searchParams.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((config: QuestionSearchConfig) =>
-        this.questionService.searchQuestions(config.query)),
+      switchMap((config: SearchConfig) =>
+        this.questionService.getQuestions(config)),
     );
   }
 
-  search(config: QuestionSearchConfig) {
+  search(config: SearchConfig) {
     this.config = config;
-    this._searchParams.next(this._config);
+    this._searchParams.next(this.config);
   }
 }

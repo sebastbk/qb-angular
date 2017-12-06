@@ -140,8 +140,6 @@ export class QuestionDetailComponent implements OnInit, OnChanges {
 
   private prepareSaveQuestion(): Question {
     const formModel = this.questionForm.value;
-
-    const modified_on = (new Date()).toJSON();
     const saveQuestion: Question = {
       id: this.question.id,
       text: formModel.text as string,

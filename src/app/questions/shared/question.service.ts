@@ -12,18 +12,14 @@ export class QuestionService {
 
   constructor(private http: HttpClient) { }
 
-  searchQuestions(query: string): Observable<Question[]> {
-    const tags = query ? query.split(/\s+/).join(',') : '';
-    const url = `${this.questionsUrl}/?search=${tags}`;
-    return this.http.get<Question[]>(url).pipe(
-      catchError(this.handleError('searchQuestions', [])),
-      map((data: any) => data.results)
-    );
-  }
-
-  getQuestions(): Observable<Question[]> {
+  getQuestions(params= {}): Observable<Question[]> {
     const url = `${this.questionsUrl}/`;
-    return this.http.get<Question[]>(url).pipe(
+    let httpParams = new HttpParams();
+    for (const key of Object.keys(params)) {
+      httpParams = httpParams.append(key, params[key]);
+    }
+    console.log(httpParams);
+    return this.http.get<Question[]>(url, {params: httpParams}).pipe(
       catchError(this.handleError('getQuestions', [])),
       map((data: any) => data.results)
     );

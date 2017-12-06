@@ -10,7 +10,7 @@ import { of } from 'rxjs/observable/of';
 import { tap, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Question } from '../shared/question.model';
-import { QuestionSearchConfig, QuestionSearchService } from '../question-search.service';
+import { SearchConfig, QuestionSearchService } from '../question-search.service';
 import { Tag } from '@qb/tags/shared/tag.model';
 import { TagService } from '@qb/tags/shared/tag.service';
 
@@ -39,13 +39,14 @@ export class QuestionSearchComponent implements OnInit {
     this.questions$ = this.questionSearchService.questions$;
   }
 
-  createForm(config: QuestionSearchConfig) {
-    this.searchForm = this.fb.group(config);
+  createForm(config: SearchConfig) {
+    this.searchForm = this.fb.group({
+      search: config.search || ''
+    });
   }
 
   onSubmit(): void {
-    const query = this.searchForm.get('query').value as string;
-    const config = new QuestionSearchConfig(query);
+    const config = this.prepareConfig();
     this.questionSearchService.search(config);
   }
 
@@ -69,6 +70,14 @@ export class QuestionSearchComponent implements OnInit {
       switchMap((term: string) => term ?
         this.tagService.searchTags(term) : of<Tag[]>([])),
     );
+  }
+
+  private prepareConfig(): SearchConfig {
+    const formModel = this.searchForm.value;
+    const config: SearchConfig = {
+      search: formModel.search as string
+    };
+    return config;
   }
 
 }
