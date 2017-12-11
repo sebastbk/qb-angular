@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <div class="d-flex flex-column" style="height:100vh;">
       <qb-nav></qb-nav>
       <div class="h-100 scroll-y">
-        <div class="container bg-white py-3 p-lg-5 h-min-100">
+        <div class="container bg-white h-min-100 pb-lg-5">
           <div class="mx-auto" style="max-width:40rem;">
             <router-outlet></router-outlet>
           </div>

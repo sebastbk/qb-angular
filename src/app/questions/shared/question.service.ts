@@ -6,22 +6,36 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Question } from './question.model';
 
+export class SearchParams {
+  search?: string;
+  limit?: number;
+  offset?: number;
+  difficulty?: number;
+  created_by?: number;
+}
+
+export class GetManyResults<T> {
+  count: number;
+  next: string;
+  previous: string;
+  results: T[];
+}
+
 @Injectable()
 export class QuestionService {
   private questionsUrl = 'http://127.0.0.1:8000/api/questions';
 
   constructor(private http: HttpClient) { }
 
-  getQuestions(params= {}): Observable<Question[]> {
+  getQuestions(params: SearchParams = {}): Observable<GetManyResults<Question>> {
     const url = `${this.questionsUrl}/`;
     let httpParams = new HttpParams();
     for (const key of Object.keys(params)) {
       httpParams = httpParams.append(key, params[key]);
     }
-    console.log(httpParams);
-    return this.http.get<Question[]>(url, {params: httpParams}).pipe(
-      catchError(this.handleError('getQuestions', [])),
-      map((data: any) => data.results)
+    return this.http.get<GetManyResults<Question>>(url, {params: httpParams}).pipe(
+      catchError(this.handleError('getQuestions', {})),
+      map((data: GetManyResults<Question>) => data)
     );
   }
 
