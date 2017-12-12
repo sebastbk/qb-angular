@@ -100,6 +100,7 @@ export class QuestionSearchComponent implements OnInit {
            // extract count and page data
            this.count = data.count;
            this.page = data.page;
+           window.scrollTo(0, 0);
          }),
         );
       }),

@@ -10,6 +10,8 @@
   cursor:default;
 }
 
-#live-suggest > li:hover {
-  background: whitesmoke;
+#live-suggest > li {
+  &:hover {
+    background-color: whitesmoke;
+  }
 }
