@@ -14,8 +14,6 @@ import { QuestionService, SearchParams, GetManyResults } from '../shared/questio
 import { Tag } from '@qb/tags/shared/tag.model';
 import { TagService } from '@qb/tags/shared/tag.service';
 
-const limits = [10, 30, 60];
-
 @Component({
   selector: 'qb-question-search',
   templateUrl: './question-search.component.html',
@@ -25,11 +23,9 @@ export class QuestionSearchComponent implements OnInit {
   tags$: Observable<Tag[]>;
   questions$: Observable<GetManyResults<Question>>;
   searchForm: FormGroup;
-
-  get page() { return this.offset / this.limit + 1; }
-
-  private offset = 0;
-  private limit = limits[0];
+  count: number;
+  page: number;
+  pageSize = 20;
 
   private searchParams = new BehaviorSubject<SearchParams>({} as SearchParams);
   private searchTerms = new Subject<string>();
@@ -47,36 +43,23 @@ export class QuestionSearchComponent implements OnInit {
   createForm() {
     this.searchForm = this.fb.group({
       search: '',
-      limit: 10,
     });
   }
 
   setForm(params: SearchParams) {
     this.searchForm.reset({
       search: params.search,
-      limit:  params.limit,
     });
   }
 
-  getSearchParams(): SearchParams {
-    const formModel = this.searchForm.value;
-    const params: SearchParams = {
-      search: formModel.search,
-      limit:  formModel.limit,
-      offset: this.offset,
-    };
-    return params;
-  }
-
   onSubmit() {
-    const params = this.getSearchParams();
-    params.offset = 0; // reset to first page
+    const params = this.searchForm.value;
     this.setUrlParams(params);
   }
 
   onPageChange(page: number) {
-    const params = this.getSearchParams();
-    params.offset = (page - 1) * this.limit;
+    const params = this.searchForm.value;
+    params['page'] = page;
     this.setUrlParams(params);
   }
 
@@ -105,17 +88,20 @@ export class QuestionSearchComponent implements OnInit {
     this.questions$ = this.route.queryParamMap.pipe(
       map((params: ParamMap) => {
         const searchParams: SearchParams = {
-          search:  params.get('search') || '',
-          limit:  +(params.get('limit') || 10),
-          offset: +params.get('offset'), // convert to a number (defaults 0 if null)
+          search: params.get('search') || '',
+          page:  +(params.get('page') || 1)
         };
         return searchParams;
       }),
       switchMap((params: SearchParams) => {
         this.setForm(params);
-        this.limit = params.limit;
-        this.offset = params.offset;
-        return this.questionService.getQuestions(params);
+        return this.questionService.getQuestions(params).pipe(
+         tap((data: any) => {
+           // extract count and page data
+           this.count = data.count;
+           this.page = data.page;
+         }),
+        );
       }),
     );
 

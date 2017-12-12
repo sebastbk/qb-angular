@@ -8,16 +8,14 @@ import { Question } from './question.model';
 
 export class SearchParams {
   search?: string;
-  limit?: number;
-  offset?: number;
+  page?: number;
   difficulty?: number;
   created_by?: number;
 }
 
 export class GetManyResults<T> {
   count: number;
-  next: string;
-  previous: string;
+  page: number;
   results: T[];
 }
 
