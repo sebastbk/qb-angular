@@ -8,13 +8,13 @@
         <span>{{question.created_on | age}}</span>
       </small>
     </div> <!-- ./d-flex -->
-    <p>
+    <p class="m-0">
       <span>{{question.text}}</span>
     </p>
   </li> <!-- ./list-group-item -->
 </ul>
 <div *ngIf="isLoading" class="loader mx-auto"></div>
-<div *ngIf="stopLoading" class="text-center">
+<div *ngIf="!isLoading && !hasNext" class="text-center mt-5">
   <button class="btn btn-primary btn-lg" style="border-radius:50%;" (click)="scrollTop()">
     <span class="oi oi-arrow-thick-top"></span>
   </button>

@@ -13,9 +13,11 @@ export class SearchParams {
   created_by?: number;
 }
 
-export class GetManyResults<T> {
+export class PaginatedResponse<T> {
   count: number;
   page: number;
+  has_next: boolean;
+  has_previous: boolean;
   results: T[];
 }
 
@@ -25,13 +27,13 @@ export class QuestionService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestions(params: SearchParams = {}): Observable<GetManyResults<Question>> {
+  getQuestions(params: SearchParams = {}): Observable<PaginatedResponse<Question>> {
     const url = `${this.questionsUrl}/`;
     let httpParams = new HttpParams();
     for (const key of Object.keys(params)) {
       httpParams = httpParams.append(key, params[key]);
     }
-    return this.http.get<GetManyResults<Question>>(url, {params: httpParams});
+    return this.http.get<PaginatedResponse<Question>>(url, {params: httpParams});
   }
 
   getQuestion(id: number): Observable<Question> {

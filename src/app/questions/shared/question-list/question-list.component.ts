@@ -1,21 +1,25 @@
-import { Component, Input, HostListener, OnChanges } from '@angular/core';
+import { Component, Input, HostListener, OnChanges, OnDestroy } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import { ISubscription, Subscription } from 'rxjs/Subscription';
 
 import { Question } from '../question.model';
-import { QuestionService, SearchParams, GetManyResults } from '../question.service';
+import { QuestionService, SearchParams, PaginatedResponse } from '../question.service';
 
 @Component({
   selector: 'qb-question-list',
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.scss']
 })
-export class QuestionListComponent implements OnChanges {
+export class QuestionListComponent implements OnChanges, OnDestroy {
   @Input() params: SearchParams;
   questions: Question[];
-  results: number;
+  count: number;
+  page: number;
+  hasNext: boolean;
   isLoading: boolean;
-  stopLoading: boolean;
 
-  private page: number;
+  private subscription: ISubscription = new Subscription();
 
   constructor(private questionService: QuestionService) { }
 
@@ -23,7 +27,7 @@ export class QuestionListComponent implements OnChanges {
   onWindowScroll() {
     const pos = (document.documentElement.scrollTop || document.body.scrollTop);
     const max = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    if (pos === max && !this.isLoading && !this.stopLoading) {
+    if (this.hasNext && !this.isLoading && pos === max) {
       this.loadNextPage();
     }
   }
@@ -38,20 +42,13 @@ export class QuestionListComponent implements OnChanges {
 
   loadPage(params: SearchParams) {
     this.isLoading = true;
-    this.questionService.getQuestions(params).toPromise()
-      .then((data: GetManyResults<Question>) => {
-        this.isLoading = false;
+    this.subscription = this.questionService.getQuestions(params)
+      .subscribe((data: PaginatedResponse<Question>) => {
         this.page = data.page;
-        this.results = data.count;
+        this.count = data.count;
+        this.hasNext = data.has_next;
         this.appendQuestions(data.results);
-      })
-      .catch(error => {
         this.isLoading = false;
-        if (error.status === 404) {
-          this.stopLoading = true;
-        } else {
-          console.log(error);
-        }
       });
   }
 
@@ -62,10 +59,12 @@ export class QuestionListComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.questions = []; // empty existing array
-    this.isLoading = false;
-    this.stopLoading = false;
+    this.subscription.unsubscribe(); // clear existing request
+    this.questions = []; // reset results
     this.loadPage(this.params);
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
