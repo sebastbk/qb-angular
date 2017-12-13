@@ -10,6 +10,7 @@ import { QuestionsRoutingModule } from './questions-routing.module';
 import { QuestionsComponent } from './questions.component';
 import { QuestionSearchComponent } from './question-search/question-search.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { QuestionListComponent } from './shared/question-list/question-list.component';
 
 // services
 import { QuestionService } from './shared/question.service';
@@ -23,6 +24,7 @@ import { QuestionService } from './shared/question.service';
     QuestionsComponent,
     QuestionSearchComponent,
     QuestionDetailComponent,
+    QuestionListComponent,
   ],
   providers: [
     QuestionService,

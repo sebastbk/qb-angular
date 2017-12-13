@@ -21,26 +21,7 @@
         </div>
       </div>
     </form>
-    <small class="d-block text-muted mt-1" style="border-bottom:1px solid #ccc;">{{(questions$ | async)?.count || 0}} Results</small>
   </div>
 
-  <!-- search results -->
-  <ul class="list-unstyled mb-3">
-    <li *ngFor="let question of (questions$ | async)?.results" class="d-flex flex-column align-items-start mb-3">
-      <div class="d-flex w-100 justify-content-between">
-        <small class="text-muted">
-          <a [routerLink]="['/questions', question.id]">#{{question.id}}</a> &middot;
-          <a [routerLink]="['/users', question.created_by]">{{question.created_by}}</a> &middot;
-          <span>{{question.created_on | age}}</span>
-          </small>
-      </div> <!-- ./d-flex -->
-      <p class="link mb-0" (click)="question.showAnswer = !question.showAnswer">
-        <span>{{question.text}}</span>
-        <span *ngIf="question.showAnswer" class="text-success">{{question.answer}}</span>
-      </p>
-    </li> <!-- ./list-group-item -->
-  </ul>
-
-      <ngb-pagination *ngIf="count && page" class="d-flex justify-content-center" (pageChange)="onPageChange($event)"
-        [collectionSize]="count" [page]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false"></ngb-pagination>
+  <qb-question-list [params]="params"></qb-question-list>
 </div>

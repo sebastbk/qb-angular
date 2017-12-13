@@ -31,10 +31,7 @@ export class QuestionService {
     for (const key of Object.keys(params)) {
       httpParams = httpParams.append(key, params[key]);
     }
-    return this.http.get<GetManyResults<Question>>(url, {params: httpParams}).pipe(
-      catchError(this.handleError('getQuestions', {})),
-      map((data: GetManyResults<Question>) => data)
-    );
+    return this.http.get<GetManyResults<Question>>(url, {params: httpParams});
   }
 
   getQuestion(id: number): Observable<Question> {

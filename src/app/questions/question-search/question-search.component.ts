@@ -10,7 +10,7 @@ import { of } from 'rxjs/observable/of';
 import { tap, map, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Question } from '../shared/question.model';
-import { QuestionService, SearchParams, GetManyResults } from '../shared/question.service';
+import { SearchParams } from '../shared/question.service';
 import { Tag } from '@qb/tags/shared/tag.model';
 import { TagService } from '@qb/tags/shared/tag.service';
 
@@ -21,20 +21,15 @@ import { TagService } from '@qb/tags/shared/tag.service';
 })
 export class QuestionSearchComponent implements OnInit {
   tags$: Observable<Tag[]>;
-  questions$: Observable<GetManyResults<Question>>;
   searchForm: FormGroup;
-  count: number;
-  page: number;
-  pageSize = 20;
+  params: SearchParams;
 
-  private searchParams = new BehaviorSubject<SearchParams>({} as SearchParams);
   private searchTerms = new Subject<string>();
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private questionService: QuestionService,
     private tagService: TagService
   ) {
     this.createForm();
@@ -54,12 +49,6 @@ export class QuestionSearchComponent implements OnInit {
 
   onSubmit() {
     const params = this.searchForm.value;
-    this.setUrlParams(params);
-  }
-
-  onPageChange(page: number) {
-    const params = this.searchForm.value;
-    params['page'] = page;
     this.setUrlParams(params);
   }
 
@@ -85,25 +74,15 @@ export class QuestionSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questions$ = this.route.queryParamMap.pipe(
-      map((params: ParamMap) => {
+    this.route.queryParamMap.subscribe(
+      (params: ParamMap) => {
         const searchParams: SearchParams = {
           search: params.get('search') || '',
           page:  +(params.get('page') || 1)
         };
-        return searchParams;
-      }),
-      switchMap((params: SearchParams) => {
-        this.setForm(params);
-        return this.questionService.getQuestions(params).pipe(
-         tap((data: any) => {
-           // extract count and page data
-           this.count = data.count;
-           this.page = data.page;
-           window.scrollTo(0, 0);
-         }),
-        );
-      }),
+        this.params = searchParams;
+        this.setForm(searchParams);
+      }
     );
 
     this.tags$ = this.searchTerms.pipe(
