@@ -1,7 +1,8 @@
 import { Component, Input, HostListener, OnChanges, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { ISubscription, Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 import { Question } from '../question.model';
 import { QuestionService, SearchParams, PaginatedResponse } from '../question.service';
@@ -19,7 +20,7 @@ export class QuestionListComponent implements OnChanges, OnDestroy {
   hasNext: boolean;
   isLoading: boolean;
 
-  private subscription: ISubscription = new Subscription();
+  private unsubscribe: Subject<void> = new Subject<void>();
 
   constructor(private questionService: QuestionService) { }
 
@@ -42,7 +43,8 @@ export class QuestionListComponent implements OnChanges, OnDestroy {
 
   loadPage(params: SearchParams) {
     this.isLoading = true;
-    this.subscription = this.questionService.getQuestions(params)
+    this.questionService.getQuestions(params)
+      .takeUntil(this.unsubscribe) // cancel request with `this.unsubscribe.next()`
       .subscribe((data: PaginatedResponse<Question>) => {
         this.page = data.page;
         this.count = data.count;
@@ -59,12 +61,13 @@ export class QuestionListComponent implements OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    this.subscription.unsubscribe(); // clear existing request
+    this.unsubscribe.next(); // clear existing request
     this.questions = []; // reset results
     this.loadPage(this.params);
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

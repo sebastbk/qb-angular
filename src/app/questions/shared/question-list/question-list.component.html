@@ -13,9 +13,11 @@
     </p>
   </li> <!-- ./list-group-item -->
 </ul>
-<div *ngIf="isLoading" class="loader mx-auto"></div>
-<div *ngIf="!isLoading && !hasNext" class="text-center mt-5">
-  <button class="btn btn-primary btn-lg" style="border-radius:50%;" (click)="scrollTop()">
-    <span class="oi oi-arrow-thick-top"></span>
-  </button>
+<div class="my-5">
+  <div *ngIf="isLoading" class="loader mx-auto"></div>
+  <div *ngIf="!isLoading && !hasNext" class="text-center">
+    <button class="btn btn-primary btn-lg" style="border-radius:50%;" (click)="scrollTop()">
+      <span class="oi oi-arrow-thick-top"></span>
+    </button>
+  </div>
 </div>
